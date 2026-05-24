@@ -1,685 +1,554 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>游爽浮潜 · 冲绳本岛出发</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,700;1,400&family=Noto+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet">
-<style>
-:root{--deep:#040d1a;--navy:#071e3d;--teal:#0891b2;--aqua:#06b6d4;--glow:#22d3ee;--cream:#fdf6ee;--accent:#f59e0b;--text:#e8f4f8;--muted:#94b8c8;}
-*{margin:0;padding:0;box-sizing:border-box;}
-html{scroll-behavior:smooth;}
-body{background:var(--deep);color:var(--text);font-family:'Noto Sans SC',sans-serif;font-weight:300;overflow-x:hidden;}
-nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1rem 2rem;display:flex;justify-content:space-between;align-items:center;backdrop-filter:blur(20px);background:rgba(4,13,26,0.75);border-bottom:1px solid rgba(6,182,212,0.12);}
-.nav-logo{font-family:'Playfair Display',serif;font-size:1.05rem;color:var(--glow);letter-spacing:0.05em;}
-.nav-logo span{color:var(--muted);font-style:italic;font-size:0.76rem;}
-.nav-links{display:flex;gap:1.75rem;list-style:none;align-items:center;}
-.nav-links a{color:var(--muted);text-decoration:none;font-size:0.8rem;letter-spacing:0.05em;transition:color 0.2s;}
-.nav-links a:hover{color:var(--aqua);}
-.lang-switcher{display:flex;gap:0.4rem;margin-left:1rem;}
-.lang-btn{background:none;border:1px solid rgba(6,182,212,0.3);color:var(--muted);padding:0.25rem 0.6rem;border-radius:100px;font-size:0.72rem;cursor:pointer;transition:all 0.2s;letter-spacing:0.03em;}
-.lang-btn:hover,.lang-btn.active{background:rgba(6,182,212,0.15);color:var(--aqua);border-color:var(--aqua);}
-@media(max-width:680px){.nav-links{display:none;}.lang-switcher{margin-left:0;}}
-.hero{min-height:100vh;position:relative;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;text-align:center;overflow:hidden;padding:2rem 2rem 9rem;}
-.hero-bg{position:absolute;inset:0;background-image:url('img_hero.jpg');background-size:cover;background-position:center 30%;animation:slow-zoom 22s ease-in-out infinite alternate;}
-.hero-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(4,13,26,0.2) 0%,rgba(4,13,26,0.05) 30%,rgba(4,13,26,0.65) 70%,rgba(4,13,26,0.96) 100%);}
-@keyframes slow-zoom{0%{transform:scale(1);}100%{transform:scale(1.07);}}
-.bubbles{position:absolute;inset:0;pointer-events:none;}
-.bubble{position:absolute;border-radius:50%;background:radial-gradient(circle at 30% 30%,rgba(34,211,238,0.5),rgba(6,182,212,0.08));animation:float-up linear infinite;}
-.bubble:nth-child(1){width:6px;height:6px;left:8%;animation-duration:9s;animation-delay:0s;}
-.bubble:nth-child(2){width:4px;height:4px;left:22%;animation-duration:13s;animation-delay:2s;}
-.bubble:nth-child(3){width:7px;height:7px;left:45%;animation-duration:10s;animation-delay:4s;}
-.bubble:nth-child(4){width:3px;height:3px;left:62%;animation-duration:16s;animation-delay:1s;}
-.bubble:nth-child(5){width:5px;height:5px;left:80%;animation-duration:11s;animation-delay:3s;}
-.bubble:nth-child(6){width:8px;height:8px;left:90%;animation-duration:12s;animation-delay:6s;}
-@keyframes float-up{0%{transform:translateY(110vh);opacity:0;}10%{opacity:0.6;}90%{opacity:0.3;}100%{transform:translateY(-10vh);opacity:0;}}
-.hero-content{position:relative;z-index:2;max-width:700px;}
-.hero-eyebrow{font-family:'Playfair Display',serif;font-style:italic;font-size:clamp(0.78rem,2vw,0.92rem);color:var(--aqua);letter-spacing:0.3em;text-transform:uppercase;margin-bottom:1.2rem;opacity:0;animation:fadeUp 1s ease 0.3s forwards;}
-.hero-title{font-family:'Noto Serif SC',serif;font-size:clamp(2rem,7vw,4.5rem);font-weight:700;line-height:1.2;margin-bottom:0.7rem;background:linear-gradient(135deg,#fff 0%,var(--glow) 50%,var(--aqua) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;opacity:0;animation:fadeUp 1s ease 0.5s forwards;}
-.hero-sub{font-size:clamp(0.88rem,2vw,1.05rem);color:var(--muted);margin-bottom:1.6rem;line-height:1.8;opacity:0;animation:fadeUp 1s ease 0.7s forwards;}
-.hero-tags{display:flex;flex-wrap:wrap;justify-content:center;gap:0.55rem;margin-bottom:2rem;opacity:0;animation:fadeUp 1s ease 0.9s forwards;}
-.tag{border:1px solid rgba(6,182,212,0.38);color:var(--aqua);padding:0.32rem 1rem;border-radius:100px;font-size:0.76rem;letter-spacing:0.03em;background:rgba(6,182,212,0.08);backdrop-filter:blur(10px);}
-.hero-cta{display:inline-block;background:linear-gradient(135deg,var(--teal),var(--aqua));color:var(--deep);font-weight:700;font-size:0.92rem;padding:0.85rem 2.1rem;border-radius:100px;text-decoration:none;letter-spacing:0.05em;box-shadow:0 0 40px rgba(6,182,212,0.38);transition:all 0.3s;opacity:0;animation:fadeUp 1s ease 1.1s forwards;}
-.hero-cta:hover{transform:translateY(-3px);box-shadow:0 0 60px rgba(6,182,212,0.58);}
-.waves{position:absolute;bottom:0;left:0;right:0;height:140px;overflow:hidden;}
-.wave{position:absolute;bottom:0;width:200%;height:100%;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 120'%3E%3Cpath fill='%23040d1a' d='M0,60 C240,100 480,20 720,60 C960,100 1200,20 1440,60 L1440,120 L0,120 Z'/%3E%3C/svg%3E") repeat-x bottom;background-size:50% 100%;}
-.wave-1{animation:wave 10s linear infinite;opacity:0.65;}
-.wave-2{animation:wave 14s linear infinite reverse;opacity:0.3;bottom:10px;filter:blur(2px);}
-.wave-3{animation:wave 18s linear infinite;opacity:0.2;bottom:18px;filter:blur(4px);}
-@keyframes wave{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}
-@keyframes fadeUp{from{opacity:0;transform:translateY(28px);}to{opacity:1;transform:translateY(0);}}
-section{padding:clamp(3.5rem,7vw,7rem) clamp(1.5rem,5vw,4rem);}
-.section-label{font-family:'Playfair Display',serif;font-style:italic;color:var(--aqua);font-size:0.8rem;letter-spacing:0.3em;text-transform:uppercase;margin-bottom:0.7rem;}
-.section-title{font-family:'Noto Serif SC',serif;font-size:clamp(1.6rem,3.8vw,2.7rem);font-weight:600;line-height:1.3;margin-bottom:1.2rem;}
-.section-title em{font-style:normal;color:var(--aqua);}
-.divider{height:1px;background:linear-gradient(90deg,transparent,rgba(6,182,212,0.22),transparent);}
-.gallery-section{padding:0;}
-.gallery-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:5px;}
-.gp{overflow:hidden;position:relative;cursor:pointer;background:var(--navy);}
-.gp img{width:100%;height:100%;object-fit:cover;transition:transform 0.65s ease;display:block;}
-.gp:hover img{transform:scale(1.06);}
-.gp-cap{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(to top,rgba(4,13,26,0.88),transparent);padding:1.25rem 0.9rem 0.7rem;font-size:0.76rem;color:rgba(232,244,248,0.85);opacity:0;transition:opacity 0.3s;font-family:'Noto Serif SC',serif;}
-.gp:hover .gp-cap{opacity:1;}
-.gp-a{grid-column:1/8;height:440px;}.gp-b{grid-column:8/13;height:440px;}
-.gp-c{grid-column:1/5;height:300px;}.gp-d{grid-column:5/9;height:300px;}.gp-e{grid-column:9/13;height:300px;}
-.gp-f{grid-column:1/6;height:360px;}.gp-g{grid-column:6/10;height:360px;}.gp-h{grid-column:10/13;height:360px;}
-.gp-i{grid-column:1/7;height:340px;}.gp-j{grid-column:7/13;height:340px;}
-@media(max-width:768px){.gp-a,.gp-b,.gp-c,.gp-d,.gp-e,.gp-f,.gp-g,.gp-h,.gp-i,.gp-j{grid-column:1/-1;height:240px;}}
-.intro{max-width:840px;margin:0 auto;text-align:center;}
-.intro-body{font-size:clamp(0.93rem,2vw,1.08rem);line-height:2;color:var(--muted);margin-bottom:2.25rem;}
-.intro-body strong{color:var(--text);font-weight:500;}
-.hl-strip{background:linear-gradient(135deg,rgba(8,145,178,0.11),rgba(6,182,212,0.05));border:1px solid rgba(6,182,212,0.16);border-radius:1.4rem;padding:1.6rem 1.8rem;display:grid;grid-template-columns:repeat(auto-fit,minmax(175px,1fr));gap:1.1rem;text-align:left;}
-.hi{display:flex;align-items:flex-start;gap:0.65rem;}
-.hi-icon{font-size:1.35rem;flex-shrink:0;margin-top:0.05rem;}
-.hi-text strong{display:block;font-size:0.88rem;font-weight:500;margin-bottom:0.12rem;color:var(--text);}
-.hi-text span{font-size:0.76rem;color:var(--muted);line-height:1.5;}
-.split{display:grid;grid-template-columns:1fr 1fr;gap:0;}
-.split-img{overflow:hidden;height:520px;}
-.split-img img{width:100%;height:100%;object-fit:cover;}
-.split-content{display:flex;flex-direction:column;justify-content:center;padding:3.5rem 2.75rem;background:rgba(7,30,61,0.28);}
-@media(max-width:768px){.split{grid-template-columns:1fr;}.split-img{height:260px;}.split-content{padding:2.25rem 1.6rem;}}
-.info-section{background:linear-gradient(180deg,var(--deep) 0%,rgba(7,30,61,0.35) 100%);position:relative;overflow:hidden;}
-.info-section::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,transparent,var(--teal),var(--glow),var(--teal),transparent);}
-.info-grid{max-width:1000px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1.1rem;}
-.info-card{background:rgba(255,255,255,0.03);border:1px solid rgba(6,182,212,0.13);border-radius:1.4rem;padding:1.6rem;position:relative;overflow:hidden;transition:border-color 0.3s,transform 0.3s;}
-.info-card:hover{border-color:rgba(6,182,212,0.36);transform:translateY(-4px);}
-.info-card::after{content:'';position:absolute;top:0;left:0;width:100%;height:3px;background:linear-gradient(90deg,var(--teal),var(--glow));border-radius:1.4rem 1.4rem 0 0;}
-.card-icon{font-size:1.65rem;margin-bottom:0.7rem;}
-.card-title{font-family:'Noto Serif SC',serif;font-size:1rem;font-weight:600;margin-bottom:0.55rem;color:var(--cream);}
-.card-body{font-size:0.85rem;line-height:1.9;color:var(--muted);}
-.card-body strong{color:var(--aqua);font-weight:500;}
-.steps{position:relative;margin-top:2.25rem;}
-.steps::before{content:'';position:absolute;left:1.85rem;top:0;bottom:0;width:1px;background:linear-gradient(to bottom,var(--teal),var(--aqua),transparent);}
-.step{display:flex;gap:1.6rem;margin-bottom:2rem;position:relative;}
-.step-num{width:3.65rem;height:3.65rem;flex-shrink:0;border-radius:50%;background:linear-gradient(135deg,var(--teal),var(--aqua));display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-weight:700;font-size:0.95rem;color:var(--deep);position:relative;z-index:1;box-shadow:0 0 18px rgba(6,182,212,0.28);}
-.step-content{padding-top:0.55rem;flex:1;}
-.step-title{font-weight:500;font-size:0.95rem;margin-bottom:0.22rem;color:var(--text);}
-.step-desc{font-size:0.84rem;color:var(--muted);line-height:1.8;}
-.pricing-section{position:relative;overflow:hidden;}
-.pricing-section::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 50% at 50% 0%,rgba(8,145,178,0.11) 0%,transparent 70%);pointer-events:none;}
-.pricing-grid{max-width:840px;margin:2.25rem auto 0;display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:1.6rem;}
-.price-card{border-radius:1.8rem;padding:2.1rem;position:relative;overflow:hidden;}
-.price-card.basic{background:rgba(255,255,255,0.04);border:1px solid rgba(6,182,212,0.17);}
-.price-card.premium{background:linear-gradient(135deg,rgba(8,145,178,0.17),rgba(6,182,212,0.07));border:1px solid rgba(34,211,238,0.36);box-shadow:0 0 45px rgba(6,182,212,0.11);}
-.price-badge{display:inline-block;background:linear-gradient(135deg,var(--accent),#fbbf24);color:#1a0a00;font-size:0.66rem;font-weight:700;letter-spacing:0.1em;padding:0.2rem 0.65rem;border-radius:100px;margin-bottom:0.65rem;text-transform:uppercase;}
-.price-type{font-family:'Noto Serif SC',serif;font-size:1.15rem;font-weight:600;margin-bottom:0.18rem;}
-.price-sub{font-size:0.78rem;color:var(--muted);margin-bottom:1.1rem;}
-.price-amount{font-family:'Playfair Display',serif;font-size:2.6rem;font-weight:700;color:var(--glow);line-height:1;margin-bottom:0.18rem;}
-.price-unit{font-size:0.76rem;color:var(--muted);margin-bottom:1.35rem;font-weight:700;letter-spacing:0.07em;}
-.price-includes{list-style:none;margin-bottom:1.1rem;}
-.price-includes li{font-size:0.83rem;color:var(--muted);padding:0.42rem 0;border-bottom:1px solid rgba(255,255,255,0.05);display:flex;align-items:flex-start;gap:0.5rem;line-height:1.5;}
-.price-includes li::before{content:'✓';color:var(--aqua);font-weight:700;flex-shrink:0;}
-.price-note{font-size:0.74rem;color:rgba(148,184,200,0.5);line-height:1.7;padding-top:0.7rem;border-top:1px solid rgba(255,255,255,0.05);}
-.shimmer{background:linear-gradient(90deg,var(--aqua) 0%,var(--glow) 50%,var(--aqua) 100%);background-size:200% 100%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:shimmer 4s linear infinite;}
-@keyframes shimmer{0%{background-position:0% 50%;}100%{background-position:200% 50%;}}
-.tips-list{list-style:none;margin-top:1.6rem;display:flex;flex-direction:column;gap:0.85rem;}
-.tips-list li{display:flex;align-items:flex-start;gap:0.85rem;background:rgba(255,255,255,0.03);border:1px solid rgba(6,182,212,0.09);border-radius:0.9rem;padding:0.85rem 1.1rem;font-size:0.87rem;color:var(--muted);line-height:1.7;}
-.tips-list li span:first-child{font-size:1.15rem;flex-shrink:0;}
-.contact-section{position:relative;overflow:hidden;text-align:center;}
-.contact-section::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 80% at 50% 50%,rgba(8,145,178,0.09) 0%,transparent 70%);}
-.qr-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(225px,1fr));gap:1.6rem;max-width:820px;margin:2.25rem auto 0;position:relative;z-index:1;}
-.qr-card{background:rgba(255,255,255,0.04);border:1px solid rgba(6,182,212,0.17);border-radius:1.8rem;padding:1.8rem 1.4rem;display:flex;flex-direction:column;align-items:center;gap:0.9rem;transition:border-color 0.3s,transform 0.3s;}
-.qr-card:hover{border-color:rgba(6,182,212,0.4);transform:translateY(-4px);}
-.qr-platform{font-size:0.76rem;font-weight:500;letter-spacing:0.1em;color:var(--aqua);display:flex;align-items:center;gap:0.38rem;text-transform:uppercase;}
-.qr-wrap{width:148px;height:148px;border-radius:0.9rem;overflow:hidden;background:white;display:flex;align-items:center;justify-content:center;padding:7px;}
-.qr-img{width:100%;height:100%;object-fit:contain;}
-.qr-label{font-size:0.78rem;color:var(--muted);}
-.qr-name{font-family:'Noto Serif SC',serif;font-size:0.9rem;font-weight:600;color:var(--text);}
-.email-card{justify-content:center;gap:1rem;}
-.email-big{font-family:'Playfair Display',serif;font-size:clamp(0.82rem,2.2vw,0.96rem);color:var(--glow);word-break:break-all;font-weight:700;}
-.email-btn{display:inline-block;background:linear-gradient(135deg,var(--teal),var(--aqua));color:var(--deep);font-weight:700;font-size:0.83rem;padding:0.62rem 1.5rem;border-radius:100px;text-decoration:none;transition:all 0.3s;box-shadow:0 0 22px rgba(6,182,212,0.26);}
-.email-btn:hover{transform:translateY(-2px);box-shadow:0 0 38px rgba(6,182,212,0.46);}
-.wechat-id-line{font-family:'Playfair Display',serif;font-size:1rem;color:var(--glow);font-weight:700;margin-bottom:0.38rem;}
-.copy-btn{border:1px solid rgba(6,182,212,0.36);color:var(--aqua);padding:0.35rem 1rem;border-radius:100px;font-size:0.74rem;cursor:pointer;background:none;transition:all 0.2s;letter-spacing:0.04em;}
-.copy-btn:hover{background:rgba(6,182,212,0.12);}
-.reveal{opacity:0;transform:translateY(32px);transition:opacity 0.7s ease,transform 0.7s ease;}
-.reveal.visible{opacity:1;transform:translateY(0);}
-footer{text-align:center;padding:2rem;font-size:0.74rem;color:rgba(148,184,200,0.32);border-top:1px solid rgba(6,182,212,0.07);}
-
-.stats-section {
-  padding: clamp(2.5rem,5vw,4.5rem) clamp(1.5rem,5vw,4rem);
-  background: linear-gradient(135deg, rgba(8,145,178,0.13), rgba(6,182,212,0.06));
-  border-top: 1px solid rgba(6,182,212,0.2);
-  border-bottom: 1px solid rgba(6,182,212,0.2);
-  text-align: center;
-}
-.stats-intro {
-  font-family: 'Playfair Display', serif;
-  font-style: italic;
-  color: var(--aqua);
-  font-size: 0.85rem;
-  letter-spacing: 0.3em;
-  text-transform: uppercase;
-  margin-bottom: 2rem;
-  opacity: 0.8;
-}
-.stats-grid {
-  max-width: 900px;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1rem;
-  text-align: center;
-}
-@media(max-width: 600px) {
-  .stats-grid { grid-template-columns: repeat(2, 1fr); }
-}
-.stat-item { padding: 1rem; }
-.stat-num {
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(2.2rem, 5vw, 3.5rem);
-  font-weight: 700;
-  background: linear-gradient(135deg, var(--glow), var(--aqua));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  line-height: 1.1;
-  margin-bottom: 0.5rem;
-}
-.stat-label {
-  font-size: 0.85rem;
-  color: var(--muted);
-  letter-spacing: 0.05em;
-  line-height: 1.5;
-}
-
-.custom-section {
-  padding: clamp(2.5rem,5vw,4rem) clamp(1.5rem,5vw,4rem);
-}
-.custom-card {
-  max-width: 900px;
-  margin: 0 auto;
-  background: linear-gradient(135deg, rgba(8,145,178,0.12), rgba(6,182,212,0.06));
-  border: 1px solid rgba(6,182,212,0.25);
-  border-radius: 2rem;
-  padding: clamp(2rem,4vw,3rem);
-  display: flex;
-  align-items: center;
-  gap: 2rem;
-  flex-wrap: wrap;
-}
-.custom-icon {
-  font-size: 3rem;
-  flex-shrink: 0;
-}
-.custom-text {
-  flex: 1;
-  min-width: 200px;
-}
-.custom-desc {
-  font-size: 0.9rem;
-  color: var(--muted);
-  line-height: 1.8;
-}
-</style>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Snorkel Nice Okinawa</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="style.css"/>
 </head>
 <body>
 
-<nav>
-  <div class="nav-logo">游爽浮潜 <span>· Okinawa</span></div>
-  <ul class="nav-links">
-    <li><a href="#gallery" data-i18n="nav_gallery">相册</a></li>
-    <li><a href="#about" data-i18n="nav_about">简介</a></li>
-    <li><a href="#itinerary" data-i18n="nav_itinerary">行程</a></li>
-    <li><a href="#pricing" data-i18n="nav_pricing">价格</a></li>
-    <li><a href="#contact" data-i18n="nav_contact">预约</a></li>
-    <li>
-      <div class="lang-switcher">
-        <button class="lang-btn" onclick="setLang('zh-CN')">简</button>
-        <button class="lang-btn" onclick="setLang('zh-TW')">繁</button>
-        <button class="lang-btn" onclick="setLang('en')">EN</button>
-      </div>
-    </li>
-  </ul>
-</nav>
+<!-- ══ LANG BAR ══════════════════════════════════ -->
+<div class="lang-bar">
+  <button class="lang-btn active" onclick="setLang('en')">EN</button>
+  <span class="sep">|</span>
+  <button class="lang-btn" onclick="setLang('zh-Hans')">简体</button>
+  <span class="sep">|</span>
+  <button class="lang-btn" onclick="setLang('zh-Hant')">繁體</button>
+</div>
 
-<div class="hero">
-  <div class="hero-bg"></div>
+<!-- ══ HERO ══════════════════════════════════════ -->
+<section class="hero" id="hero">
+  <!-- background injected by photos.js -->
+  <div class="hero-bg" id="heroBg"></div>
   <div class="hero-overlay"></div>
-  <div class="bubbles">
-    <div class="bubble"></div><div class="bubble"></div><div class="bubble"></div>
-    <div class="bubble"></div><div class="bubble"></div><div class="bubble"></div>
+  <div class="bubbles" id="bubbles"></div>
+  <div class="wave-wrap">
+    <div class="wave wave1"></div>
+    <div class="wave wave2"></div>
+    <div class="wave wave3"></div>
   </div>
+
   <div class="hero-content">
-    <div class="hero-eyebrow" data-i18n="hero_eyebrow">Snorkeling · Okinawa · 冲绳本岛</div>
-    <h1 class="hero-title" data-i18n-html="hero_title">游爽！<br>充分的浮潜体验</h1>
-    <p class="hero-sub" data-i18n-html="hero_sub">冲绳本岛出发 · 半天轻松行程<br>人少 · 无人岛 · 果冻海 · 含无人机航拍</p>
-    <div class="hero-tags">
-      <span class="tag" data-i18n="tag1">🐢 有机会遇到海龟</span>
-      <span class="tag" data-i18n="tag2">📷 赠GoPro + 无人机航拍</span>
-      <span class="tag" data-i18n="tag3">👶 2岁起可参加</span>
-      <span class="tag" data-i18n="tag4">🏊 不会游泳也OK</span>
-    </div>
-    <a href="#pricing" class="hero-cta" data-i18n="hero_cta">查看价格方案 →</a>
+    <p class="hero-eyebrow">
+      <span data-lang="en" class="visible">Okinawa · Japan · Est. 2018</span>
+      <span data-lang="zh-Hans">冲绳 · 日本 · 成立于2018</span>
+      <span data-lang="zh-Hant">沖繩 · 日本 · 成立於2018</span>
+    </p>
+    <h1 class="hero-title">
+      <span data-lang="en" class="visible">Dive into<br><em>Paradise</em></span>
+      <span data-lang="zh-Hans">探索<br><em>深蓝世界</em></span>
+      <span data-lang="zh-Hant">探索<br><em>深藍世界</em></span>
+    </h1>
+    <p class="hero-sub">
+      <span data-lang="en" class="visible">Experience Okinawa's pristine coral reefs and crystal-clear waters.<br>Three exclusive snorkeling journeys, crafted for every adventurer.</span>
+      <span data-lang="zh-Hans">探索冲绳原始珊瑚礁和清澈海水。<br>三款专属浮潜行程，为每位探险者量身打造。</span>
+      <span data-lang="zh-Hant">探索沖繩原始珊瑚礁和清澈海水。<br>三款專屬浮潛行程，為每位探險者量身打造。</span>
+    </p>
+    <a href="#packages" class="hero-cta">
+      <span data-lang="en" class="visible">Explore Packages</span>
+      <span data-lang="zh-Hans">查看套餐</span>
+      <span data-lang="zh-Hant">查看套餐</span>
+      ↓
+    </a>
   </div>
-  <div class="waves">
-    <div class="wave wave-1"></div><div class="wave wave-2"></div><div class="wave wave-3"></div>
-  </div>
-</div>
 
-<section id="gallery" class="gallery-section">
-  <div class="gallery-grid">
-    <div class="gp gp-a"><img src="images/img_boat_reef.jpg" alt=""><div class="gp-cap" data-i18n="cap1">无人岛附近，就是这片海</div></div>
-    <div class="gp gp-b"><img src="images/img_snorkel_aerial.jpg" alt=""><div class="gp-cap" data-i18n="cap2">无人机俯瞰，那两个小点就是你们</div></div>
-    <div class="gp gp-c"><img src="images/img_coral_reef.jpg" alt=""><div class="gp-cap" data-i18n="cap3">珊瑚群与热带鱼</div></div>
-    <div class="gp gp-d"><img src="images/img_teal_channels.jpg" alt=""><div class="gp-cap" data-i18n="cap4">果冻海，光影轻摇</div></div>
-    <div class="gp gp-e"><img src="images/img_colorful_fish.jpg" alt=""><div class="gp-cap" data-i18n="cap5">钓上来这么美的鱼！</div></div>
-    <div class="gp gp-f"><img src="images/img_boat_ocean.jpg" alt=""><div class="gp-cap" data-i18n="cap6">蓝色大海中的小船</div></div>
-    <div class="gp gp-g"><img src="images/img_on_boat.jpg" alt=""><div class="gp-cap" data-i18n="cap7">乘船出发，向无人岛</div></div>
-    <div class="gp gp-h"><img src="images/img_kid_fishing.jpg" alt=""><div class="gp-cap" data-i18n="cap8">小朋友也能玩！</div></div>
-    <div class="gp gp-i"><img src="images/img_uninhabited_island.jpg" alt=""><div class="gp-cap" data-i18n="cap9">无人岛全景</div></div>
-    <div class="gp gp-j"><img src="images/img_port.jpg" alt=""><div class="gp-cap" data-i18n="cap10">宜野湾港口出发</div></div>
-  </div>
-</section>
+  <!-- hero photo credit -->
+  <div class="hero-credit" id="heroCredit"></div>
 
-
-<div class="divider"></div>
-<section class="stats-section">
-  <div class="stats-intro" data-i18n="stats_intro">2025年实绩</div>
-  <div class="stats-grid">
-    <div class="stat-item">
-      <div class="stat-num">~1000</div>
-      <div class="stat-label" data-i18n="stat1">2025年参加人次</div>
-    </div>
-    <div class="stat-item">
-      <div class="stat-num">1/3</div>
-      <div class="stat-label" data-i18n="stat2">来自海外的客人</div>
-    </div>
-    <div class="stat-item">
-      <div class="stat-num">0</div>
-      <div class="stat-label" data-i18n="stat3">事故记录</div>
-    </div>
-    <div class="stat-item">
-      <div class="stat-num">99%</div>
-      <div class="stat-label" data-i18n="stat4">客户满意率</div>
-    </div>
+  <div class="hero-scroll">
+    <div class="scroll-line"></div>
+    <span data-lang="en" class="visible">scroll</span>
+    <span data-lang="zh-Hans">滚动</span>
+    <span data-lang="zh-Hant">滾動</span>
   </div>
 </section>
 
-<section id="about">
-  <div class="intro reveal">
-    <div class="section-label" data-i18n="about_label">关于这个行程</div>
-    <h2 class="section-title" data-i18n-html="about_title">不一样的冲绳浮潜<br><em>人少，才是真的美</em></h2>
-    <p class="intro-body" data-i18n-html="about_body">特别适合<strong>家庭出游</strong>或<strong>第一次浮潜</strong>的朋友。乘船30–40分钟，直达当天最清澈、鱼最多的无人岛附近。不挤、不赶，夏天的冲绳果冻海，实至名归。</p>
-    <div class="hl-strip">
-      <div class="hi"><div class="hi-icon">🗺️</div><div class="hi-text"><strong data-i18n="hl1_title">出发地点</strong><span data-i18n="hl1_val">宜野湾港口（王子酒店对面）</span></div></div>
-      <div class="hi"><div class="hi-icon">⏱️</div><div class="hi-text"><strong data-i18n="hl2_title">全程时长</strong><span data-i18n="hl2_val">约4小时，轻松不赶行程</span></div></div>
-      <div class="hi"><div class="hi-icon">🌅</div><div class="hi-text"><strong data-i18n="hl3_title">出发时间</strong><span data-i18n="hl3_val">上午 7:45–8:15 / 下午 12:00</span></div></div>
-      <div class="hi"><div class="hi-icon">🛥️</div><div class="hi-text"><strong data-i18n="hl4_title">船上人数</strong><span data-i18n="hl4_val">定员15人，客人不超过12人</span></div></div>
+<!-- ══ PACKAGES ══════════════════════════════════ -->
+<section id="packages">
+  <div class="container">
+    <div class="packages-header">
+      <p class="section-label">
+        <span data-lang="en" class="visible">Our Offerings</span>
+        <span data-lang="zh-Hans">精选套餐</span>
+        <span data-lang="zh-Hant">精選套餐</span>
+      </p>
+      <h2 class="section-title">
+        <span data-lang="en" class="visible">Three Ways to Discover the Sea</span>
+        <span data-lang="zh-Hans">三种方式探索大海</span>
+        <span data-lang="zh-Hant">三種方式探索大海</span>
+      </h2>
     </div>
-  </div>
-</section>
+    <div class="cards">
 
-<div class="divider"></div>
-
-<div class="split reveal">
-  <div class="split-img"><img src="images/img_boat_reef.jpg" alt=""></div>
-  <div class="split-content">
-    <div class="section-label" data-i18n="who_label">适合人群</div>
-    <h2 class="section-title" data-i18n-html="who_title" style="margin-bottom:1.4rem;">每个人都能<em>玩得开心</em></h2>
-    <div class="info-grid" style="grid-template-columns:1fr;gap:0.9rem;max-width:none;margin:0;">
-      <div class="info-card"><div class="card-icon">👨‍👩‍👧‍👦</div><div class="card-title" data-i18n="card1_title">亲子家庭</div><div class="card-body" data-i18n-html="card1_body"><strong>2岁以上</strong>均可参加，可选专属教练全程一对一陪同，孩子安全有保障。</div></div>
-      <div class="info-card"><div class="card-icon">🌊</div><div class="card-title" data-i18n="card2_title">浮潜新手</div><div class="card-body" data-i18n-html="card2_body"><strong>完全不会游泳也可以安心参加</strong>，穿好救生衣，趴着看也很梦幻。</div></div>
-      <div class="info-card"><div class="card-icon">🏊</div><div class="card-title" data-i18n="card3_title">有经验的朋友</div><div class="card-body" data-i18n-html="card3_body">会游泳？选<strong>轻松体验型</strong>自由发挥，带上GoPro尽情拍。</div></div>
-    </div>
-  </div>
-</div>
-
-<div class="divider"></div>
-
-<section id="itinerary" style="max-width:720px;margin:0 auto;">
-  <div class="section-label reveal" data-i18n="iti_label">行程安排</div>
-  <h2 class="section-title reveal" data-i18n-html="iti_title">一天的流程，<em>简单又充实</em></h2>
-  <div class="steps">
-    <div class="step reveal"><div class="step-num">1</div><div class="step-content"><div class="step-title" data-i18n="s1t">抵达港口，准备出发</div><div class="step-desc" data-i18n="s1d">换衣服、上厕所、签署文件、穿好救生衣，整装待发。</div></div></div>
-    <div class="step reveal"><div class="step-num">2</div><div class="step-content"><div class="step-title" data-i18n="s2t">乘船出发，约30–40分钟</div><div class="step-desc" data-i18n="s2d">前往当天最清澈、鱼最多的无人岛附近。夏天天气好时，果冻海实至名归。</div></div></div>
-    <div class="step reveal"><div class="step-num">3</div><div class="step-content"><div class="step-title" data-i18n="s3t">教练讲解浮潜技巧，下水！</div><div class="step-desc" data-i18n="s3d">翻身、有效游动、不用手、站立等实用技巧一一讲解，安全下水。</div></div></div>
-    <div class="step reveal"><div class="step-num">4</div><div class="step-content"><div class="step-title" data-i18n="s4t">探索热带鱼、珊瑚群、🐢 海龟</div><div class="step-desc" data-i18n="s4d">波光交错的梦境一般，珊瑚织成的梦，还有机会与海龟相遇！</div></div></div>
-    <div class="step reveal"><div class="step-num">5</div><div class="step-content"><div class="step-title" data-i18n="s5t">累了随时回船上休息 + 钓鱼体验</div><div class="step-desc" data-i18n="s5d">喝点水，放松一下，还可以在船上钓鱼哦（赠钓鱼装备）。天气好时赠送无人机航拍！📷</div></div></div>
-    <div class="step reveal"><div class="step-num">6</div><div class="step-content"><div class="step-title" data-i18n="s6t">回港，可选温水淋浴</div><div class="step-desc" data-i18n="s6d">300日元不限时温水澡。全程陪伴型可顺路去美国村 / Parco City。</div></div></div>
-  </div>
-</section>
-
-<div class="divider"></div>
-
-<section id="pricing" class="pricing-section">
-  <div style="text-align:center;">
-    <div class="section-label reveal" data-i18n="price_label">价格方案</div>
-    <h2 class="section-title reveal" data-i18n-html="price_title">可拼可包，<em>丰俭由人</em></h2>
-  </div>
-  <div class="pricing-grid">
-    <div class="price-card basic reveal">
-      <div class="price-type" data-i18n="p1_type">轻松体验型</div>
-      <div class="price-sub" data-i18n="p1_sub">适合预算控 / 自驾 / 熟悉浮潜的朋友</div>
-      <div class="price-amount">¥910</div>
-      <div class="price-unit" data-i18n="p1_unit">RMB / 人 · 转账+确认信为占位成功</div>
-      <ul class="price-includes">
-        <li data-i18n="p1_i1">浮潜 + 钓鱼装备（不钓也行）</li>
-        <li data-i18n="p1_i2">救生衣 + 全套浮潜装备</li>
-        <li data-i18n="p1_i3">拼船出海 + 保险</li>
-        <li data-i18n="p1_i4">赠 GoPro 水下拍摄</li>
-        <li data-i18n="p1_i5">赠无人机航拍（风小无雨）</li>
-      </ul>
-      <div class="price-note" data-i18n="p1_note">适合1–7人参加，8人起包船可能更合适。不含接送服务、无专属潜导。</div>
-    </div>
-    <div class="price-card premium reveal">
-      <div class="price-badge" data-i18n="p2_badge">推荐亲子</div>
-      <div class="price-type" data-i18n="p2_type">全程陪伴型</div>
-      <div class="price-sub" data-i18n="p2_sub">适合亲子家庭 / 想全程省心的客人</div>
-      <div class="price-amount shimmer" data-i18n="p2_amount">询价</div>
-      <div class="price-unit" data-i18n="p2_unit">参考每组 +¥1000 RMB（5人）</div>
-      <ul class="price-includes">
-        <li data-i18n="p2_i1">酒店专车接送（那霸–读谷村）</li>
-        <li data-i18n="p2_i2">专属教练一对一家庭全程陪同</li>
-        <li data-i18n="p2_i3">浮潜 + 钓鱼装备 + 保险</li>
-        <li data-i18n="p2_i4">赠 GoPro 水下拍摄</li>
-        <li data-i18n="p2_i5">赠无人机航拍（风小无雨）</li>
-        <li data-i18n="p2_i6">单独摄影 · 游不动了拉着走</li>
-        <li data-i18n="p2_i7">回程可顺路美国村 / Parco City</li>
-      </ul>
-      <div class="price-note" data-i18n="p2_note">如不需接送但需专属教练，详询客服 OkinawaOnline。</div>
-    </div>
-  </div>
-</section>
-
-
-<div class="divider"></div>
-<section class="custom-section">
-  <div class="custom-card reveal">
-    <div class="custom-icon">🗺️</div>
-    <div class="custom-text">
-      <div class="section-label" data-i18n="custom_label">定制行程</div>
-      <h2 class="section-title" data-i18n-html="custom_title" style="margin-bottom:0.75rem;">钓鱼佬包船、赶海、SUP、Kayak<br><em>想怎么玩，我们来帮你安排</em></h2>
-      <p class="custom-desc" data-i18n="custom_desc">离岛活动、BBQ、亲子定制、多日行程……欢迎自己组队，告诉我们你的想法，我们一起设计专属行程。</p>
-    </div>
-    <a href="#contact" class="hero-cta" style="opacity:1;animation:none;white-space:nowrap;" data-i18n="custom_cta">随时来聊 →</a>
-  </div>
-</section>
-
-<div class="divider"></div>
-
-<section>
-  <div style="max-width:660px;margin:0 auto;" class="reveal">
-    <div class="section-label" data-i18n="tips_label">出发前</div>
-    <h2 class="section-title" data-i18n="tips_title">小提醒</h2>
-    <ul class="tips-list">
-      <li><span>👙</span><span data-i18n="tip1">请提前准备好泳衣、防晒、毛巾和替换衣物。</span></li>
-      <li><span>🕐</span><span data-i18n="tip2">上午场前一天傍晚确认天气和潮汐后通知具体时间（约 7:45–8:15 出发）。</span></li>
-      <li><span>🚿</span><span data-i18n="tip3">回港后可选温水淋浴，300日元不限时。</span></li>
-      <li><span>⚕️</span><span data-i18n="tip4">超过60岁且有高血压、糖尿病等需每日控制的情况，请提前具体商量。</span></li>
-      <li><span>📸</span><span data-i18n="tip5">天气允许时赠送无人机航拍（风小无雨），所有照片均为实拍，就是这艘船，就是这片海。</span></li>
-    </ul>
-  </div>
-</section>
-
-<div class="divider"></div>
-
-<section id="contact" class="contact-section">
-  <div class="reveal" style="position:relative;z-index:1;">
-    <div class="section-label" data-i18n="contact_label">联系我们</div>
-    <h2 class="section-title" data-i18n-html="contact_title" style="margin-bottom:0.7rem;">准备好了？<em>来聊聊吧</em></h2>
-    <p style="color:var(--muted);font-size:0.9rem;line-height:1.8;" data-i18n="contact_sub">有任何问题、想预约行程、想定制包船方案，随时找我们！</p>
-    <div class="qr-grid">
-      <div class="qr-card">
-        <div class="qr-platform"><span>💬</span> WhatsApp</div>
-        <div class="qr-wrap"><img src="images/img_wa_qr.jpg" alt="WhatsApp QR" class="qr-img"></div>
-        <div class="qr-label" data-i18n="wa_label">扫码加 WhatsApp</div>
-        <div class="qr-name">wan</div>
+      <div class="card" onclick="openModal('half')">
+        <span class="card-icon">🐠</span>
+        <p class="card-tag"><span data-lang="en" class="visible">Half Day · 4 Hours</span><span data-lang="zh-Hans">半日 · 4小时</span><span data-lang="zh-Hant">半日 · 4小時</span></p>
+        <h3 class="card-name"><span data-lang="en" class="visible">Morning Discovery</span><span data-lang="zh-Hans">晨光探索之旅</span><span data-lang="zh-Hant">晨光探索之旅</span></h3>
+        <p class="card-duration"><span data-lang="en" class="visible">08:00–12:00 · Max 8 guests</span><span data-lang="zh-Hans">08:00–12:00 · 最多8人</span><span data-lang="zh-Hant">08:00–12:00 · 最多8人</span></p>
+        <p class="card-desc"><span data-lang="en" class="visible">Perfect introduction to Okinawa's vibrant reef ecosystems. Gentle currents, abundant tropical fish, and stunning coral gardens await.</span><span data-lang="zh-Hans">完美的冲绳浮潜入门体验。平静水流，热带鱼群，壮观的珊瑚花园等你探索。</span><span data-lang="zh-Hant">完美的沖繩浮潛入門體驗。平靜水流，熱帶魚群，壯觀的珊瑚花園等你探索。</span></p>
+        <ul class="card-features">
+          <li><span data-lang="en" class="visible">Professional guide & safety briefing</span><span data-lang="zh-Hans">专业导游及安全简报</span><span data-lang="zh-Hant">專業導遊及安全簡報</span></li>
+          <li><span data-lang="en" class="visible">Full snorkel equipment provided</span><span data-lang="zh-Hans">提供全套浮潜装备</span><span data-lang="zh-Hant">提供全套浮潛裝備</span></li>
+          <li><span data-lang="en" class="visible">2 snorkel sites · Light refreshments</span><span data-lang="zh-Hans">2个浮潜地点 · 含轻食</span><span data-lang="zh-Hant">2個浮潛地點 · 含輕食</span></li>
+          <li><span data-lang="en" class="visible">Drone & underwater photography</span><span data-lang="zh-Hans">无人机及水下摄影</span><span data-lang="zh-Hant">無人機及水下攝影</span></li>
+        </ul>
+        <div class="card-price"><span class="price-amount">¥8,800</span><span class="price-unit"><span data-lang="en" class="visible">/ person</span><span data-lang="zh-Hans">/ 每人</span><span data-lang="zh-Hant">/ 每人</span></span></div>
+        <button class="card-btn"><span data-lang="en" class="visible">Book Now</span><span data-lang="zh-Hans">立即预订</span><span data-lang="zh-Hant">立即預訂</span></button>
       </div>
-      <div class="qr-card email-card">
-        <div class="qr-platform"><span>✉️</span> <span data-i18n="email_platform">邮件联系</span></div>
-        <div class="email-big">info@nice.okinawa</div>
-        <a href="mailto:info@nice.okinawa" class="email-btn" data-i18n="email_btn">发送邮件</a>
-        <div style="margin-top:1.35rem;padding-top:1.1rem;border-top:1px solid rgba(6,182,212,0.12);width:100%;text-align:center;">
-          <div style="font-size:0.76rem;color:var(--muted);margin-bottom:0.5rem;" data-i18n="wechat_hint">微信搜索</div>
-          <div class="wechat-id-line">OkinawaOnline</div>
-          <button class="copy-btn" onclick="navigator.clipboard.writeText('OkinawaOnline').then(()=>{this.setAttribute('data-copied','1');applyLang(currentLang)});setTimeout(()=>{this.removeAttribute('data-copied');applyLang(currentLang)},2000)" data-i18n="copy_btn">复制微信号</button>
+
+      <div class="card featured" onclick="openModal('full')">
+        <span class="card-badge"><span data-lang="en" class="visible">Most Popular</span><span data-lang="zh-Hans">最受欢迎</span><span data-lang="zh-Hant">最受歡迎</span></span>
+        <span class="card-icon">🐢</span>
+        <p class="card-tag"><span data-lang="en" class="visible">Full Day · 8 Hours</span><span data-lang="zh-Hans">全日 · 8小时</span><span data-lang="zh-Hant">全日 · 8小時</span></p>
+        <h3 class="card-name"><span data-lang="en" class="visible">Blue Ocean Expedition</span><span data-lang="zh-Hans">蓝海全日探险</span><span data-lang="zh-Hant">藍海全日探險</span></h3>
+        <p class="card-duration"><span data-lang="en" class="visible">08:00–16:00 · Max 6 guests</span><span data-lang="zh-Hans">08:00–16:00 · 最多6人</span><span data-lang="zh-Hant">08:00–16:00 · 最多6人</span></p>
+        <p class="card-desc"><span data-lang="en" class="visible">A full-day immersion into Okinawa's most spectacular reefs. Swim alongside sea turtles, explore secret coves, and savor a seaside lunch.</span><span data-lang="zh-Hans">全天沉浸于冲绳最壮观的礁石中。与海龟共游，探索隐秘小湾，享用海边午餐。</span><span data-lang="zh-Hant">全天沉浸於沖繩最壯觀的礁石中。與海龜共游，探索隱秘小灣，享用海邊午餐。</span></p>
+        <ul class="card-features">
+          <li><span data-lang="en" class="visible">Private certified dive master</span><span data-lang="zh-Hans">私人认证潜水长</span><span data-lang="zh-Hant">私人認證潛水長</span></li>
+          <li><span data-lang="en" class="visible">4 exclusive snorkel sites</span><span data-lang="zh-Hans">4个独家浮潜地点</span><span data-lang="zh-Hant">4個獨家浮潛地點</span></li>
+          <li><span data-lang="en" class="visible">Gourmet bento lunch & drinks</span><span data-lang="zh-Hans">精致便当午餐及饮料</span><span data-lang="zh-Hant">精緻便當午餐及飲料</span></li>
+          <li><span data-lang="en" class="visible">4K drone + underwater photos included</span><span data-lang="zh-Hans">含4K无人机及水下摄影</span><span data-lang="zh-Hant">含4K無人機及水下攝影</span></li>
+          <li><span data-lang="en" class="visible">Sea turtle encounter zone</span><span data-lang="zh-Hans">海龟相遇区域</span><span data-lang="zh-Hant">海龜相遇區域</span></li>
+        </ul>
+        <div class="card-price"><span class="price-amount">¥16,500</span><span class="price-unit"><span data-lang="en" class="visible">/ person</span><span data-lang="zh-Hans">/ 每人</span><span data-lang="zh-Hant">/ 每人</span></span></div>
+        <button class="card-btn"><span data-lang="en" class="visible">Book Now</span><span data-lang="zh-Hans">立即预订</span><span data-lang="zh-Hant">立即預訂</span></button>
+      </div>
+
+      <div class="card" onclick="openModal('night')">
+        <span class="card-icon">🌙</span>
+        <p class="card-tag"><span data-lang="en" class="visible">Night · 3 Hours</span><span data-lang="zh-Hans">夜间 · 3小时</span><span data-lang="zh-Hant">夜間 · 3小時</span></p>
+        <h3 class="card-name"><span data-lang="en" class="visible">Midnight Luminescence</span><span data-lang="zh-Hans">午夜荧光夜潜</span><span data-lang="zh-Hant">午夜螢光夜潛</span></h3>
+        <p class="card-duration"><span data-lang="en" class="visible">19:30–22:30 · Max 4 guests</span><span data-lang="zh-Hans">19:30–22:30 · 最多4人</span><span data-lang="zh-Hant">19:30–22:30 · 最多4人</span></p>
+        <p class="card-desc"><span data-lang="en" class="visible">A rare intimate encounter with the ocean after dark. Witness bioluminescent plankton, nocturnal sea creatures, and a sky full of stars.</span><span data-lang="zh-Hans">黑暗中与海洋的难忘邂逅。目睹生物发光浮游生物、夜行海洋生物和满天繁星。</span><span data-lang="zh-Hant">黑暗中與海洋的難忘邂逅。目睹生物發光浮游生物、夜行海洋生物和滿天繁星。</span></p>
+        <ul class="card-features">
+          <li><span data-lang="en" class="visible">Underwater torches provided</span><span data-lang="zh-Hans">提供水下潜水手电</span><span data-lang="zh-Hant">提供水下潛水手電</span></li>
+          <li><span data-lang="en" class="visible">Bioluminescent plankton area</span><span data-lang="zh-Hans">生物发光浮游生物区</span><span data-lang="zh-Hant">生物發光浮游生物區</span></li>
+          <li><span data-lang="en" class="visible">Max 4 — truly private experience</span><span data-lang="zh-Hans">最多4人 — 真正私密体验</span><span data-lang="zh-Hant">最多4人 — 真正私密體驗</span></li>
+          <li><span data-lang="en" class="visible">Hot tea & snacks post-dive</span><span data-lang="zh-Hans">潜水后热茶与点心</span><span data-lang="zh-Hant">潛水後熱茶與點心</span></li>
+        </ul>
+        <div class="card-price"><span class="price-amount">¥12,000</span><span class="price-unit"><span data-lang="en" class="visible">/ person</span><span data-lang="zh-Hans">/ 每人</span><span data-lang="zh-Hant">/ 每人</span></span></div>
+        <button class="card-btn"><span data-lang="en" class="visible">Book Now</span><span data-lang="zh-Hans">立即预订</span><span data-lang="zh-Hant">立即預訂</span></button>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══ GALLERY ════════════════════════════════════ -->
+<section id="gallery">
+  <div class="container">
+    <div class="gallery-header">
+      <div>
+        <p class="section-label">
+          <span data-lang="en" class="visible">Drone &amp; Underwater Photography</span>
+          <span data-lang="zh-Hans">无人机 &amp; 水下摄影</span>
+          <span data-lang="zh-Hant">無人機 &amp; 水下攝影</span>
+        </p>
+        <h2 class="section-title">
+          <span data-lang="en" class="visible">Every Moment,<br>Captured in 4K</span>
+          <span data-lang="zh-Hans">每一刻，<br>以4K记录</span>
+          <span data-lang="zh-Hant">每一刻，<br>以4K記錄</span>
+        </h2>
+      </div>
+      <!-- Filter tabs -->
+      <div class="gallery-filters">
+        <button class="filter-btn active" data-filter="all">
+          <span data-lang="en" class="visible">All</span><span data-lang="zh-Hans">全部</span><span data-lang="zh-Hant">全部</span>
+        </button>
+        <button class="filter-btn" data-filter="drone">
+          <span data-lang="en" class="visible">🚁 Drone</span><span data-lang="zh-Hans">🚁 无人机</span><span data-lang="zh-Hant">🚁 無人機</span>
+        </button>
+        <button class="filter-btn" data-filter="underwater">
+          <span data-lang="en" class="visible">🤿 Underwater</span><span data-lang="zh-Hans">🤿 水下</span><span data-lang="zh-Hant">🤿 水下</span>
+        </button>
+        <button class="filter-btn" data-filter="activity">
+          <span data-lang="en" class="visible">🏄 Activity</span><span data-lang="zh-Hans">🏄 活动</span><span data-lang="zh-Hant">🏄 活動</span>
+        </button>
+        <button class="filter-btn" data-filter="sunset">
+          <span data-lang="en" class="visible">🌅 Sunset</span><span data-lang="zh-Hans">🌅 日落</span><span data-lang="zh-Hant">🌅 日落</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Gallery grid — injected by photos.js -->
+    <div class="gallery-grid" id="galleryGrid"></div>
+
+    <!-- Photo log -->
+    <div class="photo-log" id="photoLog">
+      <div class="log-header">
+        <span class="section-label" style="margin:0;">
+          <span data-lang="en" class="visible">📋 Photo Update Log</span>
+          <span data-lang="zh-Hans">📋 照片更新日志</span>
+          <span data-lang="zh-Hant">📋 照片更新日誌</span>
+        </span>
+        <button class="log-toggle" onclick="toggleLog()">
+          <span data-lang="en" class="visible">Show / Hide</span>
+          <span data-lang="zh-Hans">展开 / 收起</span>
+          <span data-lang="zh-Hant">展開 / 收起</span>
+        </button>
+      </div>
+      <div class="log-body" id="logBody"></div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══ NOTICES + PDF ════════════════════════════ -->
+<section id="notices">
+  <div class="container">
+    <p class="section-label">
+      <span data-lang="en" class="visible">Before You Dive</span>
+      <span data-lang="zh-Hans">出发前须知</span>
+      <span data-lang="zh-Hant">出發前須知</span>
+    </p>
+    <h2 class="section-title">
+      <span data-lang="en" class="visible">Important Notes<br>&amp; Health Declaration</span>
+      <span data-lang="zh-Hans">注意事项<br>与健康声明</span>
+      <span data-lang="zh-Hant">注意事項<br>與健康聲明</span>
+    </h2>
+
+    <!-- Notice boxes -->
+    <div class="notice-grid">
+      <div class="notice-box notice-warning">
+        <div class="notice-icon">⚠️</div>
+        <div class="notice-body">
+          <h4 class="notice-title">
+            <span data-lang="en" class="visible">Health Conditions</span>
+            <span data-lang="zh-Hans">健康状况</span>
+            <span data-lang="zh-Hant">健康狀況</span>
+          </h4>
+          <p class="notice-text">
+            <span data-lang="en" class="visible">Participants with heart conditions, asthma, epilepsy, or pregnancy must consult a doctor before joining. Please disclose all medical conditions on the health declaration form.</span>
+            <span data-lang="zh-Hans">患有心脏病、哮喘、癫痫或妊娠者，请在参加前咨询医生。请在健康声明表中如实填写所有病史。</span>
+            <span data-lang="zh-Hant">患有心臟病、哮喘、癲癇或妊娠者，請在參加前諮詢醫生。請在健康聲明表中如實填寫所有病史。</span>
+          </p>
         </div>
       </div>
-      <div class="qr-card">
-        <div class="qr-platform"><span>🟢</span> WeChat</div>
-        <div class="qr-wrap"><img src="images/img_wc_qr.jpg" alt="WeChat QR" class="qr-img"></div>
-        <div class="qr-label" data-i18n="wc_label">扫码加微信</div>
-        <div class="qr-name">一条佳佳鱼 · 冲绳</div>
+      <div class="notice-box notice-info">
+        <div class="notice-icon">🌊</div>
+        <div class="notice-body">
+          <h4 class="notice-title">
+            <span data-lang="en" class="visible">Swimming Ability</span>
+            <span data-lang="zh-Hans">游泳能力</span>
+            <span data-lang="zh-Hant">游泳能力</span>
+          </h4>
+          <p class="notice-text">
+            <span data-lang="en" class="visible">Basic swimming ability required. Life jackets are provided for all participants. Children under 8 must be accompanied by a guardian at all times.</span>
+            <span data-lang="zh-Hans">需具备基本游泳能力。所有参与者均提供救生衣。8岁以下儿童须全程由监护人陪同。</span>
+            <span data-lang="zh-Hant">需具備基本游泳能力。所有參與者均提供救生衣。8歲以下兒童須全程由監護人陪同。</span>
+          </p>
+        </div>
+      </div>
+      <div class="notice-box notice-info">
+        <div class="notice-icon">🧴</div>
+        <div class="notice-body">
+          <h4 class="notice-title">
+            <span data-lang="en" class="visible">Reef-Safe Only</span>
+            <span data-lang="zh-Hans">请使用环保防晒霜</span>
+            <span data-lang="zh-Hant">請使用環保防曬霜</span>
+          </h4>
+          <p class="notice-text">
+            <span data-lang="en" class="visible">Chemical sunscreen is prohibited to protect coral reefs. Reef-safe mineral sunscreen and rash guards are available on board.</span>
+            <span data-lang="zh-Hans">为保护珊瑚礁，禁止使用化学防晒霜。船上提供珊瑚礁友好型矿物防晒霜和防晒衣。</span>
+            <span data-lang="zh-Hant">為保護珊瑚礁，禁止使用化學防曬霜。船上提供珊瑚礁友好型礦物防曬霜和防曬衣。</span>
+          </p>
+        </div>
+      </div>
+      <div class="notice-box notice-cancel">
+        <div class="notice-icon">📅</div>
+        <div class="notice-body">
+          <h4 class="notice-title">
+            <span data-lang="en" class="visible">Cancellation Policy</span>
+            <span data-lang="zh-Hans">取消政策</span>
+            <span data-lang="zh-Hant">取消政策</span>
+          </h4>
+          <p class="notice-text">
+            <span data-lang="en" class="visible">Free cancellation up to 48 hours before. 50% charge within 48h. Weather cancellations are fully refunded or rescheduled at no cost.</span>
+            <span data-lang="zh-Hans">出发前48小时可免费取消。48小时内取消收取50%费用。因天气取消可全额退款或免费改期。</span>
+            <span data-lang="zh-Hant">出發前48小時可免費取消。48小時內取消收取50%費用。因天氣取消可全額退款或免費改期。</span>
+          </p>
+        </div>
       </div>
     </div>
-    <p style="font-size:0.74rem;color:rgba(148,184,200,0.35);margin-top:2.25rem;line-height:1.7;" data-i18n="footer_sub">冲绳打工人团队 · 海边片刻 · 真实在地，所有照片均为实拍</p>
+
+    <!-- PDF Downloads -->
+    <div class="pdf-section">
+      <h3 class="pdf-section-title">
+        <span data-lang="en" class="visible">📋 Health Declaration Form</span>
+        <span data-lang="zh-Hans">📋 健康声明表</span>
+        <span data-lang="zh-Hant">📋 健康聲明表</span>
+      </h3>
+      <p class="pdf-desc">
+        <span data-lang="en" class="visible">Please download, complete, and bring the signed form on the day of your tour.</span>
+        <span data-lang="zh-Hans">请下载并填写，在活动当天携带签署好的表格。</span>
+        <span data-lang="zh-Hant">請下載並填寫，在活動當天攜帶簽署好的表格。</span>
+      </p>
+      <div class="pdf-cards">
+        <a class="pdf-card" href="pdfs/health-declaration-ja.pdf" download>
+          <div class="pdf-flag">🇯🇵</div>
+          <div class="pdf-info">
+            <p class="pdf-lang">日本語</p>
+            <p class="pdf-name">健康申告書</p>
+          </div>
+          <div class="pdf-dl">↓ PDF</div>
+        </a>
+        <a class="pdf-card" href="pdfs/health-declaration-en.pdf" download>
+          <div class="pdf-flag">🇬🇧</div>
+          <div class="pdf-info">
+            <p class="pdf-lang">English</p>
+            <p class="pdf-name">Health Declaration</p>
+          </div>
+          <div class="pdf-dl">↓ PDF</div>
+        </a>
+        <a class="pdf-card" href="pdfs/health-declaration-zh.pdf" download>
+          <div class="pdf-flag">🇨🇳</div>
+          <div class="pdf-info">
+            <p class="pdf-lang">中文</p>
+            <p class="pdf-name">健康声明书</p>
+          </div>
+          <div class="pdf-dl">↓ PDF</div>
+        </a>
+      </div>
+    </div>
   </div>
 </section>
 
+<!-- ══ CAR RENTAL ════════════════════════════════ -->
+<section id="rental">
+  <div class="container">
+    <div class="rental-wrap">
+      <div class="rental-left">
+        <p class="section-label">
+          <span data-lang="en" class="visible">Special Bundle Deal</span>
+          <span data-lang="zh-Hans">特惠组合</span>
+          <span data-lang="zh-Hant">特惠組合</span>
+        </p>
+        <h2 class="section-title" style="margin-bottom:14px;">
+          <span data-lang="en" class="visible">Snorkeling +<br>Car Rental</span>
+          <span data-lang="zh-Hans">浮潜 +<br>租车特惠</span>
+          <span data-lang="zh-Hant">浮潛 +<br>租車特惠</span>
+        </h2>
+        <p class="section-desc" style="margin-bottom:28px;">
+          <span data-lang="en" class="visible">Book snorkeling with us and get an exclusive car rental discount — no middleman, no platform fees. Contact our team directly to be added to the group chat and get the best rate.</span>
+          <span data-lang="zh-Hans">预订浮潜后即可享受专属租车优惠，没有中间平台，没有手续费。直接联系我们的客服加群，与现场人员沟通获取最优价格。</span>
+          <span data-lang="zh-Hant">預訂浮潛後即可享受專屬租車優惠，沒有中間平台，沒有手續費。直接聯絡我們的客服加群，與現場人員溝通獲取最優價格。</span>
+        </p>
+        <div class="rental-steps">
+          <div class="rental-step">
+            <span class="rental-step-num">1</span>
+            <span class="rental-step-text">
+              <span data-lang="en" class="visible">Book any snorkeling package</span>
+              <span data-lang="zh-Hans">预订任意浮潜套餐</span>
+              <span data-lang="zh-Hant">預訂任意浮潛套餐</span>
+            </span>
+          </div>
+          <div class="rental-step">
+            <span class="rental-step-num">2</span>
+            <span class="rental-step-text">
+              <span data-lang="en" class="visible">Contact our team via WhatsApp / WeChat / LINE</span>
+              <span data-lang="zh-Hans">通过 WhatsApp / 微信 / LINE 联系客服</span>
+              <span data-lang="zh-Hant">透過 WhatsApp / 微信 / LINE 聯絡客服</span>
+            </span>
+          </div>
+          <div class="rental-step">
+            <span class="rental-step-num">3</span>
+            <span class="rental-step-text">
+              <span data-lang="en" class="visible">Get added to the group — connect with our rental partner directly</span>
+              <span data-lang="zh-Hans">加入群组，直接与现场租车伙伴联系，速度最快</span>
+              <span data-lang="zh-Hant">加入群組，直接與現場租車夥伴聯絡，速度最快</span>
+            </span>
+          </div>
+        </div>
+        <div class="rental-btns">
+          <a class="rental-btn rental-wa" href="https://wa.me/817089523968" target="_blank">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.558 4.117 1.532 5.847L.057 23.882l6.198-1.625A11.93 11.93 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.793 9.793 0 01-5.001-1.374l-.359-.214-3.68.965.979-3.588-.234-.368A9.79 9.79 0 012.182 12C2.182 6.57 6.57 2.182 12 2.182S21.818 6.57 21.818 12 17.43 21.818 12 21.818z"/></svg>
+            WhatsApp
+          </a>
+          <button class="rental-btn rental-wc" onclick="toggleWechat()">
+            微信 WeChat
+          </button>
+          <a class="rental-btn rental-email" href="mailto:info@nice.okinawa">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 7l10 7 10-7"/></svg>
+            Email
+          </a>
+        </div>
+      </div>
+      <div class="rental-right">
+        <div class="rental-card">
+          <div class="rental-card-icon">🚗</div>
+          <p class="rental-card-tag">
+            <span data-lang="en" class="visible">Bundle Exclusive</span>
+            <span data-lang="zh-Hans">组合专属优惠</span>
+            <span data-lang="zh-Hant">組合專屬優惠</span>
+          </p>
+          <h3 class="rental-card-title">
+            <span data-lang="en" class="visible">Snorkeling<br>+ Car Rental</span>
+            <span data-lang="zh-Hans">浮潜<br>+ 租车</span>
+            <span data-lang="zh-Hant">浮潛<br>+ 租車</span>
+          </h3>
+          <div class="rental-divider"></div>
+          <ul class="rental-perks">
+            <li>
+              <span data-lang="en" class="visible">✦ No platform fees</span>
+              <span data-lang="zh-Hans">✦ 无平台手续费</span>
+              <span data-lang="zh-Hant">✦ 無平台手續費</span>
+            </li>
+            <li>
+              <span data-lang="en" class="visible">✦ Local pricing — best rate</span>
+              <span data-lang="zh-Hans">✦ 现场价格，最实惠</span>
+              <span data-lang="zh-Hant">✦ 現場價格，最實惠</span>
+            </li>
+            <li>
+              <span data-lang="en" class="visible">✦ Direct group chat — fastest response</span>
+              <span data-lang="zh-Hans">✦ 直接拉群，响应最快</span>
+              <span data-lang="zh-Hant">✦ 直接拉群，回應最快</span>
+            </li>
+            <li>
+              <span data-lang="en" class="visible">✦ Explore all of Okinawa after your dive</span>
+              <span data-lang="zh-Hans">✦ 潜水后畅游冲绳全岛</span>
+              <span data-lang="zh-Hant">✦ 潛水後暢遊沖繩全島</span>
+            </li>
+          </ul>
+          <div class="rental-contact-note">
+            <span data-lang="en" class="visible">📲 Contact us after booking to join the group</span>
+            <span data-lang="zh-Hans">📲 预订后联系我们加群</span>
+            <span data-lang="zh-Hant">📲 預訂後聯絡我們加群</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ LICENSE ═══════════════════════════════════ -->
+<section id="license">
+  <div class="container">
+    <div class="license-wrap">
+      <div class="license-badge">
+        <div class="license-seal">
+          <span class="license-seal-icon">🏛️</span>
+        </div>
+        <div class="license-info">
+          <p class="license-label">
+            <span data-lang="en" class="visible">Registered Travel Agency · Okinawa Prefecture</span>
+            <span data-lang="zh-Hans">冲绳县登录旅行业</span>
+            <span data-lang="zh-Hant">沖繩縣登錄旅行業</span>
+          </p>
+          <p class="license-number">文觀第598号</p>
+          <p class="license-date">
+            <span data-lang="en" class="visible">Registered: October 3, 2023 (Reiwa 5)</span>
+            <span data-lang="zh-Hans">令和5年10月3日取得</span>
+            <span data-lang="zh-Hant">令和5年10月3日取得</span>
+          </p>
+        </div>
+      </div>
+      <p class="license-note">
+        <span data-lang="en" class="visible">snorkel.nice.okinawa is a fully licensed travel agency registered with the Okinawa Prefectural Government. All tours are planned and operated under official travel industry regulations.</span>
+        <span data-lang="zh-Hans">snorkel.nice.okinawa 是在冲绳县政府正式登录的旅行业者，所有行程均依照旅行业法规划与运营。</span>
+        <span data-lang="zh-Hant">snorkel.nice.okinawa 是在沖繩縣政府正式登錄的旅行業者，所有行程均依照旅行業法規劃與營運。</span>
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ══ HOW IT WORKS ═══════════════════════════════ -->
+<section id="how">
+  <div class="container">
+    <p class="section-label"><span data-lang="en" class="visible">Simple Process</span><span data-lang="zh-Hans">简单流程</span><span data-lang="zh-Hant">簡單流程</span></p>
+    <h2 class="section-title"><span data-lang="en" class="visible">Book in Minutes, Dive Tomorrow</span><span data-lang="zh-Hans">几分钟完成预订，明天就能出发</span><span data-lang="zh-Hant">幾分鐘完成預訂，明天就能出發</span></h2>
+    <div class="steps">
+      <div class="step"><div class="step-num">01</div><div class="step-title"><span data-lang="en" class="visible">Choose Your Adventure</span><span data-lang="zh-Hans">选择您的行程</span><span data-lang="zh-Hant">選擇您的行程</span></div><div class="step-text"><span data-lang="en" class="visible">Half-day, full-day, or exclusive night dive.</span><span data-lang="zh-Hans">半日、全日或独家夜潜。</span><span data-lang="zh-Hant">半日、全日或獨家夜潛。</span></div></div>
+      <div class="step"><div class="step-num">02</div><div class="step-title"><span data-lang="en" class="visible">Pick a Date &amp; Pay</span><span data-lang="zh-Hans">选日期并付款</span><span data-lang="zh-Hant">選日期並付款</span></div><div class="step-text"><span data-lang="en" class="visible">Secure your spot via Stripe or PayPal. Instant confirmation.</span><span data-lang="zh-Hans">通过Stripe或PayPal立即锁定名额，立刻确认。</span><span data-lang="zh-Hant">透過Stripe或PayPal立即鎖定名額，立刻確認。</span></div></div>
+      <div class="step"><div class="step-num">03</div><div class="step-title"><span data-lang="en" class="visible">Meet at the Marina</span><span data-lang="zh-Hans">在码头集合</span><span data-lang="zh-Hant">在碼頭集合</span></div><div class="step-text"><span data-lang="en" class="visible">We'll send directions & briefing by email. All equipment provided.</span><span data-lang="zh-Hans">我们将通过邮件发送路线和行前简报。所有装备均在现场提供。</span><span data-lang="zh-Hant">我們將透過郵件發送路線和行前簡報。所有裝備均在現場提供。</span></div></div>
+      <div class="step"><div class="step-num">04</div><div class="step-title"><span data-lang="en" class="visible">Dive &amp; Get Your Photos</span><span data-lang="zh-Hans">潜水并获取照片</span><span data-lang="zh-Hant">潛水並獲取照片</span></div><div class="step-text"><span data-lang="en" class="visible">4K drone footage + underwater photos delivered within 24 hours.</span><span data-lang="zh-Hans">4K无人机视频及水下照片24小时内交付。</span><span data-lang="zh-Hant">4K無人機視頻及水下照片24小時內交付。</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FOOTER ═════════════════════════════════════ -->
 <footer>
-  <p>snorkel.nice.okinawa · 游爽浮潜 · Okinawa Snorkeling</p>
-  <p style="margin-top:0.38rem;" data-i18n="footer_copy">© 2025 海边片刻 · OkinawaOnline</p>
+  <div class="footer-logo">snorkel.<span>nice</span>.okinawa</div>
+  <div class="footer-sub"><span data-lang="en" class="visible">Okinawa's Premier Snorkeling Experience</span><span data-lang="zh-Hans">冲绳首席浮潜体验</span><span data-lang="zh-Hant">沖繩首席浮潛體驗</span></div>
+  <div class="footer-links">
+    <a href="mailto:info@nice.okinawa">info@nice.okinawa</a>
+    <a href="#"><span data-lang="en" class="visible">Privacy</span><span data-lang="zh-Hans">隐私政策</span><span data-lang="zh-Hant">隱私政策</span></a>
+    <a href="#"><span data-lang="en" class="visible">Cancellation</span><span data-lang="zh-Hans">取消政策</span><span data-lang="zh-Hant">取消政策</span></a>
+    <a href="https://instagram.com" target="_blank">Instagram</a>
+  </div>
+  <div class="footer-copy">© 2026 snorkel.nice.okinawa · 5% of proceeds go to coral reef conservation</div>
 </footer>
 
-<script>
-const T = {
-  'zh-CN': {
-    custom_label:'定制行程', custom_title:'钓鱼佬包船、赶海、SUP、Kayak<br><em>想怎么玩，我们来帮你安排</em>', custom_desc:'离岛活动、BBQ、亲子定制、多日行程……欢迎自己组队，告诉我们你的想法，我们一起设计专属行程。', custom_cta:'随时来聊 →',
-    stats_intro:'2025年实绩', stat1:'2025年参加人次', stat2:'来自海外的客人', stat3:'事故记录', stat4:'客户满意率',
-    nav_gallery:'相册', nav_about:'简介', nav_itinerary:'行程', nav_pricing:'价格', nav_contact:'预约',
-    hero_eyebrow:'Snorkeling · Okinawa · 冲绳本岛',
-    hero_title:'游爽！<br>充分的浮潜体验',
-    hero_sub:'冲绳本岛出发 · 半天轻松行程<br>人少 · 无人岛 · 果冻海 · 含无人机航拍',
-    tag1:'🐢 有机会遇到海龟', tag2:'📷 赠GoPro + 无人机航拍', tag3:'👶 2岁起可参加', tag4:'🏊 不会游泳也OK',
-    hero_cta:'查看价格方案 →',
-    cap1:'无人岛附近，就是这片海', cap2:'无人机俯瞰，那两个小点就是你们',
-    cap3:'珊瑚群与热带鱼', cap4:'果冻海，光影轻摇', cap5:'钓上来这么美的鱼！',
-    cap6:'蓝色大海中的小船', cap7:'乘船出发，向无人岛', cap8:'小朋友也能玩！',
-    cap9:'无人岛全景', cap10:'宜野湾港口出发',
-    about_label:'关于这个行程',
-    about_title:'不一样的冲绳浮潜<br><em>人少，才是真的美</em>',
-    about_body:'特别适合<strong>家庭出游</strong>或<strong>第一次浮潜</strong>的朋友。乘船30–40分钟，直达当天最清澈、鱼最多的无人岛附近。不挤、不赶，夏天的冲绳果冻海，实至名归。',
-    hl1_title:'出发地点', hl1_val:'宜野湾港口（王子酒店对面）',
-    hl2_title:'全程时长', hl2_val:'约4小时，轻松不赶行程',
-    hl3_title:'出发时间', hl3_val:'上午 7:45–8:15 / 下午 12:00',
-    hl4_title:'船上人数', hl4_val:'定员15人，客人不超过12人',
-    who_label:'适合人群', who_title:'每个人都能<em>玩得开心</em>',
-    card1_title:'亲子家庭', card1_body:'<strong>2岁以上</strong>均可参加，可选专属教练全程一对一陪同，孩子安全有保障。',
-    card2_title:'浮潜新手', card2_body:'<strong>完全不会游泳也可以安心参加</strong>，穿好救生衣，趴着看也很梦幻。',
-    card3_title:'有经验的朋友', card3_body:'会游泳？选<strong>轻松体验型</strong>自由发挥，带上GoPro尽情拍。',
-    iti_label:'行程安排', iti_title:'一天的流程，<em>简单又充实</em>',
-    s1t:'抵达港口，准备出发', s1d:'换衣服、上厕所、签署文件、穿好救生衣，整装待发。',
-    s2t:'乘船出发，约30–40分钟', s2d:'前往当天最清澈、鱼最多的无人岛附近。夏天天气好时，果冻海实至名归。',
-    s3t:'教练讲解浮潜技巧，下水！', s3d:'翻身、有效游动、不用手、站立等实用技巧一一讲解，安全下水。',
-    s4t:'探索热带鱼、珊瑚群、🐢 海龟', s4d:'波光交错的梦境一般，珊瑚织成的梦，还有机会与海龟相遇！',
-    s5t:'累了随时回船上休息 + 钓鱼体验', s5d:'喝点水，放松一下，还可以在船上钓鱼哦（赠钓鱼装备）。天气好时赠送无人机航拍！📷',
-    s6t:'回港，可选温水淋浴', s6d:'300日元不限时温水澡。全程陪伴型可顺路去美国村 / Parco City。',
-    price_label:'价格方案', price_title:'可拼可包，<em>丰俭由人</em>',
-    p1_type:'轻松体验型', p1_sub:'适合预算控 / 自驾 / 熟悉浮潜的朋友',
-    p1_unit:'RMB / 人 · 转账+确认信为占位成功',
-    p1_i1:'浮潜 + 钓鱼装备（不钓也行）', p1_i2:'救生衣 + 全套浮潜装备',
-    p1_i3:'拼船出海 + 保险', p1_i4:'赠 GoPro 水下拍摄', p1_i5:'赠无人机航拍（风小无雨）',
-    p1_note:'适合1–7人参加，8人起包船可能更合适。不含接送服务、无专属潜导。',
-    p2_badge:'推荐亲子', p2_type:'全程陪伴型', p2_sub:'适合亲子家庭 / 想全程省心的客人',
-    p2_amount:'询价', p2_unit:'参考每组 +¥1000 RMB（5人）',
-    p2_i1:'酒店专车接送（那霸–读谷村）', p2_i2:'专属教练一对一家庭全程陪同',
-    p2_i3:'浮潜 + 钓鱼装备 + 保险', p2_i4:'赠 GoPro 水下拍摄',
-    p2_i5:'赠无人机航拍（风小无雨）', p2_i6:'单独摄影 · 游不动了拉着走',
-    p2_i7:'回程可顺路美国村 / Parco City',
-    p2_note:'如不需接送但需专属教练，详询客服 OkinawaOnline。',
-    tips_label:'出发前', tips_title:'小提醒',
-    tip1:'请提前准备好泳衣、防晒、毛巾和替换衣物。',
-    tip2:'上午场前一天傍晚确认天气和潮汐后通知具体时间（约 7:45–8:15 出发）。',
-    tip3:'回港后可选温水淋浴，300日元不限时。',
-    tip4:'超过60岁且有高血压、糖尿病等需每日控制的情况，请提前具体商量。',
-    tip5:'天气允许时赠送无人机航拍（风小无雨），所有照片均为实拍，就是这艘船，就是这片海。',
-    contact_label:'联系我们', contact_title:'准备好了？<em>来聊聊吧</em>',
-    contact_sub:'有任何问题、想预约行程、想定制包船方案，随时找我们！',
-    wa_label:'扫码加 WhatsApp', email_platform:'邮件联系', email_btn:'发送邮件',
-    wechat_hint:'微信搜索', copy_btn:'复制微信号', wc_label:'扫码加微信',
-    footer_sub:'冲绳打工人团队 · 海边片刻 · 真实在地，所有照片均为实拍',
-    footer_copy:'© 2025 海边片刻 · OkinawaOnline',
-  },
-  'zh-TW': {
-    custom_label:'定制行程', custom_title:'釣魚佬包船、趕海、SUP、Kayak<br><em>想怎麼玩，我們來幫你安排</em>', custom_desc:'離島活動、BBQ、親子定制、多日行程……歡迎自己組隊，告訴我們你的想法，我們一起設計專屬行程。', custom_cta:'隨時來聊 →',
-    stats_intro:'2025年實績', stat1:'2025年參加人次', stat2:'來自海外的客人', stat3:'事故記錄', stat4:'客戶滿意率',
-    nav_gallery:'相冊', nav_about:'簡介', nav_itinerary:'行程', nav_pricing:'價格', nav_contact:'預約',
-    hero_eyebrow:'Snorkeling · Okinawa · 沖繩本島',
-    hero_title:'游爽！<br>充分的浮潛體驗',
-    hero_sub:'沖繩本島出發 · 半天輕鬆行程<br>人少 · 無人島 · 果凍海 · 含無人機航拍',
-    tag1:'🐢 有機會遇到海龜', tag2:'📷 贈GoPro + 無人機航拍', tag3:'👶 2歲起可參加', tag4:'🏊 不會游泳也OK',
-    hero_cta:'查看價格方案 →',
-    cap1:'無人島附近，就是這片海', cap2:'無人機俯瞰，那兩個小點就是你們',
-    cap3:'珊瑚群與熱帶魚', cap4:'果凍海，光影輕搖', cap5:'釣上來這麼美的魚！',
-    cap6:'藍色大海中的小船', cap7:'乘船出發，向無人島', cap8:'小朋友也能玩！',
-    cap9:'無人島全景', cap10:'宜野灣港口出發',
-    about_label:'關於這個行程',
-    about_title:'不一樣的沖繩浮潛<br><em>人少，才是真的美</em>',
-    about_body:'特別適合<strong>家庭出遊</strong>或<strong>第一次浮潛</strong>的朋友。乘船30–40分鐘，直達當天最清澈、魚最多的無人島附近。不擠、不趕，夏天的沖繩果凍海，實至名歸。',
-    hl1_title:'出發地點', hl1_val:'宜野灣港口（王子酒店對面）',
-    hl2_title:'全程時長', hl2_val:'約4小時，輕鬆不趕行程',
-    hl3_title:'出發時間', hl3_val:'上午 7:45–8:15 / 下午 12:00',
-    hl4_title:'船上人數', hl4_val:'定員15人，客人不超過12人',
-    who_label:'適合人群', who_title:'每個人都能<em>玩得開心</em>',
-    card1_title:'親子家庭', card1_body:'<strong>2歲以上</strong>均可參加，可選專屬教練全程一對一陪同，孩子安全有保障。',
-    card2_title:'浮潛新手', card2_body:'<strong>完全不會游泳也可以安心參加</strong>，穿好救生衣，趴著看也很夢幻。',
-    card3_title:'有經驗的朋友', card3_body:'會游泳？選<strong>輕鬆體驗型</strong>自由發揮，帶上GoPro盡情拍。',
-    iti_label:'行程安排', iti_title:'一天的流程，<em>簡單又充實</em>',
-    s1t:'抵達港口，準備出發', s1d:'換衣服、上廁所、簽署文件、穿好救生衣，整裝待發。',
-    s2t:'乘船出發，約30–40分鐘', s2d:'前往當天最清澈、魚最多的無人島附近。夏天天氣好時，果凍海實至名歸。',
-    s3t:'教練講解浮潛技巧，下水！', s3d:'翻身、有效游動、不用手、站立等實用技巧一一講解，安全下水。',
-    s4t:'探索熱帶魚、珊瑚群、🐢 海龜', s4d:'波光交錯的夢境一般，珊瑚織成的夢，還有機會與海龜相遇！',
-    s5t:'累了隨時回船上休息 + 釣魚體驗', s5d:'喝點水，放鬆一下，還可以在船上釣魚喔（贈釣魚裝備）。天氣好時贈送無人機航拍！📷',
-    s6t:'回港，可選溫水淋浴', s6d:'300日圓不限時溫水澡。全程陪伴型可順路去美國村 / Parco City。',
-    price_label:'價格方案', price_title:'可拼可包，<em>豐儉由人</em>',
-    p1_type:'輕鬆體驗型', p1_sub:'適合預算控 / 自駕 / 熟悉浮潛的朋友',
-    p1_unit:'RMB / 人 · 轉帳+確認信為佔位成功',
-    p1_i1:'浮潛 + 釣魚裝備（不釣也行）', p1_i2:'救生衣 + 全套浮潛裝備',
-    p1_i3:'拼船出海 + 保險', p1_i4:'贈 GoPro 水下拍攝', p1_i5:'贈無人機航拍（風小無雨）',
-    p1_note:'適合1–7人參加，8人起包船可能更合適。不含接送服務、無專屬潛導。',
-    p2_badge:'推薦親子', p2_type:'全程陪伴型', p2_sub:'適合親子家庭 / 想全程省心的客人',
-    p2_amount:'詢價', p2_unit:'參考每組 +¥1000 RMB（5人）',
-    p2_i1:'酒店專車接送（那霸–讀谷村）', p2_i2:'專屬教練一對一家庭全程陪同',
-    p2_i3:'浮潛 + 釣魚裝備 + 保險', p2_i4:'贈 GoPro 水下拍攝',
-    p2_i5:'贈無人機航拍（風小無雨）', p2_i6:'單獨攝影 · 游不動了拉著走',
-    p2_i7:'回程可順路美國村 / Parco City',
-    p2_note:'如不需接送但需專屬教練，詳詢客服 OkinawaOnline。',
-    tips_label:'出發前', tips_title:'小提醒',
-    tip1:'請提前準備好泳衣、防曬、毛巾和替換衣物。',
-    tip2:'上午場前一天傍晚確認天氣和潮汐後通知具體時間（約 7:45–8:15 出發）。',
-    tip3:'回港後可選溫水淋浴，300日圓不限時。',
-    tip4:'超過60歲且有高血壓、糖尿病等需每日控制的情況，請提前具體商量。',
-    tip5:'天氣允許時贈送無人機航拍（風小無雨），所有照片均為實拍，就是這艘船，就是這片海。',
-    contact_label:'聯繫我們', contact_title:'準備好了？<em>來聊聊吧</em>',
-    contact_sub:'有任何問題、想預約行程、想定制包船方案，隨時找我們！',
-    wa_label:'掃碼加 WhatsApp', email_platform:'電郵聯絡', email_btn:'發送電郵',
-    wechat_hint:'微信搜索', copy_btn:'複製微信號', wc_label:'掃碼加微信',
-    footer_sub:'沖繩打工人團隊 · 海邊片刻 · 真實在地，所有照片均為實拍',
-    footer_copy:'© 2025 海邊片刻 · OkinawaOnline',
-  },
-  'en': {
-    custom_label:'Custom Tours', custom_title:'Private charter, beach combing, SUP, Kayak<br><em>Tell us what you want — we\'ll make it happen</em>', custom_desc:'Island hopping, BBQ, family packages, multi-day trips… Gather your crew, share your ideas, and we\'ll design the perfect itinerary together.', custom_cta:'Let\'s Talk →',
-    stats_intro:'2025 Track Record', stat1:'Guests in 2025', stat2:'International visitors', stat3:'Accidents on record', stat4:'Guest satisfaction',
-    nav_gallery:'Gallery', nav_about:'About', nav_itinerary:'Itinerary', nav_pricing:'Pricing', nav_contact:'Book',
-    hero_eyebrow:'Snorkeling · Okinawa · Main Island',
-    hero_title:'Swim Free!<br>A Full Snorkeling Experience',
-    hero_sub:'Departing from Okinawa Main Island · Half-day relaxed trip<br>Small groups · Uninhabited island · Crystal sea · Drone photography included',
-    tag1:'🐢 Chance to meet sea turtles', tag2:'📷 GoPro + drone footage included', tag3:'👶 Ages 2 and up', tag4:'🏊 Non-swimmers welcome',
-    hero_cta:'View Pricing →',
-    cap1:'Near the uninhabited island — this is the sea', cap2:'Drone view — those tiny dots are you',
-    cap3:'Coral reefs and tropical fish', cap4:'Crystal sea, shimmering light', cap5:'What a beautiful catch!',
-    cap6:'A small boat in the big blue sea', cap7:'Setting off toward the island', cap8:'Kids can join too!',
-    cap9:'Uninhabited island panorama', cap10:'Departing from Ginowan Port',
-    about_label:'About This Tour',
-    about_title:'Snorkeling the Okinawa Way<br><em>Small groups, real beauty</em>',
-    about_body:'Perfect for <strong>families</strong> or <strong>first-time snorkelers</strong>. A 30–40 minute boat ride takes you to the clearest, most fish-rich uninhabited island. No crowds, no rush — in summer, Okinawa's crystal-clear sea truly lives up to its name.',
-    hl1_title:'Departure Point', hl1_val:'Ginowan Port (opposite Prince Hotel)',
-    hl2_title:'Total Duration', hl2_val:'Approx. 4 hours, relaxed pace',
-    hl3_title:'Departure Time', hl3_val:'Morning 7:45–8:15 / Afternoon 12:00',
-    hl4_title:'Group Size', hl4_val:'Max 15 on board, guests capped at 12',
-    who_label:'Who Can Join', who_title:'Everyone can<em> have a great time</em>',
-    card1_title:'Families with Kids', card1_body:'Open to <strong>ages 2 and up</strong>. Optional dedicated instructor for one-on-one family accompaniment throughout.',
-    card2_title:'First-time Snorkelers', card2_body:'<strong>Can't swim? No problem.</strong> Life vest provided — even floating and watching the underwater world is magical.',
-    card3_title:'Experienced Swimmers', card3_body:'Know your way around fins? Go with the <strong>Standard Plan</strong> and explore freely — bring your GoPro!',
-    iti_label:'Itinerary', iti_title:'A day in the water,<em> simple and fulfilling</em>',
-    s1t:'Arrive at the port, gear up', s1d:'Change, use the restroom, sign forms, put on your life vest — ready to go!',
-    s2t:'Boat ride: approx. 30–40 min', s2d:'Head to the clearest, most fish-filled waters near the uninhabited island. In summer, Okinawa's jelly-clear sea is absolutely real.',
-    s3t:'Snorkeling briefing, then in the water!', s3d:'Instructor covers rolling, efficient movement, hands-free gliding, standing up — safe and easy entry for all.',
-    s4t:'Explore tropical fish, corals & 🐢 turtles', s4d:'Like swimming through a dream — coral gardens, shimmering light, and a real chance of encountering a sea turtle!',
-    s5t:'Rest on the boat + fishing time', s5d:'Take a break, have some water, or try fishing (rods included). Drone footage on fine-weather days! 📷',
-    s6t:'Return to port, optional warm shower', s6d:'300 yen for unlimited warm shower time. Full-service plan can stop by American Village / Parco City on the way back.',
-    price_label:'Pricing', price_title:'Group or private,<em> your call</em>',
-    p1_type:'Standard Plan', p1_sub:'Great for budget travelers / self-drivers / experienced snorkelers',
-    p1_unit:'RMB / person · Payment + confirmation = confirmed spot',
-    p1_i1:'Snorkeling + fishing gear (fishing optional)', p1_i2:'Life vest + full snorkeling equipment',
-    p1_i3:'Shared boat + insurance', p1_i4:'GoPro underwater camera included', p1_i5:'Drone aerial photography (calm weather)',
-    p1_note:'Ideal for 1–7 people. Private charter may be more suitable for 8+. No transfers or dedicated guide included.',
-    p2_badge:'Family Pick', p2_type:'Full-Service Plan', p2_sub:'Ideal for families / those who want a stress-free experience',
-    p2_amount:'Enquire', p2_unit:'Reference: +¥1000 RMB per group (5 pax)',
-    p2_i1:'Hotel transfer (Naha–Yomitan area)', p2_i2:'Dedicated instructor, full one-on-one family accompaniment',
-    p2_i3:'Snorkeling + fishing gear + insurance', p2_i4:'GoPro underwater camera included',
-    p2_i5:'Drone aerial photography (calm weather)', p2_i6:'Private photography · tow you if you get tired',
-    p2_i7:'Optional stop at American Village / Parco City',
-    p2_note:'Need a guide but not a transfer? Contact OkinawaOnline to customize.',
-    tips_label:'Before You Go', tips_title:'Good to Know',
-    tip1:'Bring a swimsuit, sunscreen, towel, and a change of clothes.',
-    tip2:'Morning departure time confirmed the evening before (approx. 7:45–8:15 AM) based on weather and tides.',
-    tip3:'Warm showers available at the port — ¥300 for unlimited time.',
-    tip4:'If you are over 60 and managing hypertension or diabetes daily, please contact us first.',
-    tip5:'Drone photography included on calm, clear days. All photos are real — same boat, same sea.',
-    contact_label:'Contact Us', contact_title:'Ready to book?<em> Let's chat</em>',
-    contact_sub:'Questions, bookings, or custom private charters — reach out anytime!',
-    wa_label:'Scan to add on WhatsApp', email_platform:'Email Us', email_btn:'Send Email',
-    wechat_hint:'Search on WeChat', copy_btn:'Copy WeChat ID', wc_label:'Scan to add on WeChat',
-    footer_sub:'Local Okinawa team · Seaside Moments · All photos are real shots',
-    footer_copy:'© 2025 Seaside Moments · OkinawaOnline',
-  }
-};
+<!-- ══ FLOATING CONTACT ═══════════════════════════ -->
+<div class="float-wrap" id="floatWrap">
+  <button class="float-main" id="floatMain" onclick="toggleFloat()"><span class="float-main-icon" id="floatIcon">💬</span></button>
+  <a class="float-btn float-wa" href="https://wa.me/817089523968" target="_blank" rel="noopener">
+    <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.558 4.117 1.532 5.847L.057 23.882l6.198-1.625A11.93 11.93 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.793 9.793 0 01-5.001-1.374l-.359-.214-3.68.965.979-3.588-.234-.368A9.79 9.79 0 012.182 12C2.182 6.57 6.57 2.182 12 2.182S21.818 6.57 21.818 12 17.43 21.818 12 21.818z"/></svg>
+    <span>WhatsApp</span>
+  </a>
+  <a class="float-btn float-mail" href="mailto:info@nice.okinawa">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 7l10 7 10-7"/></svg>
+    <span>info@nice.okinawa</span>
+  </a>
+  <button class="float-btn float-wc" onclick="toggleWechat()">
+    <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M8.691 2.188C3.891 2.188 0 5.476 0 9.53c0 2.212 1.17 4.203 3.002 5.55a.59.59 0 01.213.665l-.39 1.48c-.019.07-.048.141-.048.213 0 .163.13.295.29.295a.326.326 0 00.167-.054l1.903-1.113a.864.864 0 01.717-.098 10.16 10.16 0 002.837.403c.276 0 .543-.027.811-.05-.857-2.578.157-4.972 1.932-6.446 1.703-1.415 3.882-1.98 5.853-1.838-.576-3.583-3.876-6.348-7.596-6.348zM5.785 5.991c.642 0 1.162.529 1.162 1.18a1.17 1.17 0 01-1.162 1.178A1.17 1.17 0 014.623 7.17c0-.651.52-1.18 1.162-1.18zm5.813 0c.642 0 1.162.529 1.162 1.18a1.17 1.17 0 01-1.162 1.178 1.17 1.17 0 01-1.162-1.178c0-.651.52-1.18 1.162-1.18zm5.34 2.867c-1.797-.052-3.746.512-5.28 1.786-1.72 1.428-2.687 3.72-1.78 6.22.942 2.453 3.666 4.229 6.884 4.229.826 0 1.622-.12 2.361-.336a.722.722 0 01.598.082l1.584.926a.272.272 0 00.14.047c.134 0 .24-.111.24-.247 0-.06-.023-.12-.038-.177l-.327-1.233a.582.582 0 01-.023-.156.49.49 0 01.201-.398C23.024 18.48 24 16.82 24 14.98c0-3.21-2.931-5.837-7.062-6.122zm-3.564 2.535c.535 0 .969.44.969.982a.976.976 0 01-.969.983.976.976 0 01-.969-.983c0-.542.434-.982.969-.982zm4.844 0c.535 0 .969.44.969.982a.976.976 0 01-.969.983.976.976 0 01-.969-.983c0-.542.434-.982.969-.982z"/></svg>
+    <span data-lang="en" class="visible">WeChat</span><span data-lang="zh-Hans">微信</span><span data-lang="zh-Hant">微信</span>
+  </button>
+</div>
 
-let currentLang = 'zh-CN';
+<!-- WeChat QR Modal -->
+<div class="wc-overlay" id="wcOverlay" onclick="closeWechat()">
+  <div class="wc-modal" onclick="event.stopPropagation()">
+    <button class="modal-close" onclick="closeWechat()">✕</button>
+    <p style="font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:var(--teal);margin-bottom:8px;">WeChat · 微信</p>
+    <h3 style="font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:300;margin-bottom:20px;"><span data-lang="en" class="visible">Scan to Add Us</span><span data-lang="zh-Hans">扫码添加我们</span><span data-lang="zh-Hant">掃碼加入我們</span></h3>
+    <img src="images/wechat-qr.jpg" alt="WeChat QR" style="width:210px;height:210px;object-fit:cover;border-radius:14px;display:block;margin:0 auto;"/>
+    <p style="font-size:11px;color:rgba(255,255,255,.3);margin-top:14px;text-align:center;"><span data-lang="en" class="visible">一条佳佳鱼 · 日本 沖縄県</span><span data-lang="zh-Hans">一条佳佳鱼 · 日本 冲绳县</span><span data-lang="zh-Hant">一條佳佳魚 · 日本 沖繩縣</span></p>
+  </div>
+</div>
 
-function detectLang() {
-  const lang = navigator.language || navigator.languages?.[0] || 'zh-CN';
-  if (lang.startsWith('zh-TW') || lang.startsWith('zh-HK') || lang === 'zh-Hant') return 'zh-TW';
-  if (lang.startsWith('zh')) return 'zh-CN';
-  return 'en';
-}
+<!-- ══ BOOKING MODAL ══════════════════════════════ -->
+<div class="modal-overlay" id="modal" onclick="closeModalBg(event)">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <p class="modal-tag" id="modal-tag"></p>
+    <h2 class="modal-title" id="modal-title"></h2>
+    <p class="modal-price" id="modal-price"></p>
+    <div class="form-row">
+      <div class="form-group"><label><span data-lang="en" class="visible">First Name</span><span data-lang="zh-Hans">名字</span><span data-lang="zh-Hant">名字</span></label><input type="text" placeholder="Yuki"/></div>
+      <div class="form-group"><label><span data-lang="en" class="visible">Last Name</span><span data-lang="zh-Hans">姓氏</span><span data-lang="zh-Hant">姓氏</span></label><input type="text" placeholder="Tanaka"/></div>
+    </div>
+    <div class="form-group"><label>Email</label><input type="email" placeholder="yuki@email.com"/></div>
+    <div class="form-row">
+      <div class="form-group"><label><span data-lang="en" class="visible">Date</span><span data-lang="zh-Hans">日期</span><span data-lang="zh-Hant">日期</span></label><input type="date"/></div>
+      <div class="form-group"><label><span data-lang="en" class="visible">Guests</span><span data-lang="zh-Hans">人数</span><span data-lang="zh-Hant">人數</span></label><select><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option></select></div>
+    </div>
+    <div class="pay-title"><span data-lang="en" class="visible">Secure Payment</span><span data-lang="zh-Hans">安全支付</span><span data-lang="zh-Hant">安全支付</span></div>
+    <div class="pay-methods">
+      <button class="pay-btn pay-stripe" onclick="handlePay('stripe')">💳 <span data-lang="en" class="visible">Pay with Stripe — Card</span><span data-lang="zh-Hans">Stripe 信用卡支付</span><span data-lang="zh-Hant">Stripe 信用卡支付</span></button>
+      <button class="pay-btn pay-paypal" onclick="handlePay('paypal')">🅿 <span data-lang="en" class="visible">Pay with PayPal</span><span data-lang="zh-Hans">PayPal 支付</span><span data-lang="zh-Hant">PayPal 支付</span></button>
+    </div>
+    <p class="modal-note">🔒 <span data-lang="en" class="visible">Encrypted · Free cancellation 48h before · Tax included</span><span data-lang="zh-Hans">加密安全 · 48小时前免费取消 · 含税</span><span data-lang="zh-Hant">加密安全 · 48小時前免費取消 · 含稅</span></p>
+  </div>
+</div>
 
-function applyLang(lang) {
-  currentLang = lang;
-  const t = T[lang];
-  document.querySelectorAll('[data-i18n]').forEach(el => {
-    const key = el.getAttribute('data-i18n');
-    if (t[key] !== undefined) {
-      if (el.hasAttribute('data-copied')) {
-        el.textContent = lang === 'en' ? 'Copied ✓' : lang === 'zh-TW' ? '已複製 ✓' : '已复制 ✓';
-      } else {
-        el.textContent = t[key];
-      }
-    }
-  });
-  document.querySelectorAll('[data-i18n-html]').forEach(el => {
-    const key = el.getAttribute('data-i18n-html');
-    if (t[key] !== undefined) el.innerHTML = t[key];
-  });
-  // Update active button
-  document.querySelectorAll('.lang-btn').forEach(btn => {
-    btn.classList.toggle('active',
-      (btn.textContent === '简' && lang === 'zh-CN') ||
-      (btn.textContent === '繁' && lang === 'zh-TW') ||
-      (btn.textContent === 'EN' && lang === 'en')
-    );
-  });
-  // Update html lang
-  document.documentElement.lang = lang === 'en' ? 'en' : lang === 'zh-TW' ? 'zh-TW' : 'zh-CN';
-}
+<!-- ══ LIGHTBOX ═══════════════════════════════════ -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <button class="lb-close" onclick="closeLightbox()">✕</button>
+  <button class="lb-prev" onclick="lbNav(-1,event)">‹</button>
+  <button class="lb-next" onclick="lbNav(1,event)">›</button>
+  <div class="lb-inner">
+    <img id="lbImg" src="" alt=""/>
+    <div class="lb-caption" id="lbCaption"></div>
+    <div class="lb-meta" id="lbMeta"></div>
+  </div>
+</div>
 
-function setLang(lang) {
-  localStorage.setItem('lang', lang);
-  applyLang(lang);
-}
-
-// Init
-const saved = localStorage.getItem('lang');
-applyLang(saved || detectLang());
-
-// Scroll reveal
-const obs = new IntersectionObserver(entries => {
-  entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('visible'); obs.unobserve(e.target); } });
-}, {threshold:0.08});
-document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
-</script>
+<!-- Load photos config first, then app logic -->
+<script src="photos.js"></script>
+<script src="app.js"></script>
 </body>
 </html>
