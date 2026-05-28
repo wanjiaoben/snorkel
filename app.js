@@ -5,16 +5,52 @@
 
 // ── 语言 ──────────────────────────────────────────
 let currentLang = 'en';
+const supportedLangs = ['en', 'zh-Hans', 'zh-Hant', 'ko', 'th'];
+
+function detectPreferredLang() {
+  const langs = navigator.languages && navigator.languages.length
+    ? navigator.languages
+    : [navigator.language || 'en'];
+
+  for (const raw of langs) {
+    const lang = raw.toLowerCase();
+    if (lang.startsWith('zh')) {
+      if (lang.includes('tw') || lang.includes('hk') || lang.includes('mo') || lang.includes('hant')) {
+        return 'zh-Hant';
+      }
+      return 'zh-Hans';
+    }
+    if (lang.startsWith('ko')) return 'ko';
+    if (lang.startsWith('th')) return 'th';
+    if (lang.startsWith('en')) return 'en';
+  }
+
+  return 'en';
+}
 
 function setLang(lang) {
-  currentLang = lang;
+  currentLang = supportedLangs.includes(lang) ? lang : 'en';
+
+  document.querySelectorAll('[data-lang]').forEach(el => el.classList.remove('visible'));
+
+  const groups = new Map();
   document.querySelectorAll('[data-lang]').forEach(el => {
-    el.classList.toggle('visible', el.getAttribute('data-lang') === lang);
+    const parent = el.parentElement;
+    if (!groups.has(parent)) groups.set(parent, []);
+    groups.get(parent).push(el);
   });
-  document.querySelectorAll('.lang-btn').forEach((btn, i) => {
-    btn.classList.toggle('active', ['en','zh-Hans','zh-Hant'][i] === lang);
+
+  groups.forEach(items => {
+    const exact = items.filter(el => el.getAttribute('data-lang') === currentLang);
+    const fallback = items.filter(el => el.getAttribute('data-lang') === 'en');
+    const chosen = exact.length ? exact : (fallback.length ? fallback : [items[0]]);
+    chosen.forEach(el => el.classList.add('visible'));
   });
-  document.documentElement.lang = lang;
+
+  document.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.dataset.langCode === currentLang);
+  });
+  document.documentElement.lang = currentLang;
 }
 
 // ── Hero 背景图 ───────────────────────────────────
@@ -48,6 +84,12 @@ let lbIndex = 0;
 function renderGallery(filter = 'all') {
   currentFilter = filter;
   const grid = document.getElementById('galleryGrid');
+  const availableTags = new Set(PHOTOS.gallery.map(p => p.tag));
+  document.querySelectorAll('.filter-btn').forEach(btn => {
+    const tag = btn.dataset.filter;
+    btn.hidden = tag !== 'all' && !availableTags.has(tag);
+  });
+
   const photos = filter === 'all'
     ? PHOTOS.gallery
     : PHOTOS.gallery.filter(p => p.tag === filter);
@@ -145,9 +187,11 @@ const packages = {
 function openModal(pkg) {
   const p = packages[pkg];
   const l = currentLang;
-  document.getElementById('modal-tag').textContent   = p.tag[l];
-  document.getElementById('modal-title').textContent = p.title[l];
-  document.getElementById('modal-price').textContent = p.price + (l==='en' ? ' / person' : ' / 每人');
+  const modalLang = p.tag[l] ? l : 'en';
+  document.getElementById('modal-tag').textContent   = p.tag[modalLang];
+  document.getElementById('modal-title').textContent = p.title[modalLang];
+  const priceUnit = l.startsWith('zh') ? ' / 每人' : ' / person';
+  document.getElementById('modal-price').textContent = p.price + priceUnit;
   document.getElementById('modal').classList.add('open');
   document.body.style.overflow = 'hidden';
   setLang(currentLang);
@@ -156,7 +200,7 @@ function closeModal() { document.getElementById('modal').classList.remove('open'
 function closeModalBg(e) { if (e.target === document.getElementById('modal')) closeModal(); }
 function handlePay(m) {
   const msg = { en: m==='stripe'?'Redirecting to Stripe…':'Redirecting to PayPal…', 'zh-Hans': m==='stripe'?'正在跳转到Stripe…':'正在跳转到PayPal…', 'zh-Hant': m==='stripe'?'正在跳轉到Stripe…':'正在跳轉到PayPal…' };
-  alert(msg[currentLang]);
+  alert(msg[currentLang] || msg.en);
 }
 
 // ── Float buttons ─────────────────────────────────
@@ -192,5 +236,5 @@ document.addEventListener('DOMContentLoaded', () => {
   renderGallery('all');
   renderLog();
   makeBubbles();
-  setLang('en');
+  setLang(detectPreferredLang());
 });
