@@ -5,7 +5,7 @@
 
 // ── 语言 ──────────────────────────────────────────
 let currentLang = 'en';
-const supportedLangs = ['en', 'zh-Hans', 'zh-Hant', 'ko', 'th'];
+const supportedLangs = ['en', 'zh-Hant', 'ja', 'zh-Hans', 'ko', 'th'];
 
 function detectPreferredLang() {
   const langs = navigator.languages && navigator.languages.length
@@ -18,10 +18,11 @@ function detectPreferredLang() {
       if (lang.includes('tw') || lang.includes('hk') || lang.includes('mo') || lang.includes('hant')) {
         return 'zh-Hant';
       }
-      return 'zh-Hans';
+      return 'zh-Hant'; // default Chinese to Traditional for HK/TW focus
     }
-    if (lang.startsWith('ko')) return 'ko';
-    if (lang.startsWith('th')) return 'th';
+    if (lang.startsWith('ja')) return 'ja';
+    if (lang.startsWith('ko')) return 'en'; // Korean falls back to EN
+    if (lang.startsWith('th')) return 'en';
     if (lang.startsWith('en')) return 'en';
   }
 
@@ -229,6 +230,15 @@ document.addEventListener('keydown', e => {
     if (e.key === 'ArrowRight') lbNav(1,  { stopPropagation:()=>{} });
   }
 });
+
+// ── FAQ ───────────────────────────────────────────
+function toggleFaq(btn) {
+  const item = btn.closest('.faq-item');
+  const isOpen = item.classList.contains('open');
+  // close all
+  document.querySelectorAll('.faq-item.open').forEach(el => el.classList.remove('open'));
+  if (!isOpen) item.classList.add('open');
+}
 
 // ── Init ──────────────────────────────────────────
 document.addEventListener('DOMContentLoaded', () => {
