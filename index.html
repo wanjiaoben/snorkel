@@ -16,6 +16,43 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
 <link rel="stylesheet" href="style.css"/>
+<style>
+  .contact-section { padding:84px 20px; background:var(--ocean); border-top:1px solid rgba(255,255,255,.06); }
+  .contact-grid { max-width:980px; margin:0 auto; display:grid; grid-template-columns:1fr 1fr; gap:32px; align-items:center; }
+  .contact-actions { display:grid; gap:12px; }
+  .contact-card { display:flex; align-items:center; gap:14px; background:var(--glass); border:1px solid var(--glass2); border-radius:10px; padding:16px 18px; text-decoration:none; color:var(--pearl); transition:all .2s; }
+  .contact-card:hover { border-color:var(--teal); transform:translateY(-2px); }
+  .contact-card-icon { width:38px; height:38px; border-radius:9px; display:flex; align-items:center; justify-content:center; flex-shrink:0; color:#fff; }
+  .contact-card-icon.email { background:#4a90d9; }
+  .contact-card-icon.whatsapp { background:#25d366; }
+  .contact-card-icon.wechat { background:#09b83e; }
+  .contact-card-name { font-size:14px; font-weight:700; line-height:1.2; }
+  .contact-card-value { font-size:12px; color:rgba(255,255,255,.56); margin-top:2px; }
+  .float-contact { position:fixed; bottom:1.75rem; right:1.75rem; z-index:900; display:flex; flex-direction:column; align-items:flex-end; gap:.6rem; }
+  .float-toggle { width:52px; height:52px; border-radius:50%; background:var(--teal); color:var(--deep); border:none; cursor:pointer; font-size:1.3rem; display:flex; align-items:center; justify-content:center; box-shadow:0 4px 20px rgba(13,197,177,.45); transition:all .3s; flex-shrink:0; }
+  .float-toggle:hover { background:var(--coral); transform:scale(1.08); }
+  .float-toggle.open { background:rgba(255,255,255,.12); color:var(--pearl); box-shadow:0 4px 20px rgba(0,0,0,.4); }
+  .float-channels { display:flex; flex-direction:column; gap:.5rem; align-items:flex-end; transition:all .3s; opacity:0; pointer-events:none; transform:translateY(8px); }
+  .float-channels.open { opacity:1; pointer-events:auto; transform:translateY(0); }
+  .float-channel { display:flex; align-items:center; gap:.65rem; background:rgba(5,17,31,.96); border:1px solid var(--glass2); border-radius:8px; padding:.55rem .9rem; text-decoration:none; color:var(--pearl); font-size:.8rem; font-weight:600; box-shadow:0 4px 16px rgba(0,0,0,.4); white-space:nowrap; transition:all .2s; }
+  .float-channel:hover { border-color:rgba(255,255,255,.25); transform:translateX(-3px); }
+  .float-ch-icon { width:28px; height:28px; border-radius:7px; display:flex; align-items:center; justify-content:center; font-size:.95rem; flex-shrink:0; }
+  .float-ch-icon.wechat { background:#09b83e; }
+  .float-ch-icon.whatsapp { background:#25d366; }
+  .float-ch-icon.email { background:#4a90d9; }
+  .float-ch-name { font-size:.75rem; font-weight:700; line-height:1.2; }
+  .float-ch-val { font-size:.64rem; color:rgba(255,255,255,.48); margin-top:.1rem; }
+  .float-nav { position:fixed; bottom:5.2rem; right:1.75rem; z-index:900; display:flex; flex-direction:column; align-items:center; gap:.3rem; }
+  .float-nav-btn { display:flex; align-items:center; justify-content:center; background:rgba(5,17,31,.88); border:1px solid rgba(255,255,255,.13); border-radius:20px; padding:.5rem .75rem; color:rgba(255,255,255,.85); font-size:.7rem; font-weight:700; cursor:pointer; text-decoration:none; white-space:nowrap; box-shadow:0 2px 10px rgba(0,0,0,.35); transition:all .2s; font-family:'DM Sans',sans-serif; backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px); width:58px; letter-spacing:0; }
+  .float-nav-btn:hover { border-color:var(--teal); color:var(--pearl); background:rgba(13,197,177,.18); transform:scale(1.06); }
+  .float-nav::after { content:'🤿'; font-size:.75rem; opacity:.55; margin-top:.15rem; display:block; }
+  @media(max-width:700px){ .contact-grid{grid-template-columns:1fr;} }
+  @media(max-width:480px){
+    .float-nav { right:1.25rem; bottom:4.8rem; }
+    .float-nav-btn { width:50px; font-size:.62rem; padding:.45rem .5rem; }
+    .float-contact { right:1.25rem; bottom:1.25rem; }
+  }
+</style>
 </head>
 <body>
 
@@ -1112,6 +1149,43 @@
   </div>
 </section>
 
+<!-- ══ CONTACT ════════════════════════════════════ -->
+<section class="contact-section" id="contact">
+  <div class="contact-grid">
+    <div>
+      <p class="section-label">
+        <span data-lang="en" class="visible">Contact</span>
+        <span data-lang="zh-Hant">聯絡我們</span>
+        <span data-lang="ja">お問い合わせ</span>
+      </p>
+      <h2 class="section-title">
+        <span data-lang="en" class="visible">Book Your Snorkeling Tour</span>
+        <span data-lang="zh-Hant">預約浮潛行程</span>
+        <span data-lang="ja">シュノーケリングを予約</span>
+      </h2>
+      <p class="section-desc">
+        <span data-lang="en" class="visible">Send your date, group size, hotel area and preferred plan. We reply by email, WhatsApp or WeChat.</span>
+        <span data-lang="zh-Hant">請告訴我們日期、人數、酒店區域和想參加的方案。我們會透過 Email、WhatsApp 或微信回覆。</span>
+        <span data-lang="ja">日程、人数、ホテルエリア、希望プランをお知らせください。メール、WhatsApp、WeChatで返信します。</span>
+      </p>
+    </div>
+    <div class="contact-actions">
+      <a href="mailto:info@nice.okinawa" class="contact-card">
+        <div class="contact-card-icon email">✉️</div>
+        <div><div class="contact-card-name">Email</div><div class="contact-card-value">info@nice.okinawa</div></div>
+      </a>
+      <a href="https://wa.me/818070895239680" class="contact-card" target="_blank" rel="noopener">
+        <div class="contact-card-icon whatsapp">💬</div>
+        <div><div class="contact-card-name">WhatsApp</div><div class="contact-card-value">+81 70-8952-3968</div></div>
+      </a>
+      <a href="weixin://dl/chat?OkinawaOnline" class="contact-card" onclick="copyWechat(event)">
+        <div class="contact-card-icon wechat">💬</div>
+        <div><div class="contact-card-name">WeChat 微信</div><div class="contact-card-value">OkinawaOnline</div></div>
+      </a>
+    </div>
+  </div>
+</section>
+
 <!-- ══ FOOTER ═════════════════════════════════════ -->
 <footer>
   <div class="footer-logo">snorkel.<span>nice</span>.okinawa</div>
@@ -1126,31 +1200,47 @@
   <div class="footer-copy">© 2026 snorkel.nice.okinawa · 文觀第598号 · 5% of proceeds go to coral reef conservation</div>
 </footer>
 
-<!-- ══ FLOATING CONTACT ═══════════════════════════ -->
-<div class="float-wrap" id="floatWrap">
-  <div class="contact-panel" id="contactPanel">
-    <p class="contact-kicker">Contact</p>
-    <h3>预约 / Booking</h3>
-    <a class="contact-link contact-wa" href="https://wa.me/817089523968" target="_blank" rel="noopener">
-      <span>WhatsApp</span><strong>+81 70-8952-3968</strong>
+<!-- ══ FLOAT NAV ══════════════════════════════════ -->
+<div class="float-nav" id="float-nav">
+  <a class="float-nav-btn" href="#packages" onclick="smoothTo(event,'packages')">
+    <span data-lang="en" class="visible">Plans</span>
+    <span data-lang="zh-Hant">方案</span>
+    <span data-lang="ja">プラン</span>
+  </a>
+  <a class="float-nav-btn" href="#gallery" onclick="smoothTo(event,'gallery')">
+    <span data-lang="en" class="visible">Gallery</span>
+    <span data-lang="zh-Hant">照片</span>
+    <span data-lang="ja">写真</span>
+  </a>
+  <a class="float-nav-btn" href="#location" onclick="smoothTo(event,'location')">
+    <span data-lang="en" class="visible">Place</span>
+    <span data-lang="zh-Hant">地點</span>
+    <span data-lang="ja">場所</span>
+  </a>
+  <a class="float-nav-btn" href="#contact" onclick="smoothTo(event,'contact')">
+    <span data-lang="en" class="visible">Contact</span>
+    <span data-lang="zh-Hant">聯絡</span>
+    <span data-lang="ja">連絡</span>
+  </a>
+</div>
+
+<!-- ══ FLOAT CONTACT ══════════════════════════════ -->
+<div class="float-contact" id="float-contact">
+  <div class="float-channels" id="float-channels">
+    <a href="mailto:info@nice.okinawa" class="float-channel">
+      <div class="float-ch-icon email">✉️</div>
+      <div><div class="float-ch-name">Email</div><div class="float-ch-val">info@nice.okinawa</div></div>
     </a>
-    <button class="contact-link contact-wc" onclick="toggleWechat()">
-      <span>WeChat / 微信</span><strong>okinawaonline</strong>
-    </button>
-    <a class="contact-link" href="mailto:info@nice.okinawa">
-      <span>Email</span><strong>info@nice.okinawa</strong>
+    <a href="https://wa.me/818070895239680" class="float-channel" target="_blank" rel="noopener">
+      <div class="float-ch-icon whatsapp">💬</div>
+      <div><div class="float-ch-name">WhatsApp</div><div class="float-ch-val">+81 70-8952-3968</div></div>
     </a>
-    <a class="contact-link" href="https://www.instagram.com/snorkel.nice.okinawa/" target="_blank" rel="noopener">
-      <span>Instagram</span><strong>@snorkel.nice.okinawa</strong>
-    </a>
-    <a class="contact-link" href="https://snorkel.nice.okinawa" target="_blank" rel="noopener">
-      <span>Website</span><strong>snorkel.nice.okinawa</strong>
+    <a href="weixin://dl/chat?OkinawaOnline" class="float-channel" onclick="copyWechat(event)">
+      <div class="float-ch-icon wechat">💬</div>
+      <div><div class="float-ch-name">WeChat 微信</div><div class="float-ch-val">OkinawaOnline</div></div>
     </a>
   </div>
-  <button class="float-main" id="floatMain" onclick="toggleFloat()" aria-label="Open contact options">
-    <span class="float-main-text">Contact</span>
-    <span class="float-main-text zh">联系</span>
-  </button>
+  <button class="float-toggle" id="float-toggle" onclick="toggleFloat()" aria-label="Contact">✉</button>
 </div>
 
 <!-- WeChat QR Modal -->

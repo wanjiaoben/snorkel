@@ -205,7 +205,49 @@ function handlePay(m) {
 }
 
 // ── Float buttons ─────────────────────────────────
-function toggleFloat() { document.getElementById('floatWrap').classList.toggle('open'); }
+function smoothTo(e, id) {
+  e.preventDefault();
+  const target = document.getElementById(id);
+  if (target) target.scrollIntoView({ behavior:'smooth', block:'start' });
+}
+
+function toggleFloat() {
+  const toggle = document.getElementById('float-toggle');
+  const channels = document.getElementById('float-channels');
+  const isOpen = channels.classList.contains('open');
+  channels.classList.toggle('open', !isOpen);
+  toggle.classList.toggle('open', !isOpen);
+  toggle.textContent = isOpen ? '✉' : '✕';
+}
+
+function copyWechat(e) {
+  e.preventDefault();
+  const msg = {
+    en: 'WeChat ID copied: OkinawaOnline',
+    'zh-Hans': '微信号已复制：OkinawaOnline',
+    'zh-Hant': '微信號已複製：OkinawaOnline',
+    ja: 'WeChat IDをコピーしました：OkinawaOnline'
+  };
+  navigator.clipboard.writeText('OkinawaOnline').then(() => {
+    alert(msg[currentLang] || msg.en);
+  }).catch(() => {
+    alert('WeChat ID: OkinawaOnline');
+  });
+}
+
+document.addEventListener('click', function(e) {
+  const fc = document.getElementById('float-contact');
+  if (fc && !fc.contains(e.target)) {
+    const channels = document.getElementById('float-channels');
+    const toggle = document.getElementById('float-toggle');
+    if (channels && channels.classList.contains('open')) {
+      channels.classList.remove('open');
+      toggle.classList.remove('open');
+      toggle.textContent = '✉';
+    }
+  }
+});
+
 function toggleWechat() { document.getElementById('wcOverlay').classList.add('open'); document.body.style.overflow='hidden'; setLang(currentLang); }
 function closeWechat() { document.getElementById('wcOverlay').classList.remove('open'); document.body.style.overflow=''; }
 
