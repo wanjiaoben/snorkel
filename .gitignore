@@ -1,0 +1,9 @@
+.DS_Store
+
+# Large social-media source assets and generated videos should stay outside Git.
+# Keep website-ready images in images/*.webp when they are referenced by the page.
+images/sns/
+videos/sns/
+social-assets/
+social-output/
+*.mov

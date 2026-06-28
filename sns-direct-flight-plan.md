@@ -3,6 +3,25 @@
 Updated: 2026-05-28
 Website: https://snorkel.nice.okinawa
 
+## Asset storage policy
+
+Keep the public website assets in this repository only when the page references
+them directly, such as compressed `images/*.webp` files and small PDFs.
+
+Do not commit Instagram/Facebook source media, generated reels, or daily posting
+exports to Git. Store those files in an external working folder, object storage,
+or the scheduler machine, then let the future posting automation read from there.
+
+Reserved local paths are ignored by Git:
+
+- `images/sns/`
+- `videos/sns/`
+- `social-assets/`
+- `social-output/`
+
+This keeps `snorkel.nice.okinawa` deployable as a small static site while leaving
+room for future automated Instagram and Facebook publishing.
+
 ## Direct-flight audiences today
 
 | Market | Flights today | Primary language | Best channels | Main CTA |
