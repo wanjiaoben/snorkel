@@ -6,6 +6,7 @@
 // ── 语言 ──────────────────────────────────────────
 let currentLang = 'en';
 const supportedLangs = ['en', 'zh-Hant', 'ja', 'zh-Hans', 'ko', 'th'];
+const INQUIRY_ENDPOINT = 'https://inquiry-nice-okinawa-preview.gerheidicn.workers.dev/api/inquiries';
 
 function detectPreferredLang() {
   const langs = navigator.languages && navigator.languages.length
@@ -235,6 +236,96 @@ function copyWechat(e) {
   });
 }
 
+function inquiryMessage(key) {
+  const messages = {
+    sending: {
+      en: 'Sending...',
+      'zh-Hant': '正在送出...',
+      ja: '送信中...'
+    },
+    ok: {
+      en: 'Inquiry received. We will reply by email, WhatsApp or WeChat.',
+      'zh-Hant': '已收到詢問，我們會透過 Email、WhatsApp 或微信回覆。',
+      ja: 'お問い合わせを受け付けました。メール、WhatsApp、WeChatで返信します。'
+    },
+    missingTurnstile: {
+      en: 'Please complete the security check.',
+      'zh-Hant': '請先完成安全驗證。',
+      ja: 'セキュリティ確認を完了してください。'
+    },
+    error: {
+      en: 'Could not send. Please try again or use WhatsApp.',
+      'zh-Hant': '送出失敗，請重試或改用 WhatsApp。',
+      ja: '送信できませんでした。再試行するかWhatsAppをご利用ください。'
+    }
+  };
+  const group = messages[key] || messages.error;
+  return group[currentLang] || group.en;
+}
+
+function setInquiryStatus(key, type) {
+  const status = document.getElementById('inquiryStatus');
+  if (!status) return;
+  status.className = `inquiry-status ${type || ''}`.trim();
+  status.textContent = inquiryMessage(key);
+}
+
+function resetTurnstile() {
+  if (window.turnstile && typeof window.turnstile.reset === 'function') {
+    window.turnstile.reset();
+  }
+}
+
+async function submitInquiry(e) {
+  e.preventDefault();
+  const form = e.currentTarget;
+  if (!form.checkValidity()) {
+    form.reportValidity();
+    return;
+  }
+
+  const tokenInput = form.querySelector('[name="cf-turnstile-response"]');
+  const turnstileToken = tokenInput && tokenInput.value;
+  if (!turnstileToken) {
+    setInquiryStatus('missingTurnstile', 'err');
+    return;
+  }
+
+  const submit = form.querySelector('.inquiry-submit');
+  submit.disabled = true;
+  setInquiryStatus('sending');
+
+  const data = new FormData(form);
+  const payload = {
+    date: data.get('date'),
+    guests: data.get('guests'),
+    project: data.get('project'),
+    contact: data.get('contact'),
+    remarks: data.get('remarks'),
+    sourceSite: 'snorkel.nice.okinawa',
+    language: currentLang,
+    turnstileToken
+  };
+
+  try {
+    const response = await fetch(INQUIRY_ENDPOINT, {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+    const result = await response.json().catch(() => ({}));
+    if (!response.ok || !result.ok) throw new Error(result.error || 'submit_failed');
+    form.reset();
+    resetTurnstile();
+    setInquiryStatus('ok', 'ok');
+  } catch (error) {
+    resetTurnstile();
+    setInquiryStatus('error', 'err');
+  } finally {
+    submit.disabled = false;
+  }
+}
+
 document.addEventListener('click', function(e) {
   const fc = document.getElementById('float-contact');
   if (fc && !fc.contains(e.target)) {
@@ -288,5 +379,7 @@ document.addEventListener('DOMContentLoaded', () => {
   renderGallery('all');
   renderLog();
   makeBubbles();
+  const inquiryForm = document.getElementById('inquiryForm');
+  if (inquiryForm) inquiryForm.addEventListener('submit', submitInquiry);
   setLang(detectPreferredLang());
 });

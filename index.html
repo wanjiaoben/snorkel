@@ -16,6 +16,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
 <link rel="stylesheet" href="style.css"/>
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 <style>
   .contact-section { padding:84px 20px; background:var(--ocean); border-top:1px solid rgba(255,255,255,.06); }
   .contact-grid { max-width:980px; margin:0 auto; display:grid; grid-template-columns:1fr 1fr; gap:32px; align-items:center; }
@@ -28,6 +29,24 @@
   .contact-card-icon.wechat { background:#09b83e; }
   .contact-card-name { font-size:14px; font-weight:700; line-height:1.2; }
   .contact-card-value { font-size:12px; color:rgba(255,255,255,.56); margin-top:2px; }
+  .inquiry-form { background:var(--glass); border:1px solid var(--glass2); border-radius:10px; padding:18px; display:grid; gap:12px; }
+  .inquiry-row { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+  .inquiry-field { display:flex; flex-direction:column; gap:6px; }
+  .inquiry-field label { font-size:11px; font-weight:600; letter-spacing:.08em; text-transform:uppercase; color:rgba(255,255,255,.55); }
+  .inquiry-field input,.inquiry-field select,.inquiry-field textarea { width:100%; background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.12); border-radius:8px; padding:11px 12px; color:var(--pearl); font-family:'DM Sans',sans-serif; font-size:14px; outline:none; transition:border .2s; }
+  .inquiry-field textarea { min-height:82px; resize:vertical; }
+  .inquiry-field input:focus,.inquiry-field select:focus,.inquiry-field textarea:focus { border-color:var(--teal); }
+  .inquiry-field select option { background:var(--ocean); }
+  .inquiry-submit { border:none; border-radius:8px; padding:13px 16px; background:var(--teal); color:var(--deep); font-family:'DM Sans',sans-serif; font-weight:800; cursor:pointer; transition:all .2s; }
+  .inquiry-submit:hover { background:var(--coral); transform:translateY(-1px); }
+  .inquiry-submit:disabled { opacity:.55; cursor:not-allowed; transform:none; }
+  .inquiry-status { min-height:18px; font-size:12px; color:rgba(255,255,255,.68); }
+  .inquiry-status.ok { color:var(--teal); }
+  .inquiry-status.err { color:var(--coral); }
+  .contact-secondary { display:grid; grid-template-columns:repeat(3,1fr); gap:8px; }
+  .contact-secondary .contact-card { padding:12px; }
+  .contact-secondary .contact-card-icon { width:30px; height:30px; border-radius:7px; }
+  .contact-secondary .contact-card-value { display:none; }
   .float-contact { position:fixed; bottom:1.75rem; right:1.75rem; z-index:900; display:flex; flex-direction:column; align-items:flex-end; gap:.6rem; }
   .float-toggle { width:52px; height:52px; border-radius:50%; background:var(--teal); color:var(--deep); border:none; cursor:pointer; font-size:1.3rem; display:flex; align-items:center; justify-content:center; box-shadow:0 4px 20px rgba(13,197,177,.45); transition:all .3s; flex-shrink:0; }
   .float-toggle:hover { background:var(--coral); transform:scale(1.08); }
@@ -46,7 +65,7 @@
   .float-nav-btn { display:flex; align-items:center; justify-content:center; background:rgba(5,17,31,.88); border:1px solid rgba(255,255,255,.13); border-radius:20px; padding:.5rem .75rem; color:rgba(255,255,255,.85); font-size:.7rem; font-weight:700; cursor:pointer; text-decoration:none; white-space:nowrap; box-shadow:0 2px 10px rgba(0,0,0,.35); transition:all .2s; font-family:'DM Sans',sans-serif; backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px); width:58px; letter-spacing:0; }
   .float-nav-btn:hover { border-color:var(--teal); color:var(--pearl); background:rgba(13,197,177,.18); transform:scale(1.06); }
   .float-nav::after { content:'🤿'; font-size:.75rem; opacity:.55; margin-top:.15rem; display:block; }
-  @media(max-width:700px){ .contact-grid{grid-template-columns:1fr;} }
+  @media(max-width:700px){ .contact-grid{grid-template-columns:1fr;} .inquiry-row{grid-template-columns:1fr;} .contact-secondary{grid-template-columns:1fr;} }
   @media(max-width:480px){
     .float-nav { right:1.25rem; bottom:4.8rem; }
     .float-nav-btn { width:50px; font-size:.62rem; padding:.45rem .5rem; }
@@ -1207,18 +1226,57 @@
       </p>
     </div>
     <div class="contact-actions">
-      <a href="mailto:info@nice.okinawa" class="contact-card">
-        <div class="contact-card-icon email">✉️</div>
-        <div><div class="contact-card-name">Email</div><div class="contact-card-value">info@nice.okinawa</div></div>
-      </a>
-      <a href="https://wa.me/817089523968" class="contact-card" target="_blank" rel="noopener">
-        <div class="contact-card-icon whatsapp">💬</div>
-        <div><div class="contact-card-name">WhatsApp</div><div class="contact-card-value">+81 70-8952-3968</div></div>
-      </a>
-      <a href="weixin://dl/chat?OkinawaOnline" class="contact-card" onclick="copyWechat(event)">
-        <div class="contact-card-icon wechat">💬</div>
-        <div><div class="contact-card-name">WeChat 微信</div><div class="contact-card-value">OkinawaOnline</div></div>
-      </a>
+      <form class="inquiry-form" id="inquiryForm">
+        <div class="inquiry-row">
+          <div class="inquiry-field">
+            <label for="inquiryDate"><span data-lang="en" class="visible">Date</span><span data-lang="zh-Hant">日期</span><span data-lang="ja">日程</span></label>
+            <input id="inquiryDate" name="date" type="date" required>
+          </div>
+          <div class="inquiry-field">
+            <label for="inquiryGuests"><span data-lang="en" class="visible">Guests</span><span data-lang="zh-Hant">人數</span><span data-lang="ja">人数</span></label>
+            <input id="inquiryGuests" name="guests" type="number" min="1" max="30" value="2" required>
+          </div>
+        </div>
+        <div class="inquiry-field">
+          <label for="inquiryProject"><span data-lang="en" class="visible">Plan</span><span data-lang="zh-Hant">希望方案</span><span data-lang="ja">希望プラン</span></label>
+          <select id="inquiryProject" name="project" required>
+            <option value="Kerama snorkeling">Kerama snorkeling</option>
+            <option value="Blue Cave snorkeling">Blue Cave snorkeling</option>
+            <option value="Private charter">Private charter</option>
+            <option value="Snorkel + car rental">Snorkel + car rental</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+        <div class="inquiry-field">
+          <label for="inquiryContact"><span data-lang="en" class="visible">Email / WhatsApp / WeChat</span><span data-lang="zh-Hant">Email / WhatsApp / 微信</span><span data-lang="ja">メール / WhatsApp / WeChat</span></label>
+          <input id="inquiryContact" name="contact" type="text" autocomplete="email" placeholder="info@example.com / +81..." required>
+        </div>
+        <div class="inquiry-field">
+          <label for="inquiryRemarks"><span data-lang="en" class="visible">Notes</span><span data-lang="zh-Hant">備註</span><span data-lang="ja">備考</span></label>
+          <textarea id="inquiryRemarks" name="remarks" placeholder="Hotel area, ages, pickup needs"></textarea>
+        </div>
+        <div class="cf-turnstile" data-sitekey="1x00000000000000000000AA" data-action="snorkel-inquiry-v1"></div>
+        <button class="inquiry-submit" type="submit">
+          <span data-lang="en" class="visible">Send Inquiry</span>
+          <span data-lang="zh-Hant">送出詢問</span>
+          <span data-lang="ja">問い合わせを送信</span>
+        </button>
+        <div class="inquiry-status" id="inquiryStatus" role="status" aria-live="polite"></div>
+      </form>
+      <div class="contact-secondary">
+        <a href="mailto:info@nice.okinawa" class="contact-card">
+          <div class="contact-card-icon email">✉️</div>
+          <div><div class="contact-card-name">Email</div><div class="contact-card-value">info@nice.okinawa</div></div>
+        </a>
+        <a href="https://wa.me/817089523968" class="contact-card" target="_blank" rel="noopener">
+          <div class="contact-card-icon whatsapp">💬</div>
+          <div><div class="contact-card-name">WhatsApp</div><div class="contact-card-value">+81 70-8952-3968</div></div>
+        </a>
+        <a href="weixin://dl/chat?OkinawaOnline" class="contact-card" onclick="copyWechat(event)">
+          <div class="contact-card-icon wechat">💬</div>
+          <div><div class="contact-card-name">WeChat</div><div class="contact-card-value">OkinawaOnline</div></div>
+        </a>
+      </div>
     </div>
   </div>
 </section>
