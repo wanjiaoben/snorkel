@@ -11,7 +11,8 @@
   "vars": {
     "ENVIRONMENT": "preview",
     "ALLOWED_ORIGINS": "https://snorkel.nice.okinawa,https://inquiry-v1-snorkel.snorkel.pages.dev,https://inquiry-v1-snorkel.snorkel.pages.dev",
-    "INQUIRY_FROM_EMAIL": "inquiries@nice.okinawa",
+    "RESEND_API_URL": "https://api.resend.com/emails",
+    "INQUIRY_FROM_EMAIL": "noreply@nice.okinawa",
     "INQUIRY_FROM_NAME": "Nice Okinawa Inquiry",
     "INQUIRY_TO_EMAIL": "info@nice.okinawa",
     "RATE_LIMIT_MAX": "5",
@@ -23,11 +24,6 @@
       "database_name": "nice-inquiries-preview",
       "database_id": "7c3beba6-7b26-4584-b15d-98d85ae4fea8",
       "migrations_dir": "migrations"
-    }
-  ],
-  "send_email": [
-    {
-      "name": "EMAIL"
     }
   ]
 }

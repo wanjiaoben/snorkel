@@ -1,4 +1,5 @@
 const TURNSTILE_VERIFY_URL = 'https://challenges.cloudflare.com/turnstile/v0/siteverify';
+const RESEND_API_URL = 'https://api.resend.com/emails';
 const MAX_BODY_BYTES = 8192;
 
 function json(body, status = 200, headers = {}) {
@@ -127,17 +128,59 @@ function emailText(inquiry) {
   ].join('\n');
 }
 
+function escapeHtml(value) {
+  return String(value).replace(/[&<>"]/g, ch => ({
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;'
+  }[ch]));
+}
+
 async function sendNotification(env, inquiry) {
+  if (!env.RESEND_API_KEY) {
+    const err = new Error('resend_not_configured');
+    err.code = 'resend_not_configured';
+    throw err;
+  }
+
   const text = emailText(inquiry);
-  const html = `<h2>New Nice Okinawa inquiry</h2><pre style="font:14px/1.5 sans-serif;white-space:pre-wrap">${text.replace(/[&<>]/g, ch => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' }[ch]))}</pre>`;
-  return env.EMAIL.send({
-    to: env.INQUIRY_TO_EMAIL,
-    from: { email: env.INQUIRY_FROM_EMAIL, name: env.INQUIRY_FROM_NAME || 'Nice Okinawa Inquiry' },
-    replyTo: inquiry.contact.includes('@') ? inquiry.contact : undefined,
-    subject: `[${inquiry.sourceSite}] Inquiry ${inquiry.date || 'no date'} / ${inquiry.guests || '-'} guests`,
+  const subject = `[${inquiry.sourceSite}] ${inquiry.project || 'Inquiry'} / ${inquiry.date || 'no date'}`;
+  const payload = {
+    from: `${env.INQUIRY_FROM_NAME || 'Nice Okinawa Inquiry'} <${env.INQUIRY_FROM_EMAIL || 'noreply@nice.okinawa'}>`,
+    to: [env.INQUIRY_TO_EMAIL],
+    subject,
     text,
-    html
+    html: `<h2>New Nice Okinawa inquiry</h2><pre style="font:14px/1.5 sans-serif;white-space:pre-wrap">${escapeHtml(text)}</pre>`
+  };
+
+  if (inquiry.contact.includes('@')) {
+    payload.reply_to = inquiry.contact;
+  }
+
+  const response = await fetch(env.RESEND_API_URL || RESEND_API_URL, {
+    method: 'POST',
+    headers: {
+      authorization: `Bearer ${env.RESEND_API_KEY}`,
+      'content-type': 'application/json'
+    },
+    body: JSON.stringify(payload)
   });
+  const resultText = await response.text();
+  let result = {};
+  try {
+    result = resultText ? JSON.parse(resultText) : {};
+  } catch (_error) {
+    result = { raw: resultText };
+  }
+
+  if (!response.ok) {
+    const err = new Error(`resend_${response.status}`);
+    err.code = `resend_${response.status}`;
+    err.detail = resultText;
+    throw err;
+  }
+  return result;
 }
 
 async function createInquiry(request, env) {
@@ -194,13 +237,13 @@ async function createInquiry(request, env) {
       SET status = 'notified', email_status = 'sent', email_error = NULL, updated_at = datetime('now')
       WHERE id = ?
     `).bind(inquiry.id).run();
-    return json({ ok: true, id: inquiry.id, status: 'notified', emailMessageId: result && result.messageId }, 202, corsHeaders(request, env));
+    return json({ ok: true, id: inquiry.id, status: 'notified', emailMessageId: result && (result.id || result.messageId) }, 202, corsHeaders(request, env));
   } catch (error) {
     await env.DB.prepare(`
       UPDATE inquiries
       SET status = 'email_failed', email_status = 'failed', email_error = ?, updated_at = datetime('now')
       WHERE id = ?
-    `).bind(cleanText(error && (error.code || error.message || String(error)), 500), inquiry.id).run();
+    `).bind(cleanText(error && (error.detail || error.code || error.message || String(error)), 500), inquiry.id).run();
     return json({ ok: true, id: inquiry.id, status: 'email_failed', emailPending: true }, 202, corsHeaders(request, env));
   }
 }
