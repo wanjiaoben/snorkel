@@ -100,7 +100,7 @@ async function verifyTurnstile(env, token, request) {
     method: 'POST',
     headers: { 'content-type': 'application/json' },
     body: JSON.stringify({
-      secret: env.TURNSTILE_SECRET_KEY,
+      secret: env.TURNSTILE_SECRET,
       response: token,
       remoteip,
       idempotency_key: crypto.randomUUID()
