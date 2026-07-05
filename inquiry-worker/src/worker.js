@@ -32,6 +32,14 @@ function cleanText(value, max = 500) {
   return String(value || '').replace(/\s+/g, ' ').trim().slice(0, max);
 }
 
+function normalizeEmail(value) {
+  return String(value || '').trim().toLowerCase();
+}
+
+function shouldSkipEmailSendForCctest(email) {
+  return normalizeEmail(email) === 'cctest@nice.okinawa';
+}
+
 function parseGuests(value) {
   const guests = Number(value);
   return Number.isInteger(guests) && guests > 0 && guests < 100 ? guests : null;
@@ -138,6 +146,10 @@ function escapeHtml(value) {
 }
 
 async function sendNotification(env, inquiry) {
+  const to = env.INQUIRY_TO_EMAIL;
+  if (shouldSkipEmailSendForCctest(to)) {
+    return { skipped: true };
+  }
   if (!env.RESEND_API_KEY) {
     const err = new Error('resend_not_configured');
     err.code = 'resend_not_configured';
@@ -148,7 +160,7 @@ async function sendNotification(env, inquiry) {
   const subject = `[${inquiry.sourceSite}] ${inquiry.project || 'Inquiry'} / ${inquiry.date || 'no date'}`;
   const payload = {
     from: `${env.INQUIRY_FROM_NAME || 'Nice Okinawa Inquiry'} <${env.INQUIRY_FROM_EMAIL || 'noreply@nice.okinawa'}>`,
-    to: [env.INQUIRY_TO_EMAIL],
+    to: [to],
     subject,
     text,
     html: `<h2>New Nice Okinawa inquiry</h2><pre style="font:14px/1.5 sans-serif;white-space:pre-wrap">${escapeHtml(text)}</pre>`
