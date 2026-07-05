@@ -248,6 +248,53 @@ async function createInquiry(request, env) {
   }
 }
 
+function rowToInquiry(row) {
+  return {
+    id: row.id,
+    sourceSite: row.source_site || 'snorkel.nice.okinawa',
+    date: row.requested_date || '',
+    guests: row.guests || null,
+    project: row.project || '',
+    contact: row.contact || '',
+    remarks: row.remarks || '',
+    language: row.language || ''
+  };
+}
+
+async function retryFailedInquiryEmails(request, env) {
+  if (env.ENVIRONMENT !== 'preview') {
+    return json({ ok: false, error: 'not_found' }, 404, corsHeaders(request, env));
+  }
+  const rows = await env.DB.prepare(`
+    SELECT id, source_site, requested_date, guests, project, contact, remarks, language
+    FROM inquiries
+    WHERE status = 'email_failed' OR email_status = 'failed'
+    ORDER BY datetime(created_at) ASC
+    LIMIT 20
+  `).all();
+  const results = [];
+  for (const row of rows.results || []) {
+    const inquiry = rowToInquiry(row);
+    try {
+      const result = await sendNotification(env, inquiry);
+      await env.DB.prepare(`
+        UPDATE inquiries
+        SET status = 'notified', email_status = 'sent', email_error = NULL, updated_at = datetime('now')
+        WHERE id = ?
+      `).bind(inquiry.id).run();
+      results.push({ id: inquiry.id, ok: true, emailMessageId: result && (result.id || result.messageId) });
+    } catch (error) {
+      await env.DB.prepare(`
+        UPDATE inquiries
+        SET email_error = ?, updated_at = datetime('now')
+        WHERE id = ?
+      `).bind(cleanText(error && (error.detail || error.code || error.message || String(error)), 500), inquiry.id).run();
+      results.push({ id: inquiry.id, ok: false, error: cleanText(error && (error.code || error.message || String(error)), 160) });
+    }
+  }
+  return json({ ok: true, retried: results.length, results }, 200, corsHeaders(request, env));
+}
+
 export default {
   async fetch(request, env) {
     if (request.method === 'OPTIONS') {
@@ -263,6 +310,9 @@ export default {
         if (error.retryAfter) headers['retry-after'] = String(error.retryAfter);
         return json({ ok: false, error: status === 500 ? 'internal_error' : error.message }, status, headers);
       }
+    }
+    if (url.pathname === '/api/inquiries/retry-email' && request.method === 'POST') {
+      return retryFailedInquiryEmails(request, env);
     }
     return json({ ok: false, error: 'not_found' }, 404, corsHeaders(request, env));
   }
