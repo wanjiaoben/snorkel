@@ -1,0 +1,37 @@
+# Snorkel Nice Okinawa
+
+> English-first information and inquiry site for snorkeling tours and related marine activities in Okinawa, Japan.
+
+Canonical URL: https://snorkel.nice.okinawa/
+Booking email: info@nice.okinawa
+Service area: Okinawa, Japan
+
+## Services
+
+- Kerama-area snorkeling plans departing from Ginowan Marina
+- Blue Cave snorkeling options
+- Private snorkeling charters
+- Snorkeling and fishing combination plans
+- Separately arranged island activities, including snorkeling, SUP and kayaking
+- Pickup, language support, photography and car-rental coordination may be arranged depending on the plan
+
+Prices, inclusions, participant eligibility, exact locations and cancellation terms vary by plan and must be confirmed before booking.
+
+## Page index
+
+- [Home and tour overview](https://snorkel.nice.okinawa/)
+- [Tour plans](https://snorkel.nice.okinawa/#packages)
+- [Frequently asked questions](https://snorkel.nice.okinawa/#faq)
+- [Meeting and service area](https://snorkel.nice.okinawa/#location)
+- [Health, insurance and cancellation notices](https://snorkel.nice.okinawa/#notices)
+- [How booking works](https://snorkel.nice.okinawa/#how)
+- [Booking inquiry and contact](https://snorkel.nice.okinawa/#contact)
+- [English health declaration PDF](https://snorkel.nice.okinawa/pdfs/health-declaration-en.pdf)
+- [Japanese health declaration PDF](https://snorkel.nice.okinawa/pdfs/health-declaration-ja.pdf)
+- [Chinese health declaration PDF](https://snorkel.nice.okinawa/pdfs/health-declaration-zh.pdf)
+- [XML sitemap](https://snorkel.nice.okinawa/sitemap.xml)
+- [Crawler policy](https://snorkel.nice.okinawa/robots.txt)
+
+## Booking information to provide
+
+Send the preferred date, group size, participant ages, hotel area, preferred plan, swimming experience, relevant health information and pickup needs. A booking is not confirmed until availability and plan details are agreed.
