@@ -9,3 +9,4 @@ T0706-04 WAN 宪法 v1.4 已同步到 CLAUDE.md，MERGE_GATE 宪法版本校验�
 T0706-24 WAN 宪法 v1.5 已同步到 CLAUDE.md；新增域名/API入口切换三同步与手动权益 entitlement_log 留痕红线。
 
 T0707-14 WAN 宪法 v1.6 已同步到 CLAUDE.md，FREEZE.md 冻结区同步到仓库根目录；新增冻结区、任务三分类、CC 交付六栏规则。
+M0724-20 强化 snorkel AI 引擎可读性：首页 FAQ/JSON-LD、预约邮箱与 Okinawa 地区字段、llms.txt、AI 爬虫放行及商业意图元数据已完成，待 Wan 审核事实 TODO。
