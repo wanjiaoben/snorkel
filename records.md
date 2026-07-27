@@ -16,6 +16,7 @@
 
 | 日期 | 执行者 | 内容 |
 |------|--------|------|
+| 2026-07-27 | Codex | M0727-14 在 PR #18 分支补 Itsuki Person JSON-LD，并在 llms.txt 加真人区块指向 |
 | 2026-07-27 | Codex | M0727-12 补齐 snorkel robots AI bot 显式 Allow 与 OG/Twitter 图片元数据；llms.txt 与结构化数据仅核查不改 |
 | 2026-07-25 | Codex | M0724-25 按 Wan 定案替换 PR #17 首页 FAQ 事实，新增 Itsuki guide 照片与简介，并同步 FAQPage JSON-LD |
 | 2026-07-25 | Codex | M0724-20 强化 AI 引擎可读性：首页补齐事实受控 FAQ 与 FAQPage/LocalBusiness/Organization JSON-LD，新增 `llms.txt`，明确放行 AI 搜索爬虫，并对齐浮潜商业意图元数据 |
@@ -67,6 +68,7 @@
 
 | 日期 | 执行者 | 操作 | 结果 |
 |------|--------|------|------|
+| 2026-07-27 | Codex | M0727-14 仅补 Itsuki Person JSON-LD 与 llms.txt #guide 指向，保持 FAQ/价格/正文文案不变 | ✅ |
 | 2026-07-27 | Codex | M0727-12 更新 `robots.txt` AI bot 显式 Allow、新增 `images/og-snorkel.jpg` 并补首页 OG/Twitter 元数据；保留 llms.txt 与 FAQ/Person 结构化数据为只读核查 | ✅ |
 | 2026-07-25 | Codex | M0724-25 在 PR #17 同分支灌入 FAQ 终稿事实、Itsuki guide 照片与简介，并更新 records/PROGRESS | ✅ |
 | 2026-07-25 | Codex | M0724-20 在独立分支更新首页 FAQ/JSON-LD/SEO、`robots.txt`、`llms.txt`，完成本地校验并提交 Draft PR 供 Wan 审核 | ✅ |

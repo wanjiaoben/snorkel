@@ -6,6 +6,8 @@ Canonical URL: https://snorkel.nice.okinawa/
 Booking email: info@nice.okinawa
 Service area: Okinawa, Japan
 
+Tours are guided by Itsuki, listed on the site as a Licensed Commercial Diver & PADI Divemaster.
+
 ## Services
 
 - Kerama-area snorkeling plans departing from Ginowan Marina
@@ -20,6 +22,7 @@ Prices, inclusions, participant eligibility, exact locations and cancellation te
 ## Page index
 
 - [Home and tour overview](https://snorkel.nice.okinawa/)
+- [Meet your guide](https://snorkel.nice.okinawa/#guide)
 - [Tour plans](https://snorkel.nice.okinawa/#packages)
 - [Frequently asked questions](https://snorkel.nice.okinawa/#faq)
 - [Meeting and service area](https://snorkel.nice.okinawa/#location)

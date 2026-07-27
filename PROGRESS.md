@@ -12,3 +12,4 @@ T0707-14 WAN 宪法 v1.6 已同步到 CLAUDE.md，FREEZE.md 冻结区同步到�
 M0724-20 强化 snorkel AI 引擎可读性：首页 FAQ/JSON-LD、预约邮箱与 Okinawa 地区字段、llms.txt、AI 爬虫放行及商业意图元数据已完成。
 M0724-25 FAQ 事实灌入 + guide 上站：按 Wan 定案更新首页 FAQ/FAQPage JSON-LD，新增 Itsuki guide 照片与简介，保持 PR #17 Draft 待 Wan 终验。
 M0727-12 SEO/GEO 补齐：robots 显式 Allow GPTBot/ClaudeBot，补 OG/Twitter 图片元数据，llms 与结构化数据仅核查不改。
+M0727-14 SEO/GEO 补齐：在 PR #18 分支补 Itsuki Person JSON-LD，并让 llms.txt 指向 #guide 真人区块。
