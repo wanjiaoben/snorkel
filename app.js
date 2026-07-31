@@ -297,6 +297,7 @@ async function submitInquiry(e) {
 
   const data = new FormData(form);
   const payload = {
+    site: 'snorkel',
     date: data.get('date'),
     guests: data.get('guests'),
     project: data.get('project'),
