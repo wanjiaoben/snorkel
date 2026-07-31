@@ -10,7 +10,7 @@
   },
   "vars": {
     "ENVIRONMENT": "preview",
-    "ALLOWED_ORIGINS": "https://snorkel.nice.okinawa,https://inquiry-v1-snorkel.snorkel.pages.dev,https://inquiry-v1-snorkel.snorkel.pages.dev",
+    "ALLOWED_ORIGINS": "https://snorkel.nice.okinawa,https://fishing.nice.okinawa,https://japanusedcars.nice.okinawa",
     "RESEND_API_URL": "https://api.resend.com/emails",
     "INQUIRY_FROM_EMAIL": "noreply@nice.okinawa",
     "INQUIRY_FROM_NAME": "Nice Okinawa Inquiry",

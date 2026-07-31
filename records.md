@@ -7,7 +7,7 @@
 ## 📍 当前状态
 
 - **阶段**：维护中
-- **最后更新**：2026-07-27
+- **最后更新**：2026-07-31
 - **负责人**：Wan
 
 ---
@@ -16,6 +16,7 @@
 
 | 日期 | 执行者 | 内容 |
 |------|--------|------|
+| 2026-07-31 | Codex | M0731-18 将 inquiry Worker CORS 收紧为 snorkel / fishing / japanusedcars 三个精确 origin，新增 site 与 source_site 分栏落库及正反向自动测试 |
 | 2026-07-27 | Codex | M0727-14 在 PR #18 分支补 Itsuki Person JSON-LD，并在 llms.txt 加真人区块指向 |
 | 2026-07-27 | Codex | M0727-12 补齐 snorkel robots AI bot 显式 Allow 与 OG/Twitter 图片元数据；llms.txt 与结构化数据仅核查不改 |
 | 2026-07-25 | Codex | M0724-25 按 Wan 定案替换 PR #17 首页 FAQ 事实，新增 Itsuki guide 照片与简介，并同步 FAQPage JSON-LD |
@@ -68,6 +69,7 @@
 
 | 日期 | 执行者 | 操作 | 结果 |
 |------|--------|------|------|
+| 2026-07-31 | Codex | M0731-18 新增三站精确 CORS 门禁、来源绑定、D1 `site` 迁移与 Node 自动测试；未部署 Worker、未写远端 D1、未发送邮件 | ✅ |
 | 2026-07-27 | Codex | M0727-14 仅补 Itsuki Person JSON-LD 与 llms.txt #guide 指向，保持 FAQ/价格/正文文案不变 | ✅ |
 | 2026-07-27 | Codex | M0727-12 更新 `robots.txt` AI bot 显式 Allow、新增 `images/og-snorkel.jpg` 并补首页 OG/Twitter 元数据；保留 llms.txt 与 FAQ/Person 结构化数据为只读核查 | ✅ |
 | 2026-07-25 | Codex | M0724-25 在 PR #17 同分支灌入 FAQ 终稿事实、Itsuki guide 照片与简介，并更新 records/PROGRESS | ✅ |

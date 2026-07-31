@@ -1,6 +1,20 @@
 const TURNSTILE_VERIFY_URL = 'https://challenges.cloudflare.com/turnstile/v0/siteverify';
 const RESEND_API_URL = 'https://api.resend.com/emails';
 const MAX_BODY_BYTES = 8192;
+const SOURCE_BY_ORIGIN = Object.freeze({
+  'https://snorkel.nice.okinawa': {
+    site: 'snorkel',
+    sourceSite: 'snorkel.nice.okinawa'
+  },
+  'https://fishing.nice.okinawa': {
+    site: 'fishing',
+    sourceSite: 'fishing.nice.okinawa'
+  },
+  'https://japanusedcars.nice.okinawa': {
+    site: 'japanusedcars',
+    sourceSite: 'japanusedcars.nice.okinawa'
+  }
+});
 
 function json(body, status = 200, headers = {}) {
   return new Response(JSON.stringify(body), {
@@ -12,20 +26,30 @@ function json(body, status = 200, headers = {}) {
   });
 }
 
-function corsHeaders(request, env) {
-  const origin = request.headers.get('Origin') || '';
-  const allowed = String(env.ALLOWED_ORIGINS || '')
+function allowedOrigins(env) {
+  return String(env.ALLOWED_ORIGINS || '')
     .split(',')
     .map(item => item.trim())
     .filter(Boolean);
-  const allowOrigin = allowed.includes(origin) ? origin : allowed[0] || '*';
-  return {
-    'access-control-allow-origin': allowOrigin,
+}
+
+function isAllowedOrigin(request, env) {
+  const origin = request.headers.get('Origin') || '';
+  return origin !== '' && allowedOrigins(env).includes(origin);
+}
+
+function corsHeaders(request, env) {
+  const origin = request.headers.get('Origin') || '';
+  const headers = {
     'access-control-allow-methods': 'POST, OPTIONS',
     'access-control-allow-headers': 'content-type',
     'access-control-max-age': '86400',
     vary: 'Origin'
   };
+  if (isAllowedOrigin(request, env)) {
+    headers['access-control-allow-origin'] = origin;
+  }
+  return headers;
 }
 
 function cleanText(value, max = 500) {
@@ -43,6 +67,19 @@ function shouldSkipEmailSendForCctest(email) {
 function parseGuests(value) {
   const guests = Number(value);
   return Number.isInteger(guests) && guests > 0 && guests < 100 ? guests : null;
+}
+
+function resolveInquirySource(request, body) {
+  const origin = request.headers.get('Origin') || '';
+  const expected = SOURCE_BY_ORIGIN[origin];
+  const site = cleanText(body.site, 40);
+  const sourceSite = cleanText(body.sourceSite, 120);
+  if (!expected || site !== expected.site || sourceSite !== expected.sourceSite) {
+    const err = new Error('invalid_inquiry_source');
+    err.status = 400;
+    throw err;
+  }
+  return expected;
 }
 
 async function readJson(request) {
@@ -124,6 +161,7 @@ function emailText(inquiry) {
   return [
     'New Nice Okinawa inquiry',
     '',
+    `Site: ${inquiry.site}`,
     `Source: ${inquiry.sourceSite}`,
     `Language: ${inquiry.language || '-'}`,
     `Date: ${inquiry.date || '-'}`,
@@ -197,9 +235,11 @@ async function sendNotification(env, inquiry) {
 
 async function createInquiry(request, env) {
   const body = await readJson(request);
+  const source = resolveInquirySource(request, body);
   const inquiry = {
     id: crypto.randomUUID(),
-    sourceSite: cleanText(body.sourceSite || 'snorkel.nice.okinawa', 120),
+    site: source.site,
+    sourceSite: source.sourceSite,
     date: cleanText(body.date, 40),
     guests: parseGuests(body.guests),
     project: cleanText(body.project, 160),
@@ -225,12 +265,13 @@ async function createInquiry(request, env) {
 
   await env.DB.prepare(`
     INSERT INTO inquiries (
-      id, source_site, requested_date, guests, project, contact, remarks, language,
+      id, site, source_site, requested_date, guests, project, contact, remarks, language,
       status, email_status, ip_hash, user_agent, created_at, updated_at
     )
-    VALUES (?, ?, ?, ?, ?, ?, ?, ?, 'stored', 'pending', ?, ?, datetime('now'), datetime('now'))
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, 'stored', 'pending', ?, ?, datetime('now'), datetime('now'))
   `).bind(
     inquiry.id,
+    inquiry.site,
     inquiry.sourceSite,
     inquiry.date || null,
     inquiry.guests,
@@ -263,6 +304,7 @@ async function createInquiry(request, env) {
 function rowToInquiry(row) {
   return {
     id: row.id,
+    site: row.site || '',
     sourceSite: row.source_site || 'snorkel.nice.okinawa',
     date: row.requested_date || '',
     guests: row.guests || null,
@@ -278,7 +320,7 @@ async function retryFailedInquiryEmails(request, env) {
     return json({ ok: false, error: 'not_found' }, 404, corsHeaders(request, env));
   }
   const rows = await env.DB.prepare(`
-    SELECT id, source_site, requested_date, guests, project, contact, remarks, language
+    SELECT id, site, source_site, requested_date, guests, project, contact, remarks, language
     FROM inquiries
     WHERE status = 'email_failed' OR email_status = 'failed'
     ORDER BY datetime(created_at) ASC
@@ -309,6 +351,9 @@ async function retryFailedInquiryEmails(request, env) {
 
 export default {
   async fetch(request, env) {
+    if (!isAllowedOrigin(request, env)) {
+      return json({ ok: false, error: 'origin_not_allowed' }, 403, corsHeaders(request, env));
+    }
     if (request.method === 'OPTIONS') {
       return new Response(null, { status: 204, headers: corsHeaders(request, env) });
     }
@@ -328,4 +373,12 @@ export default {
     }
     return json({ ok: false, error: 'not_found' }, 404, corsHeaders(request, env));
   }
+};
+
+export {
+  SOURCE_BY_ORIGIN,
+  allowedOrigins,
+  corsHeaders,
+  isAllowedOrigin,
+  resolveInquirySource
 };
