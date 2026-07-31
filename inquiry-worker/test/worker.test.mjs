@@ -97,6 +97,30 @@ test('origins outside the exact allowlist are rejected without a CORS grant', as
   }
 });
 
+test('a POST from a disallowed origin is rejected before any D1 operation', async () => {
+  const db = makeDb();
+  const request = new Request('https://worker.example/api/inquiries', {
+    method: 'POST',
+    headers: {
+      Origin: 'https://fishing.nice.okinawa.evil.example',
+      'content-type': 'application/json'
+    },
+    body: JSON.stringify({
+      site: 'fishing',
+      sourceSite: 'fishing.nice.okinawa',
+      project: 'blocked inquiry',
+      contact: 'cctest@nice.okinawa',
+      turnstileToken: 'test-token'
+    })
+  });
+
+  const response = await worker.fetch(request, makeEnv(db));
+  assert.equal(response.status, 403);
+  assert.equal(response.headers.has('access-control-allow-origin'), false);
+  assert.deepEqual(await response.json(), { ok: false, error: 'origin_not_allowed' });
+  assert.equal(db.calls.length, 0);
+});
+
 test('all three sites persist distinct site and source_site values', async () => {
   const originalFetch = globalThis.fetch;
   globalThis.fetch = async url => {
@@ -128,6 +152,7 @@ test('all three sites persist distinct site and source_site values', async () =>
       });
       const response = await worker.fetch(request, makeEnv(db));
       assert.equal(response.status, 202);
+      assert.equal(response.headers.get('access-control-allow-origin'), origin);
       assert.equal((await response.json()).ok, true);
 
       const insert = db.calls.find(call => /INSERT INTO inquiries\s*\(/.test(call.sql));
