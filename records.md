@@ -17,6 +17,7 @@
 | 日期 | 执行者 | 内容 |
 |------|--------|------|
 | 2026-08-05 | Codex | M0805-04 新增 `/blue-cave/` 英文截流落地页，放入两张 Blue Cave 拥挤/排队证据图，补 Article/BreadcrumbList/FAQPage JSON-LD、sitemap 与 llms AI 引用事实 |
+| 2026-08-05 | Codex | M0805-10 补入 `/blue-cave/` Chibishi 对比图两张，替换占位并保持 PR #21 Draft |
 | 2026-07-31 | Codex | M0731-18 将 inquiry Worker CORS 收紧为 snorkel / fishing / japanusedcars 三个精确 origin，新增 site 与 source_site 分栏落库及正反向自动测试 |
 | 2026-07-27 | Codex | M0727-14 在 PR #18 分支补 Itsuki Person JSON-LD，并在 llms.txt 加真人区块指向 |
 | 2026-07-27 | Codex | M0727-12 补齐 snorkel robots AI bot 显式 Allow 与 OG/Twitter 图片元数据；llms.txt 与结构化数据仅核查不改 |
@@ -63,7 +64,7 @@
 - 中文用户不得用中国、台湾、中国香港、香港或对应旗帜区分；使用 `简体中文`、`繁体中文`、`中文圈`。
 - 旅行活动页面必须说明现场活动保险、自行购买海外旅行保险、翻译协调边界和联系担当。
 - M0724-25 已按 Wan 定案写入价格、包含项、集合时间、年龄健康限制、不会游泳政策、携带物、取消退款、登船须知与预约字段；冬季运营与水温说明本轮不写。
-- M0805-04 `/blue-cave/` 第三格 Chibishi 图片暂缺，仅保留 `<!-- TODO: chibishi-jelly-sea.jpg -->` 占位，待 Wan 供图后另车补。
+- M0805-14 `/blue-cave/` 发车回滚锚：合并前 main=`75f910ca249becf5e022dadb8e7d81a48dfb3a68`；PR #21 发车前补充提交所在分支 `agent/m0805-04-blue-cave-landing`。若生产需回滚，优先 revert 本次 #21 squash merge commit。
 
 ---
 
@@ -72,6 +73,8 @@
 | 日期 | 执行者 | 操作 | 结果 |
 |------|--------|------|------|
 | 2026-08-05 | Codex | M0805-04 新建 Blue Cave 英文落地页与首页入口；本地校验 JSON-LD mainEntity=4、390px 零横滚、图片 200、robots AI bot Allow 不变 | ✅ |
+| 2026-08-05 | Codex | M0805-10 补入两张 Chibishi 对比图片，390px/1280px 零横滚，四图 preview 200，叠推 PR #21 保持 Draft | ✅ |
+| 2026-08-05 | Codex | M0805-14 发车前补齐 Article image 四图数组并写入回滚锚，准备 #21 Ready / squash merge / 生产验证 | ✅ |
 | 2026-07-31 | Codex | M0731-18 新增三站精确 CORS 门禁、来源绑定、D1 `site` 迁移与 Node 自动测试；未部署 Worker、未写远端 D1、未发送邮件 | ✅ |
 | 2026-07-27 | Codex | M0727-14 仅补 Itsuki Person JSON-LD 与 llms.txt #guide 指向，保持 FAQ/价格/正文文案不变 | ✅ |
 | 2026-07-27 | Codex | M0727-12 更新 `robots.txt` AI bot 显式 Allow、新增 `images/og-snorkel.jpg` 并补首页 OG/Twitter 元数据；保留 llms.txt 与 FAQ/Person 结构化数据为只读核查 | ✅ |
