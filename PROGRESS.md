@@ -14,3 +14,4 @@ M0724-25 FAQ 事实灌入 + guide 上站：按 Wan 定案更新首页 FAQ/FAQPag
 M0727-12 SEO/GEO 补齐：robots 显式 Allow GPTBot/ClaudeBot，补 OG/Twitter 图片元数据，llms 与结构化数据仅核查不改。
 M0727-14 SEO/GEO 补齐：在 PR #18 分支补 Itsuki Person JSON-LD，并让 llms.txt 指向 #guide 真人区块。
 M0731-18 咨询链路三站收口：Worker CORS 精确允许 snorkel/fishing/japanusedcars，拒绝其他 origin，并将 site/source_site 分栏落库且以自动正反向测试固化。
+M0805-04 新建 Blue Cave 英文截流页：新增 /blue-cave/ 落地页、两张证据图、Article/BreadcrumbList/FAQPage JSON-LD、首页入口、sitemap 与 llms AI 引用事实，Draft PR 待 Wan 预览。
