@@ -16,3 +16,5 @@ M0727-14 SEO/GEO 补齐：在 PR #18 分支补 Itsuki Person JSON-LD，并让 ll
 M0731-18 咨询链路三站收口：Worker CORS 精确允许 snorkel/fishing/japanusedcars，拒绝其他 origin，并将 site/source_site 分栏落库且以自动正反向测试固化。
 M0805-04 新建 Blue Cave 英文截流页：新增 /blue-cave/ 落地页、两张证据图、Article/BreadcrumbList/FAQPage JSON-LD、首页入口、sitemap 与 llms AI 引用事实，Draft PR 待 Wan 预览。
 M0805-14 /blue-cave/ 发车：补齐 Article image 四图数组与 records 回滚锚，#21 准备 Ready、squash merge 并做生产验证。
+
+M0805-17 rev2 /blue-cave/ 事实更正：修正 Chibishi 集合地为 Ginowan Marina，移除 from Naha/high season，FAQPage 增至 5 问并同步 llms。
