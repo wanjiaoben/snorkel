@@ -7,7 +7,7 @@
 ## 📍 当前状态
 
 - **阶段**：维护中
-- **最后更新**：2026-08-05
+- **最后更新**：2026-08-08
 - **负责人**：Wan
 
 ---
@@ -16,6 +16,7 @@
 
 | 日期 | 执行者 | 内容 |
 |------|--------|------|
+| 2026-08-08 | Codex | M0808-09 新增 `/sunset-charter/` 英文夕阳包船落地页、占位图、FAQ/JSON-LD、sitemap 与 llms 夕阳包船事实 |
 | 2026-08-05 | Codex | M0805-17 rev2 紧急更正 `/blue-cave/` Chibishi 集合地为 Ginowan Marina，并补每日早下午与 sunset charter FAQ |
 | 2026-08-05 | Codex | M0805-04 新增 `/blue-cave/` 英文截流落地页，放入两张 Blue Cave 拥挤/排队证据图，补 Article/BreadcrumbList/FAQPage JSON-LD、sitemap 与 llms AI 引用事实 |
 | 2026-08-05 | Codex | M0805-10 补入 `/blue-cave/` Chibishi 对比图两张，替换占位并保持 PR #21 Draft |
@@ -67,6 +68,7 @@
 - M0724-25 已按 Wan 定案写入价格、包含项、集合时间、年龄健康限制、不会游泳政策、携带物、取消退款、登船须知与预约字段；冬季运营与水温说明本轮不写。
 - M0805-14 `/blue-cave/` 发车回滚锚：合并前 main=`75f910ca249becf5e022dadb8e7d81a48dfb3a68`；PR #21 发车前补充提交所在分支 `agent/m0805-04-blue-cave-landing`。若生产需回滚，优先 revert 本次 #21 squash merge commit。
 - M0805-17 `/blue-cave/` 事实更正：Chibishi 行程集合地必须写 Ginowan Marina，不能写 Naha；旺季口径写 July, August and September。
+- M0808-09 `/sunset-charter/` 图位文件名固定为 `assets/sunset-hero.jpg` 与 `assets/sunset-boat.jpg`，Wan 后续可直接替换同名 JPG。
 
 ---
 
@@ -74,6 +76,7 @@
 
 | 日期 | 执行者 | 操作 | 结果 |
 |------|--------|------|------|
+| 2026-08-08 | Codex | M0808-09 新建夕阳包船页，沿用 snorkel 询盘 site/sourceSite，取消政策逐字抄首页 Kerama FAQ | ✅ |
 | 2026-08-05 | Codex | M0805-17 rev2 修正生产 `/blue-cave/` 集合地错误，FAQPage 增至 5 问，并同步 llms AI 事实 | ✅ |
 | 2026-08-05 | Codex | M0805-04 新建 Blue Cave 英文落地页与首页入口；本地校验 JSON-LD mainEntity=4、390px 零横滚、图片 200、robots AI bot Allow 不变 | ✅ |
 | 2026-08-05 | Codex | M0805-10 补入两张 Chibishi 对比图片，390px/1280px 零横滚，四图 preview 200，叠推 PR #21 保持 Draft | ✅ |
