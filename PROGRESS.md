@@ -18,3 +18,7 @@ M0805-04 新建 Blue Cave 英文截流页：新增 /blue-cave/ 落地页、两�
 M0805-14 /blue-cave/ 发车：补齐 Article image 四图数组与 records 回滚锚，#21 准备 Ready、squash merge 并做生产验证。
 
 M0805-17 rev2 /blue-cave/ 事实更正：修正 Chibishi 集合地为 Ginowan Marina，移除 from Naha/high season，FAQPage 增至 5 问并同步 llms。
+
+M0808-09/M0808-18 夕阳包船页：新增 /sunset-charter/ 英文落地页，发车前删除两张占位 JPG，改为日落渐变 hero，保留未来照片回填注释，准备合并 PR #23。
+
+M0808-18 夕阳包船页发车：上一生产点 698bc3545abf87a2cb87d42efcbf8c955a3a14aa；占位图删除，PR #23 准备 squash merge。

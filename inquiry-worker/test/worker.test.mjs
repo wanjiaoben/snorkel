@@ -69,6 +69,13 @@ test('snorkel frontend sends the matching site and sourceSite values', async () 
   assert.match(app, /sourceSite:\s*['"]snorkel\.nice\.okinawa['"]/);
 });
 
+test('sunset charter frontend sends the matching site/sourceSite and requires ok response body', async () => {
+  const page = await readFile(new URL('../../sunset-charter/index.html', import.meta.url), 'utf8');
+  assert.match(page, /site:\s*['"]snorkel['"]/);
+  assert.match(page, /sourceSite:\s*['"]snorkel\.nice\.okinawa['"]/);
+  assert.match(page, /if\s*\(\s*!response\.ok\s*\|\|\s*!result\.ok\s*\)\s*throw new Error/);
+});
+
 test('all three exact origins receive their own CORS response header', async () => {
   for (const origin of EXPECTED_ORIGINS) {
     const response = await worker.fetch(optionsRequest(origin), makeEnv());
