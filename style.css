@@ -888,6 +888,10 @@ footer { padding:48px 20px; border-top:1px solid rgba(255,255,255,.06); text-ali
 }
 .license-badge {
   display: flex; align-items: center; gap: 20px; flex-shrink: 0;
+  min-width: 0;
+}
+.license-info {
+  min-width: 0;
 }
 .license-seal {
   width: 64px; height: 64px; border-radius: 50%;
@@ -915,6 +919,9 @@ footer { padding:48px 20px; border-top:1px solid rgba(255,255,255,.06); text-ali
   padding-left: 32px;
 }
 @media(max-width: 640px) {
+  .license-badge { flex-shrink: 1; width: 100%; align-items: flex-start; }
+  .license-info { overflow-wrap: anywhere; }
+  .license-label { letter-spacing: .08em; }
   .license-note { border-left: none; padding-left: 0; border-top: 1px solid var(--border); padding-top: 20px; }
   .pdf-cards { flex-direction: column; }
 }
