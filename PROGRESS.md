@@ -22,3 +22,5 @@ M0805-17 rev2 /blue-cave/ 事实更正：修正 Chibishi 集合地为 Ginowan Ma
 M0808-09/M0808-18 夕阳包船页：新增 /sunset-charter/ 英文落地页，发车前删除两张占位 JPG，改为日落渐变 hero，保留未来照片回填注释，准备合并 PR #23。
 
 M0808-18 夕阳包船页发车：上一生产点 698bc3545abf87a2cb87d42efcbf8c955a3a14aa；占位图删除，PR #23 准备 squash merge。
+
+M0809-02 中文 guide 译法统一：页面中文中指代 guide 的「导师/導師/教练/guide」统一为「向导/嚮導」，英文与日文文案不改。
