@@ -24,3 +24,5 @@ M0808-09/M0808-18 夕阳包船页：新增 /sunset-charter/ 英文落地页，�
 M0808-18 夕阳包船页发车：上一生产点 698bc3545abf87a2cb87d42efcbf8c955a3a14aa；占位图删除，PR #23 准备 squash merge。
 
 M0809-02 中文 guide 译法统一：页面中文中指代 guide 的「导师/導師/教练/guide」统一为「向导/嚮導」，英文与日文文案不改。
+
+M0809-03 #24 发车：base 390px 横滚归因为既有 license badge 缺陷，#24 已 squash merge，上线后三页 200、错译零命中、14 处向导/嚮導在线。
