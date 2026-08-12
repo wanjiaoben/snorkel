@@ -919,8 +919,8 @@ footer { padding:48px 20px; border-top:1px solid rgba(255,255,255,.06); text-ali
   padding-left: 32px;
 }
 @media(max-width: 640px) {
-  .license-badge { flex-shrink: 1; width: 100%; align-items: flex-start; }
-  .license-info { overflow-wrap: anywhere; }
+  .license-badge { flex-shrink: 1; width: 100%; flex-direction: column; align-items: center; gap: 14px; text-align: center; }
+  .license-info { width: 100%; overflow-wrap: normal; }
   .license-label { letter-spacing: .08em; }
   .license-note { border-left: none; padding-left: 0; border-top: 1px solid var(--border); padding-top: 20px; }
   .pdf-cards { flex-direction: column; }
