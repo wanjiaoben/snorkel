@@ -179,32 +179,6 @@ function lbNav(dir, e) {
   showLbPhoto();
 }
 
-// ── Booking Modal ─────────────────────────────────
-const packages = {
-  half:  { tag:{ en:'Half Day · 4 Hours','zh-Hans':'半日 · 4小时','zh-Hant':'半日 · 4小時'}, title:{ en:'Morning Discovery','zh-Hans':'晨光探索之旅','zh-Hant':'晨光探索之旅'}, price:'¥8,800' },
-  full:  { tag:{ en:'Full Day · 8 Hours','zh-Hans':'全日 · 8小时','zh-Hant':'全日 · 8小時'}, title:{ en:'Blue Ocean Expedition','zh-Hans':'蓝海全日探险','zh-Hant':'藍海全日探險'}, price:'¥16,500' },
-  night: { tag:{ en:'Night · 3 Hours','zh-Hans':'夜间 · 3小时','zh-Hant':'夜間 · 3小時'}, title:{ en:'Midnight Luminescence','zh-Hans':'午夜荧光夜潜','zh-Hant':'午夜螢光夜潛'}, price:'¥12,000' },
-};
-
-function openModal(pkg) {
-  const p = packages[pkg];
-  const l = currentLang;
-  const modalLang = p.tag[l] ? l : 'en';
-  document.getElementById('modal-tag').textContent   = p.tag[modalLang];
-  document.getElementById('modal-title').textContent = p.title[modalLang];
-  const priceUnit = l.startsWith('zh') ? ' / 每人' : ' / person';
-  document.getElementById('modal-price').textContent = p.price + priceUnit;
-  document.getElementById('modal').classList.add('open');
-  document.body.style.overflow = 'hidden';
-  setLang(currentLang);
-}
-function closeModal() { document.getElementById('modal').classList.remove('open'); document.body.style.overflow = ''; }
-function closeModalBg(e) { if (e.target === document.getElementById('modal')) closeModal(); }
-function handlePay(m) {
-  const msg = { en: m==='stripe'?'Redirecting to Stripe…':'Redirecting to PayPal…', 'zh-Hans': m==='stripe'?'正在跳转到Stripe…':'正在跳转到PayPal…', 'zh-Hant': m==='stripe'?'正在跳轉到Stripe…':'正在跳轉到PayPal…' };
-  alert(msg[currentLang] || msg.en);
-}
-
 // ── Float buttons ─────────────────────────────────
 function smoothTo(e, id) {
   e.preventDefault();
@@ -358,7 +332,7 @@ function makeBubbles() {
 
 // ── Keyboard ──────────────────────────────────────
 document.addEventListener('keydown', e => {
-  if (e.key === 'Escape') { closeModal(); closeWechat(); closeLightbox(); }
+  if (e.key === 'Escape') { closeWechat(); closeLightbox(); }
   if (document.getElementById('lightbox').classList.contains('open')) {
     if (e.key === 'ArrowLeft')  lbNav(-1, { stopPropagation:()=>{} });
     if (e.key === 'ArrowRight') lbNav(1,  { stopPropagation:()=>{} });
