@@ -31,4 +31,4 @@ M0813-06 首页 390px 横滚根治：base `27be24a` 复现英文/日文 `scrollW
 
 M0813-43 价格审计：发现并修正 snorkel 首页 Kerama 拼船旧 JPY 价格残留，统一为 `¥19,830/人（含税）`，同步 FAQ JSON-LD、llms 与 Blue Cave 标准 trip 含税口径；其它非 Kerama 金额只列不改。
 
-M0813-44 价格审计余项：Wan 定案后删除首页 Blue Cave 人民币缩写口径、Island/SUP 条目、旧 half/full/night 三套餐卡与 booking modal，Blue Cave 卡统一为 `¥9,000/2名(税込)`。
+M0813-44 价格审计余项：Wan 定案后删除首页 Blue Cave 人民币缩写口径、Island/SUP 条目、旧 half/full/night 三套餐卡与 booking modal；纠正 Blue Cave `¥9,000` 为每人价，统一为 `¥9,000/人(税込)` / `¥9,000 per person tax included`。
