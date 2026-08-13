@@ -30,3 +30,5 @@ M0809-03 #24 发车：base 390px 横滚归因为既有 license badge 缺陷，#2
 M0813-06 首页 390px 横滚根治：base `27be24a` 复现英文/日文 `scrollWidth=466`，根因是移动端 license badge 横排被长 uppercase label 撑宽；本车改为移动端竖排 license badge，三语 390px 均 `scrollWidth=clientWidth=390`，#25 record-only 已查明为 merged。
 
 M0813-43 价格审计：发现并修正 snorkel 首页 Kerama 拼船旧 JPY 价格残留，统一为 `¥19,830/人（含税）`，同步 FAQ JSON-LD、llms 与 Blue Cave 标准 trip 含税口径；其它非 Kerama 金额只列不改。
+
+M0813-44 价格审计余项：Wan 定案后删除首页 Blue Cave 人民币缩写口径、Island/SUP 条目、旧 half/full/night 三套餐卡与 booking modal，Blue Cave 卡统一为 `¥9,000/2名(税込)`。
