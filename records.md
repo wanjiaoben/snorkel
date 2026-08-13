@@ -63,6 +63,7 @@
 
 > 记录这个项目的关键规则，防止 AI 重复犯错。
 
+- M0813-43 Kerama 价格定案：snorkel 本仓 Kerama shared snorkeling + trial fishing 口径必须与 nice.okinawa 对齐为 `¥19,830/人（含税）` / `¥19,830 per person tax included`；不得再出现旧的 Kerama JPY 价格残留。
 - M0813-06 首页 390px 横滚根因：英文 license badge 在 390px 下仍保持横向 flex，64px seal + 20px gap 后，长 uppercase label 的最小宽度把 `.license-badge` 撑到 409.23px、右边界 466.23px；修法是在移动端让 badge 改为竖排居中并恢复正常换行，不使用 `overflow:hidden` 或 `overflow-wrap:anywhere` 遮盖。
 - 出发港口：Ginowan Marina；Kerama 海域；Blue Cave / 离岛项目按实际安排说明。
 - 服务类型：半日 4 小时、全日 8 小时、4 小时/6 小时包船、夜间体验、SUP / 皮划艇 / 体验潜水支持。
@@ -80,6 +81,7 @@
 
 | 日期 | 执行者 | 操作 | 结果 |
 |------|--------|------|------|
+| 2026-08-13 | Codex | M0813-43 全站价格审计并将 Kerama shared snorkeling + trial fishing 的旧 JPY 残留对齐为 `¥19,830/人（含税）`，同步 FAQ JSON-LD、llms 与 Blue Cave 标准 trip 含税口径 | 准备发车 |
 | 2026-08-13 | Codex | M0813-06 复现 base `27be24a` 首页英文/日文 390px 横滚 `scrollWidth=466`，将移动端 license badge 改为竖排根治撑宽；#25 record-only 查明已于 2026-08-09 合并 | Draft PR 待 Wan 验收 |
 | 2026-08-09 | Codex | M0809-03 在 base commit `27be24a` 复测确认首页英文/日文 390px 横滚为既有缺陷，#24 Ready 后 squash merge；生产点验三页 200、错译零命中、14 处向导/嚮導在线、390px 零横滚 | ✅ |
 | 2026-08-09 | Codex | M0809-02 扫描页面中文 guide 译词，将「导师/導師/教练/guide」等指代 guide 的中文表达统一为「向导/嚮導」并准备 Draft PR | ✅ |

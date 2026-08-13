@@ -28,3 +28,5 @@ M0809-02 中文 guide 译法统一：页面中文中指代 guide 的「导师/�
 M0809-03 #24 发车：base 390px 横滚归因为既有 license badge 缺陷，#24 已 squash merge，上线后三页 200、错译零命中、14 处向导/嚮導在线。
 
 M0813-06 首页 390px 横滚根治：base `27be24a` 复现英文/日文 `scrollWidth=466`，根因是移动端 license badge 横排被长 uppercase label 撑宽；本车改为移动端竖排 license badge，三语 390px 均 `scrollWidth=clientWidth=390`，#25 record-only 已查明为 merged。
+
+M0813-43 价格审计：发现并修正 snorkel 首页 Kerama 拼船旧 JPY 价格残留，统一为 `¥19,830/人（含税）`，同步 FAQ JSON-LD、llms 与 Blue Cave 标准 trip 含税口径；其它非 Kerama 金额只列不改。
