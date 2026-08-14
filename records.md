@@ -82,6 +82,7 @@
 
 | 日期 | 执行者 | 操作 | 结果 |
 |------|--------|------|------|
+| 2026-08-14 | Codex | GEO-0814-01 叠推 PR #30：修正攻略页 Blue Cave 集合点为 Maedamisaki Parking Lot，明确 Kerama (Chibishi) 口径、1 人起订/max 12、共享拼船包含项、drone 航拍样片与潜水加订说明 | Draft PR 待 Wan 目检 |
 | 2026-08-14 | Codex | GEO-0814-01 新建英文 `/en/guides/snorkeling-safety-tips/` 浮潜注意事项攻略页，补 Article/FAQPage JSON-LD、sitemap 与 llms 索引 | Draft PR 待 Wan 目检 |
 | 2026-08-13 | Codex | M0813-44 纠正 Blue Cave 价格口径：`¥9,000` 是每人价，修正首页卡、`/blue-cave/` 与 llms | 准备发车 |
 | 2026-08-13 | Codex | M0813-44 删除首页 Blue Cave 人民币缩写价格、Island/SUP 条目、旧 half/full/night 三套餐卡与 booking modal 入口，并同步 llms | 准备发车 |

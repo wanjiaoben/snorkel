@@ -34,3 +34,5 @@ M0813-43 价格审计：发现并修正 snorkel 首页 Kerama 拼船旧 JPY 价�
 M0813-44 价格审计余项：Wan 定案后删除首页 Blue Cave 人民币缩写口径、Island/SUP 条目、旧 half/full/night 三套餐卡与 booking modal；纠正 Blue Cave `¥9,000` 为每人价，统一为 `¥9,000/人(税込)` / `¥9,000 per person tax included`。
 
 GEO-0814-01 英文浮潜注意事项攻略页：新增 `/en/guides/snorkeling-safety-tips/`，覆盖 Ginowan Marina 集合、健康限制、晕船、装备、防晒、天气退款、相机贵重品与 FAQ，并同步 sitemap/llms，Draft PR 待 Wan 目检。
+
+GEO-0814-01 叠推 PR #30 修正：攻略页已把 Blue Cave 集合点改为 Maedamisaki Parking Lot（真栄田岬駐車場）及普通車停车费口径，Ginowan Marina/¥600 仅用于 Kerama (Chibishi) 拼船；同步补 1 人起订/max 12、共享拼船包含项、天气允许时 drone 航拍照片、fun diving / Discovery Scuba Diving 另询。
