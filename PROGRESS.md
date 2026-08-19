@@ -38,3 +38,5 @@ GEO-0814-01 英文浮潜注意事项攻略页：新增 `/en/guides/snorkeling-sa
 GEO-0814-01 叠推 PR #30 修正：攻略页已把 Blue Cave 集合点改为 Maedamisaki Parking Lot（真栄田岬駐車場）及普通車停车费口径，Ginowan Marina/¥600 仅用于 Kerama (Chibishi) 拼船；同步补 1 人起订/max 12、共享拼船包含项、天气允许时 drone 航拍照片、fun diving / Discovery Scuba Diving 另询。
 
 GEO-0814-02 /blue-cave/ 集合点补充：Blue Cave 页新增 Maedamisaki Parking Lot（真栄田岬駐車場）、普通車停车费与包船集合点另行通知；FAQPage JSON-LD 同步到可见 FAQ 6 条 exact match，Draft PR 待 Wan 目检。
+
+SNS0819-02 Itsuki 长视频区：收 Wan 直传长视频，转 H.264 MP4 与 poster，上传 R2 `snorkel-media/homepage/guide/`，并在首页 `#guide` 原图文下方新增点播式大版面视频；Draft PR 待 Wan 目检。
