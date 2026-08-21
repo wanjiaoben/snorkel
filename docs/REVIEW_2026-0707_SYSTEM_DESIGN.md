@@ -86,7 +86,7 @@ pattern 连续 N 批 selfcheck 达标 → 抽检比例下降 10%
 
 Admin 的终态不是“自动化工具”，而是 HITL 流程：
 
-付款截图 / 订单记录 → OCR / 解析 → AI 生成候选操作 → Wan 确认 → 自动执行 → 写入 audit log → 支持 rollback
+微信截图 / 订单记录 → OCR / 解析 → AI 生成候选操作 → Wan 确认 → 自动执行 → 写入 audit log → 支持 rollback
 
 凡影响以下对象的操作，必须可追溯、可撤销、可去重：
 
@@ -123,7 +123,7 @@ hash(screenshot_fingerprint) 或 hash(OCR_normalized_text + amount + paid_date)
 人工补录：
 hash(email + product + amount + paid_date + source_note)
 
-source_note 可来自付款截图编号、人工对账备注或其他可追溯来源。
+source_note 可来自付款截图编号、微信备注、人工对账备注或其他可追溯来源。
 
 人工覆盖 AI 识别结果时，必须记录原因，进入规则沉淀池。
 
@@ -230,7 +230,7 @@ Generator 提案必须引用 ≥3 个真实产品里的重复字段、重复流�
 
 八、Support Intelligence Log
 
-人工客服里的隐性用户洞察，是目前每天产生、每天蒸发的高价值资产。
+微信客服里的隐性用户洞察，是目前每天产生、每天蒸发的高价值资产。
 
 但第一版不做复杂系统，先做 5 字段手动表：
 

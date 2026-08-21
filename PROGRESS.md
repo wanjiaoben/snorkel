@@ -48,3 +48,5 @@ SNK-0821-03 How booking works：新增 `/how-booking-works/` 英文预约流程�
 SNK-0821-04 全站清旧渠道：删除首页与 sunset-charter 的旧渠道入口、二维码 modal、旧渠道表单提示和二维码资产；联系方式统一为 WhatsApp +81 70-8952-3968 与 info@nice.okinawa。
 
 SNK-0821-07 首页健康自查表区块：将旧健康 PDF 卡改为新 Health Check/健康自查表口径，接入 EN/JA/ZH/ZH_TW 四份新 PDF，并删除旧空白 PDF。
+
+SNK-0821-08 多早预订 FAQ：在首页 FAQ 与 `/how-booking-works/` FAQ 增加 “How early should I book?”，同步 FAQPage JSON-LD，并链接到 activity.nice.okinawa 的 when-to-book 指南。

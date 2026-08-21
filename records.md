@@ -16,6 +16,7 @@
 
 | 日期 | 执行者 | 内容 |
 |------|--------|------|
+| 2026-08-21 | Codex | SNK-0821-08 在首页 FAQ 与 `/how-booking-works/` FAQ 增加 “How early should I book?” 并同步 FAQPage JSON-LD |
 | 2026-08-21 | Codex | SNK-0821-07 将首页旧健康 PDF 区块换为健康自查表，接入 EN/JA/ZH/ZH_TW 四份新 PDF 并删除旧空白 PDF |
 | 2026-08-21 | Codex | SNK-0821-04 全站清理旧渠道文案与入口，联系方式统一只保留 WhatsApp +81 70-8952-3968 与 info@nice.okinawa |
 | 2026-08-21 | Codex | SNK-0821-03 新增 `/how-booking-works/` 英文预约流程页，补 HowTo/FAQPage JSON-LD、首页入口/FAQ、health-check 页尾互链、sitemap 与 llms |
@@ -86,6 +87,7 @@
 
 | 日期 | 执行者 | 操作 | 结果 |
 |------|--------|------|------|
+| 2026-08-21 | Codex | SNK-0821-08 为首页与 how-booking-works 增加多早预订 FAQ，答案链接到 activity.nice.okinawa when-to-book 指南 | 准备发车 |
 | 2026-08-21 | Codex | SNK-0821-07 首页 notices/PDF 区块标题与说明改为 Health Check/健康自查表，PDF 链接改到 assets/health-check 四份新文件，删除旧健康 PDF | 准备发车 |
 | 2026-08-21 | Codex | SNK-0821-04 删除首页与 sunset-charter 旧渠道入口、表单提示和二维码资产，并同步仓内规则/历史文档残留旧渠道字样 | 准备发车 |
 | 2026-08-14 | Codex | GEO-0814-02 在 `/blue-cave/` 补 Blue Cave 集合点 Maedamisaki Parking Lot、普通車停车费与包船集合点另行通知，并同步 FAQPage JSON-LD exact match | Draft PR 待 Wan 目检 |
