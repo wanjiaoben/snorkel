@@ -129,6 +129,19 @@
         "email": "info@nice.okinawa",
         "availableLanguage": ["English", "Chinese", "Japanese"]
       },
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Okinawa snorkeling activities",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "name": "American Village shore-entry snorkeling",
+            "price": "9000",
+            "priceCurrency": "JPY",
+            "description": "American Village shore-entry snorkeling starts from 9,000 JPY per person."
+          }
+        ]
+      },
       "employee": {
         "@id": "https://snorkel.nice.okinawa/#person-itsuki"
       }
@@ -207,6 +220,22 @@
           "acceptedAnswer": {
             "@type": "Answer",
             "text": "Email us at info@nice.okinawa with your preferred date, number of participants, names, ages, and shoe sizes (plus glasses prescription if you need corrective lenses). Your booking is confirmed once payment is arranged and you receive our confirmation email."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do I need to complete a health check?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Please review the snorkeling health check before booking. If any answer is YES, tell us before booking so we can confirm with the captain."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is the price final when I book?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "We'll confirm the exact amount in your confirmation email."
           }
         }
       ]
@@ -584,6 +613,12 @@
         </ul>
       </article>
     </div>
+    <p class="section-desc price-confirmation-note" style="margin-top:18px;">
+      <span data-lang="en" class="visible">We'll confirm the exact amount in your confirmation email.</span>
+      <span data-lang="zh-Hans">最终金额以确认邮件为准。</span>
+      <span data-lang="zh-Hant">最終金額以確認郵件為準。</span>
+      <span data-lang="ja">最終金額は確認メールでご案内します。</span>
+    </p>
 
     <div class="season-feature whale-feature">
       <div class="season-media" style="background-image:url('images/whale-swim-mother-calf.webp')"></div>
@@ -999,6 +1034,44 @@
           <span data-lang="th">อีเมลหาเราที่ <a href="mailto:info@nice.okinawa">info@nice.okinawa</a> พร้อมวันที่ต้องการ จำนวนผู้เข้าร่วม ชื่อ อายุ และไซซ์รองเท้า (รวมค่าสายตาหากต้องใช้เลนส์แก้สายตา) การจองยืนยันเมื่อจัดการชำระเงินแล้วและได้รับอีเมลยืนยันจากเรา</span>
         </div>
       </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span data-lang="en" class="visible">Do I need to complete a health check?</span>
+          <span data-lang="zh-Hans">需要完成健康自查吗？</span>
+          <span data-lang="zh-Hant">需要完成健康自查嗎？</span>
+          <span data-lang="ja">健康チェックは必要ですか？</span>
+          <span data-lang="ko">건강 체크가 필요한가요?</span>
+          <span data-lang="th">ต้องตรวจสุขภาพก่อนหรือไม่?</span>
+          <span class="faq-arrow">+</span>
+        </button>
+        <div class="faq-a">
+          <span data-lang="en" class="visible">Yes. Please review the <a href="/health-check/">snorkeling health check</a> before booking. If any answer is YES, tell us before booking so we can confirm with the captain.</span>
+          <span data-lang="zh-Hans">需要。请在预订前查看 <a href="/health-check/zh/">浮潜健康自查表</a>。如任何一项为「是」，请在预订前告诉我们，我们会转船长确认。</span>
+          <span data-lang="zh-Hant">需要。請在預訂前查看 <a href="/health-check/zh-tw/">浮潛健康自查表</a>。如任何一項為「是」，請在預訂前告訴我們，我們會轉船長確認。</span>
+          <span data-lang="ja">はい。予約前に <a href="/health-check/ja/">シュノーケリング健康チェック</a> をご確認ください。ひとつでも「はい」の場合は予約前にお知らせください。船長に確認します。</span>
+          <span data-lang="ko">네. 예약 전 <a href="/health-check/">스노클링 건강 체크</a>를 확인해 주세요. 하나라도 YES라면 예약 전 알려 주세요. 선장에게 확인합니다.</span>
+          <span data-lang="th">ต้องตรวจ กรุณาดู <a href="/health-check/">snorkeling health check</a> ก่อนจอง หากมีคำตอบ YES โปรดแจ้งเราก่อนจองเพื่อให้กัปตันยืนยัน</span>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span data-lang="en" class="visible">Is the price final when I book?</span>
+          <span data-lang="zh-Hans">预订时价格是否最终确定？</span>
+          <span data-lang="zh-Hant">預訂時價格是否最終確定？</span>
+          <span data-lang="ja">予約時の料金が最終金額ですか？</span>
+          <span data-lang="ko">예약 시 가격이 최종 금액인가요?</span>
+          <span data-lang="th">ราคาตอนจองเป็นราคาสุดท้ายไหม?</span>
+          <span class="faq-arrow">+</span>
+        </button>
+        <div class="faq-a">
+          <span data-lang="en" class="visible">We'll confirm the exact amount in your confirmation email.</span>
+          <span data-lang="zh-Hans">最终金额以确认邮件为准。</span>
+          <span data-lang="zh-Hant">最終金額以確認郵件為準。</span>
+          <span data-lang="ja">最終金額は確認メールでご案内します。</span>
+          <span data-lang="ko">정확한 금액은 확인 이메일에서 안내합니다.</span>
+          <span data-lang="th">เราจะยืนยันยอดที่แน่นอนในอีเมลยืนยัน</span>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -1344,11 +1417,17 @@
     <h2 class="section-title"><span data-lang="en" class="visible">Book in Minutes, Dive Tomorrow</span><span data-lang="zh-Hant">幾分鐘完成預訂，明天就能出發</span><span data-lang="ja">数分で予約完了、明日から海へ</span></h2>
     <div class="steps">
       <div class="step"><div class="step-num">01</div><div class="step-title"><span data-lang="en" class="visible">Message Us</span><span data-lang="zh-Hant">聯絡我們</span><span data-lang="ja">お問い合わせ</span></div><div class="step-text"><span data-lang="en" class="visible">WhatsApp, WeChat, or email. Tell us your date, group size, and any special needs.</span><span data-lang="zh-Hant">WhatsApp、微信或電郵均可。告訴我們日期、人數和特殊需求。</span><span data-lang="ja">WhatsApp・WeChat・メールでお気軽に。日程・人数・ご要望をお知らせください。</span></div></div>
-      <div class="step"><div class="step-num">02</div><div class="step-title"><span data-lang="en" class="visible">Confirm Booking</span><span data-lang="zh-Hant">確認預約</span><span data-lang="ja">予約確定</span></div><div class="step-text"><span data-lang="en" class="visible">We'll confirm availability and send payment details. JPY, credit card — multiple options available.</span><span data-lang="zh-Hant">確認空位後發送付款資料。人民幣、日圓、信用卡均可。</span><span data-lang="ja">空き状況を確認後、お支払い方法をご連絡。人民元・円・カード払い対応。</span></div></div>
+      <div class="step"><div class="step-num">02</div><div class="step-title"><span data-lang="en" class="visible">Confirm Booking</span><span data-lang="zh-Hant">確認預約</span><span data-lang="ja">予約確定</span></div><div class="step-text"><span data-lang="en" class="visible">We'll confirm availability and send payment details. JPY, credit card — multiple options available. We'll confirm the exact amount in your confirmation email.</span><span data-lang="zh-Hant">確認空位後發送付款資料。人民幣、日圓、信用卡均可。最終金額以確認郵件為準。</span><span data-lang="ja">空き状況を確認後、お支払い方法をご連絡。人民元・円・カード払い対応。最終金額は確認メールでご案内します。</span></div></div>
       <div class="step"><div class="step-num">03</div><div class="step-title"><span data-lang="en" class="visible">Meet at the Marina</span><span data-lang="zh-Hant">碼頭集合</span><span data-lang="ja">マリーナ集合</span></div><div class="step-text"><span data-lang="en" class="visible">We'll send precise directions. Paid pickup from Naha also available. Equipment all provided on site.</span><span data-lang="zh-Hant">我們會發送精確路線，也可安排從那霸接送。所有裝備現場提供。</span><span data-lang="ja">詳しい集合場所をお送りします。那覇からの送迎も可能。器材は現地でご用意。</span></div></div>
       <div class="step"><div class="step-num">04</div><div class="step-title"><span data-lang="en" class="visible">Dive &amp; Get Your Photos</span><span data-lang="zh-Hant">下水並收取照片</span><span data-lang="ja">シュノーケル＆写真受け取り</span></div><div class="step-text"><span data-lang="en" class="visible">Enjoy your tour. Underwater photos + drone footage delivered within 24 hours. Free of charge.</span><span data-lang="zh-Hant">盡情享受行程。水下照片和無人機航拍24小時內免費發送。</span><span data-lang="ja">ツアーを思いっきり楽しんで。水中写真＋ドローン映像は24時間以内に無料でお届け。</span></div></div>
     </div>
     <div class="section-cta">
+      <a href="/health-check/" class="cta-btn cta-secondary">
+        <span data-lang="en" class="visible">Before you book: Health check (PDF)</span>
+        <span data-lang="zh-Hans">预订前：健康自查表（PDF）</span>
+        <span data-lang="zh-Hant">預訂前：健康自查表（PDF）</span>
+        <span data-lang="ja">予約前：健康チェック（PDF）</span>
+      </a>
       <a href="https://wa.me/817089523968" class="cta-btn cta-primary" target="_blank" rel="noopener">
         <span data-lang="en" class="visible">💬 WhatsApp Us Now</span>
         <span data-lang="zh-Hant">💬 立即 WhatsApp 預約</span>

@@ -16,6 +16,7 @@
 
 | 日期 | 执行者 | 内容 |
 |------|--------|------|
+| 2026-08-21 | Codex | SNK-0821-02 新增四语 `/health-check/` 健康自查页与 PDF 资产，首页补 health-check 入口/FAQ/JSON-LD，并收口 SNK-0821-01 价格确认邮件、American Village 9,000 JPY JSON-LD/llms 口径 |
 | 2026-08-13 | Codex | M0813-06 根治首页 390px license 横滚；#25 record-only 查明已于 2026-08-09 合并 |
 | 2026-08-09 | Codex | M0809-03 确认 #24 390px CSS 修复归因为既有缺陷后发车，squash merge 至 main，生产三页与中文 guide 译法点验通过 |
 | 2026-08-09 | Codex | M0809-02 统一中文页面里 guide 对应译法：简体改为「向导」，繁体改为「嚮導」，不改英文/日文 |

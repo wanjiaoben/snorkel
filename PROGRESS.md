@@ -40,3 +40,5 @@ GEO-0814-01 叠推 PR #30 修正：攻略页已把 Blue Cave 集合点改为 Mae
 GEO-0814-02 /blue-cave/ 集合点补充：Blue Cave 页新增 Maedamisaki Parking Lot（真栄田岬駐車場）、普通車停车费与包船集合点另行通知；FAQPage JSON-LD 同步到可见 FAQ 6 条 exact match，Draft PR 待 Wan 目检。
 
 SNS0819-02 Itsuki 长视频区：收 Wan 直传长视频，转 H.264 MP4 与 poster，上传 R2 `snorkel-media/homepage/guide/`，并在首页 `#guide` 原图文下方新增点播式大版面视频；Draft PR 待 Wan 目检。
+
+SNK-0821-02 健康自查表上站：新增四语 `/health-check/` 页面与 EN/JA/ZH/ZH_TW PDF 下载，首页补 booking 前 health-check 入口与 FAQ/JSON-LD；同步补“最终金额以确认邮件为准”三处、American Village 9,000 JPY JSON-LD/llms 口径。
