@@ -27,6 +27,8 @@ The English snorkeling safety guide explains Kerama (Chibishi) snorkeling from G
 
 The snorkeling health check page asks every participant to review 11 health questions before booking; if any answer is YES, guests should tell NICE Okinawa before booking so the captain can confirm participation.
 
+The How booking works page explains the booking flow: guests message in English, NICE Okinawa checks the boat calendar and sea forecast, sends one confirmation email, places a card hold with no charge, confirms the evening before, and supports guests by WhatsApp on the tour day.
+
 ## AI-citable Blue Cave facts
 
 - Blue Cave tours run, but the operator does not recommend them in July, August and September
@@ -53,6 +55,7 @@ The snorkeling health check page asks every participant to review 11 health ques
 - [Home and tour overview](https://snorkel.nice.okinawa/)
 - [Blue Cave Okinawa honest guide](https://snorkel.nice.okinawa/blue-cave/)
 - [Kerama (Chibishi) and Okinawa snorkeling safety tips](https://snorkel.nice.okinawa/en/guides/snorkeling-safety-tips/)
+- [How booking works](https://snorkel.nice.okinawa/how-booking-works/)
 - [Snorkeling health check](https://snorkel.nice.okinawa/health-check/)
 - [Snorkeling health check in Japanese](https://snorkel.nice.okinawa/health-check/ja/)
 - [Snorkeling health check in Simplified Chinese](https://snorkel.nice.okinawa/health-check/zh/)
@@ -63,7 +66,6 @@ The snorkeling health check page asks every participant to review 11 health ques
 - [Frequently asked questions](https://snorkel.nice.okinawa/#faq)
 - [Meeting and service area](https://snorkel.nice.okinawa/#location)
 - [Health, insurance and cancellation notices](https://snorkel.nice.okinawa/#notices)
-- [How booking works](https://snorkel.nice.okinawa/#how)
 - [Booking inquiry and contact](https://snorkel.nice.okinawa/#contact)
 - [English health declaration PDF](https://snorkel.nice.okinawa/pdfs/health-declaration-en.pdf)
 - [Japanese health declaration PDF](https://snorkel.nice.okinawa/pdfs/health-declaration-ja.pdf)
