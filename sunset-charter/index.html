@@ -628,7 +628,7 @@
           <div>
             <p class="eyebrow">Contact</p>
             <h2 id="contact-title"><span data-lang="en" class="visible">Ask about a sunset charter</span></h2>
-            <p><span data-lang="en" class="visible">Send your preferred date, group size, contact method and any notes. We reply by email, WhatsApp or WeChat.</span></p>
+            <p><span data-lang="en" class="visible">Send your preferred date, group size, contact method and any notes. We reply by email or WhatsApp.</span></p>
             <a class="whatsapp-link" href="https://wa.me/817089523968" target="_blank" rel="noopener">WhatsApp +81 70-8952-3968</a>
           </div>
           <form class="inquiry-form" id="inquiryForm">
@@ -649,7 +649,7 @@
               </select>
             </div>
             <div class="inquiry-field">
-              <label for="inquiryContact">Email / WhatsApp / WeChat</label>
+              <label for="inquiryContact">Email / WhatsApp</label>
               <input id="inquiryContact" name="contact" type="text" autocomplete="email" placeholder="info@example.com / +81..." required>
             </div>
             <div class="inquiry-field">
@@ -728,7 +728,7 @@
         if (!response.ok || !result.ok) throw new Error(result.error || 'submit_failed');
         form.reset();
         resetTurnstile();
-        setInquiryStatus('Inquiry received. We will reply by email, WhatsApp or WeChat.', 'ok');
+        setInquiryStatus('Inquiry received. We will reply by email or WhatsApp.', 'ok');
       } catch (error) {
         resetTurnstile();
         setInquiryStatus('Could not send. Please try again or use WhatsApp.', 'err');

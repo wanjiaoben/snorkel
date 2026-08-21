@@ -21,7 +21,7 @@ Wan 只做三件事：
 2. **支付全自助**  
    客人从落地页到开通必须零人工介入，支付问题不找 Wan 兜底。
 3. **信息前置**  
-   页面写清楚，杜绝重复提问；微信、LINE、WhatsApp 定位为深度咨询与二次成交入口，不是客服兜底。
+   页面写清楚，杜绝重复提问；WhatsApp 与 Email 定位为深度咨询与二次成交入口，不是客服兜底。
 
 ---
 
@@ -188,7 +188,7 @@ cctest 冒烟测试通过
 
 不得把支付失败默认引导到私聊。
 
-微信人工转账通道废止，不再作为任何产品的收款方式。
+人工转账通道废止，不再作为任何产品的收款方式。
 
 ---
 
@@ -219,7 +219,7 @@ FAQ 必须使用 `FAQPage` JSON-LD 标记，兼顾 SEO 与 GEO。
 
 ### 5.3 FAQ 来源
 
-FAQ 初始内容来源于 Wan 提供的微信、LINE、WhatsApp 高频问题清单。CC 负责提炼成文并多语化。
+FAQ 初始内容来源于 Wan 提供的 WhatsApp 与 Email 高频问题清单。CC 负责提炼成文并多语化。
 
 ---
 
@@ -233,7 +233,7 @@ FAQ 初始内容来源于 Wan 提供的微信、LINE、WhatsApp 高频问题清�
 用户提交表单
 → Worker 接收
 → 推送 Wan
-→ LINE + 邮箱双通道通知
+→ Email + WhatsApp 双通道通知
 ```
 
 ### 6.2 表单字段
@@ -248,7 +248,7 @@ FAQ 初始内容来源于 Wan 提供的微信、LINE、WhatsApp 高频问题清�
 
 ### 6.3 咨询入口定位
 
-表单旁保留微信、WhatsApp、LINE 入口，但定位为深度咨询与二次成交，不作为客服兜底。
+表单旁保留 WhatsApp 与 Email 入口，但定位为深度咨询与二次成交，不作为客服兜底。
 
 ### 6.4 北极星指标
 
@@ -337,7 +337,7 @@ Wan 每周只投入以下内容：
 ### P1：降低重复沟通与发布摩擦
 
 4. FAQ 区块全产品部署。  
-   依赖：Wan 提供微信、LINE、WhatsApp 高频问题清单。
+   依赖：Wan 提供 WhatsApp 与 Email 高频问题清单。
 5. `japanusedcars` 迁移 Cloudflare Pages + 纳入 `MERGE_GATE`。  
    本迁移不属于本次 `PIPELINE.md` 落地 PR，必须另开独立分支和独立 PR。
 
@@ -464,11 +464,11 @@ repo checkout
 ### 12.3 监控
 
 - cron 探针覆盖 OTP、支付回调健康、题库接口、音频接口。
-- 异常推送 Wan LINE。
+- 异常推送 Wan Email / WhatsApp。
 
 ### 12.4 询盘存底
 
-- 表单必须先写 D1，再推送 LINE / Email / WhatsApp。
+- 表单必须先写 D1，再推送 Email / WhatsApp。
 - 推送失败必须可查、可补推、可标记处理。
 
 ### 12.5 账号安全
@@ -492,7 +492,7 @@ repo checkout
 
 - 所有发送域必须配置 SPF、DKIM、DMARC。
 - OTP 邮件送达必须纳入监控探针；第二批实施监控时一并落地。
-- OTP 发送失败、延迟过高、退信率异常时，应触发 Wan LINE 告警。
+- OTP 发送失败、延迟过高、退信率异常时，应触发 Wan Email / WhatsApp 告警。
 - 邮件服务配置、DNS 记录、退信日志排查步骤必须写入 `RUNBOOK.md`。
 
 ### 13.2 OTP 防刷
