@@ -7,7 +7,7 @@
 ## 📍 当前状态
 
 - **阶段**：维护中
-- **最后更新**：2026-08-09
+- **最后更新**：2026-08-21
 - **负责人**：Wan
 
 ---
@@ -16,6 +16,7 @@
 
 | 日期 | 执行者 | 内容 |
 |------|--------|------|
+| 2026-08-21 | Codex | SNK-0821-04 全站清理旧渠道文案与入口，联系方式统一只保留 WhatsApp +81 70-8952-3968 与 info@nice.okinawa |
 | 2026-08-21 | Codex | SNK-0821-03 新增 `/how-booking-works/` 英文预约流程页，补 HowTo/FAQPage JSON-LD、首页入口/FAQ、health-check 页尾互链、sitemap 与 llms |
 | 2026-08-21 | Codex | SNK-0821-02 新增四语 `/health-check/` 健康自查页与 PDF 资产，首页补 health-check 入口/FAQ/JSON-LD，并收口 SNK-0821-01 价格确认邮件、American Village 9,000 JPY JSON-LD/llms 口径 |
 | 2026-08-13 | Codex | M0813-06 根治首页 390px license 横滚；#25 record-only 查明已于 2026-08-09 合并 |
@@ -84,6 +85,7 @@
 
 | 日期 | 执行者 | 操作 | 结果 |
 |------|--------|------|------|
+| 2026-08-21 | Codex | SNK-0821-04 删除首页与 sunset-charter 旧渠道入口、表单提示和二维码资产，并同步仓内规则/历史文档残留旧渠道字样 | 准备发车 |
 | 2026-08-14 | Codex | GEO-0814-02 在 `/blue-cave/` 补 Blue Cave 集合点 Maedamisaki Parking Lot、普通車停车费与包船集合点另行通知，并同步 FAQPage JSON-LD exact match | Draft PR 待 Wan 目检 |
 | 2026-08-19 | Codex | SNS0819-02 收 Wan 直传 Itsuki 长视频，转 H.264 MP4 + poster 上传 R2，并在首页 Itsuki 区原图文下方新增点播式大版面视频 | Draft PR 待 Wan 目检 |
 | 2026-08-14 | Codex | GEO-0814-01 叠推 PR #30：修正攻略页 Blue Cave 集合点为 Maedamisaki Parking Lot，明确 Kerama (Chibishi) 口径、1 人起订/max 12、共享拼船包含项、drone 航拍样片与潜水加订说明 | Draft PR 待 Wan 目检 |

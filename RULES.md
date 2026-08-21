@@ -184,6 +184,6 @@ nice.okinawa
 ## 👤 项目负责人
 
 Wan（深耕ラボ / SINKOLABO）冲绳那霸  
-WeChat: `OkinawaOnline` ｜ Email: `info@nice.okinawa` ｜ WhatsApp: `+81 70-8952-3968`
+Email: `info@nice.okinawa` ｜ WhatsApp: `+81 70-8952-3968`
 
 *最后更新：2026-06*

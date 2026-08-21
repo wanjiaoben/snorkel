@@ -30,7 +30,7 @@ room for future automated Instagram and Facebook publishing.
 | Korea | 8 | Korean | Instagram, Naver Blog, Threads | Reserve a snorkeling day before arrival |
 | Hong Kong | 4 | Traditional Chinese / Cantonese | Instagram, Facebook, Threads | Short-trip Okinawa snorkeling |
 | Thailand | 4 | Thai / English | Instagram, TikTok, Facebook | Book Okinawa snorkeling before departure |
-| Mainland China | 1 | Simplified Chinese | WeChat, Xiaohongshu | Add WeChat and confirm the tour |
+| Mainland China | 1 | Simplified Chinese | Xiaohongshu, WhatsApp | Message WhatsApp and confirm the tour |
 
 ## Daily posting rhythm
 
@@ -93,7 +93,7 @@ Hashtags:
 ### Mainland China
 
 来冲绳前，先把浮潜预约好。
-中文沟通，集合方式清楚，可加微信确认行程。
+中文沟通，集合方式清楚，可用 WhatsApp 确认行程。
 
 预约：
 https://snorkel.nice.okinawa
@@ -117,9 +117,9 @@ Every post should include one clear action:
 
 - Book before arrival.
 - Message WhatsApp.
-- Add WeChat.
+- Message WhatsApp.
 - Choose a date.
 
 ## Website landing path
 
-SNS post -> https://snorkel.nice.okinawa -> direct-flight market card -> WhatsApp or WeChat -> booking confirmation.
+SNS post -> https://snorkel.nice.okinawa -> direct-flight market card -> WhatsApp or Email -> booking confirmation.

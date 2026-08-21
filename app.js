@@ -195,21 +195,6 @@ function toggleFloat() {
   toggle.textContent = isOpen ? '✉' : '✕';
 }
 
-function copyWechat(e) {
-  e.preventDefault();
-  const msg = {
-    en: 'WeChat ID copied: OkinawaOnline',
-    'zh-Hans': '微信号已复制：OkinawaOnline',
-    'zh-Hant': '微信號已複製：OkinawaOnline',
-    ja: 'WeChat IDをコピーしました：OkinawaOnline'
-  };
-  navigator.clipboard.writeText('OkinawaOnline').then(() => {
-    alert(msg[currentLang] || msg.en);
-  }).catch(() => {
-    alert('WeChat ID: OkinawaOnline');
-  });
-}
-
 function inquiryMessage(key) {
   const messages = {
     sending: {
@@ -218,9 +203,9 @@ function inquiryMessage(key) {
       ja: '送信中...'
     },
     ok: {
-      en: 'Inquiry received. We will reply by email, WhatsApp or WeChat.',
-      'zh-Hant': '已收到詢問，我們會透過 Email、WhatsApp 或微信回覆。',
-      ja: 'お問い合わせを受け付けました。メール、WhatsApp、WeChatで返信します。'
+      en: 'Inquiry received. We will reply by email or WhatsApp.',
+      'zh-Hant': '已收到詢問，我們會透過 Email 或 WhatsApp 回覆。',
+      ja: 'お問い合わせを受け付けました。メールまたはWhatsAppで返信します。'
     },
     missingTurnstile: {
       en: 'Please complete the security check.',
@@ -314,9 +299,6 @@ document.addEventListener('click', function(e) {
   }
 });
 
-function toggleWechat() { document.getElementById('wcOverlay').classList.add('open'); document.body.style.overflow='hidden'; setLang(currentLang); }
-function closeWechat() { document.getElementById('wcOverlay').classList.remove('open'); document.body.style.overflow=''; }
-
 // ── Bubbles ───────────────────────────────────────
 function makeBubbles() {
   const wrap = document.getElementById('bubbles');
@@ -332,7 +314,7 @@ function makeBubbles() {
 
 // ── Keyboard ──────────────────────────────────────
 document.addEventListener('keydown', e => {
-  if (e.key === 'Escape') { closeWechat(); closeLightbox(); }
+  if (e.key === 'Escape') { closeLightbox(); }
   if (document.getElementById('lightbox').classList.contains('open')) {
     if (e.key === 'ArrowLeft')  lbNav(-1, { stopPropagation:()=>{} });
     if (e.key === 'ArrowRight') lbNav(1,  { stopPropagation:()=>{} });
