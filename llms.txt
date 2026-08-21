@@ -67,9 +67,10 @@ The How booking works page explains the booking flow: guests message in English,
 - [Meeting and service area](https://snorkel.nice.okinawa/#location)
 - [Health, insurance and cancellation notices](https://snorkel.nice.okinawa/#notices)
 - [Booking inquiry and contact](https://snorkel.nice.okinawa/#contact)
-- [English health declaration PDF](https://snorkel.nice.okinawa/pdfs/health-declaration-en.pdf)
-- [Japanese health declaration PDF](https://snorkel.nice.okinawa/pdfs/health-declaration-ja.pdf)
-- [Chinese health declaration PDF](https://snorkel.nice.okinawa/pdfs/health-declaration-zh.pdf)
+- [English health check PDF](https://snorkel.nice.okinawa/assets/health-check/Snorkel_Health_Check_EN.pdf)
+- [Japanese health check PDF](https://snorkel.nice.okinawa/assets/health-check/Snorkel_Health_Check_JA.pdf)
+- [Simplified Chinese health check PDF](https://snorkel.nice.okinawa/assets/health-check/Snorkel_Health_Check_ZH.pdf)
+- [Traditional Chinese health check PDF](https://snorkel.nice.okinawa/assets/health-check/Snorkel_Health_Check_ZH_TW.pdf)
 - [XML sitemap](https://snorkel.nice.okinawa/sitemap.xml)
 - [Crawler policy](https://snorkel.nice.okinawa/robots.txt)
 

@@ -46,3 +46,5 @@ SNK-0821-02 健康自查表上站：新增四语 `/health-check/` 页面与 EN/J
 SNK-0821-03 How booking works：新增 `/how-booking-works/` 英文预约流程页，含 7 步 HowTo 与 5 问 FAQPage JSON-LD；首页预订区/FAQ、health-check 页尾、sitemap 与 llms 已接入。
 
 SNK-0821-04 全站清旧渠道：删除首页与 sunset-charter 的旧渠道入口、二维码 modal、旧渠道表单提示和二维码资产；联系方式统一为 WhatsApp +81 70-8952-3968 与 info@nice.okinawa。
+
+SNK-0821-07 首页健康自查表区块：将旧健康 PDF 卡改为新 Health Check/健康自查表口径，接入 EN/JA/ZH/ZH_TW 四份新 PDF，并删除旧空白 PDF。
