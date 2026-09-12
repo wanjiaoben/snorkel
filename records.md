@@ -7,7 +7,7 @@
 ## 📍 当前状态
 
 - **阶段**：维护中
-- **最后更新**：2026-08-21
+- **最后更新**：2026-09-12
 - **负责人**：Wan
 
 ---
@@ -16,6 +16,7 @@
 
 | 日期 | 执行者 | 内容 |
 |------|--------|------|
+| 2026-09-12 | Codex | SNORKEL-COPY-0912-01 修正首页 Choose by Area 方案卡多语言文案、补 FAQ 多早预订五语、更新页脚英文标语并删除 Instagram 根链接 |
 | 2026-08-21 | Codex | SNK-0821-08 在首页 FAQ 与 `/how-booking-works/` FAQ 增加 “How early should I book?” 并同步 FAQPage JSON-LD |
 | 2026-08-21 | Codex | SNK-0821-07 将首页旧健康 PDF 区块换为健康自查表，接入 EN/JA/ZH/ZH_TW 四份新 PDF 并删除旧空白 PDF |
 | 2026-08-21 | Codex | SNK-0821-04 全站清理旧渠道文案与入口，联系方式统一只保留 WhatsApp +81 70-8952-3968 与 info@nice.okinawa |
