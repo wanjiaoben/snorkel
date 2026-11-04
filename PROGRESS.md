@@ -50,3 +50,10 @@ SNK-0821-04 全站清旧渠道：删除首页与 sunset-charter 的旧渠道入�
 SNK-0821-07 首页健康自查表区块：将旧健康 PDF 卡改为新 Health Check/健康自查表口径，接入 EN/JA/ZH/ZH_TW 四份新 PDF，并删除旧空白 PDF。
 
 SNK-0821-08 多早预订 FAQ：在首页 FAQ 与 `/how-booking-works/` FAQ 增加 “How early should I book?”，同步 FAQPage JSON-LD，并链接到 activity.nice.okinawa 的 when-to-book 指南。
+
+## M1104-03 · A功能 · 2026-11-04
+
+- 新增页脚前固定旅游新闻橱窗，六语卡片界面；正文链接指向已发布的 Nice 三语交通指南。
+- 候选只修改 index.html、新增 travel-news/index.html 及记录；旧页面和台风提示完整保留。
+- 仍待 Wan 在 Review 验收；未合并或部署。对学习、支付、预授权三项零影响：无相关文件变更。
+- 自测：插槽外字节守恒、六语切换、正文链接、移动端；回滚为撤销本任务提交。
